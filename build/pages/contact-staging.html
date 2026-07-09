@@ -1,0 +1,61 @@
+<!-- OMJ Contact Staging — corrected value props and locations; form cloned by create-staging.php -->
+
+<section class="omj-section omj-section--cream" style="padding-top:120px;padding-bottom:60px;">
+  <div class="omj-container omj-text-center">
+    <img src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/omj-icon-staging.png" alt="Oh My Juiceness icon" style="width:96px;height:96px;object-fit:contain;margin-bottom:var(--omj-gap-md);">
+    <h1 class="omj-h1" style="color:var(--omj-orange);">Let's Talk Fresh Juice</h1>
+    <p class="omj-body" style="max-width:680px;margin:0 auto;">Questions, locations, franchising, and machine inquiries can all start here.</p>
+  </div>
+</section>
+
+<section class="omj-section omj-section--white">
+  <div class="omj-container">
+    <p class="omj-eyebrow">Contact Us</p>
+    <h2 class="omj-h2">Tell Us What You Need</h2>
+    <ul class="omj-icon-tiles" style="margin-bottom:var(--omj-gap-lg);">
+      <li class="omj-icon-tile"><span class="omj-icon-tile__emoji">🍊</span><span class="omj-icon-tile__text">100% Fresh Oranges</span></li>
+      <li class="omj-icon-tile"><span class="omj-icon-tile__emoji">💧</span><span class="omj-icon-tile__text">No Water Added</span></li>
+      <li class="omj-icon-tile"><span class="omj-icon-tile__emoji">🚫</span><span class="omj-icon-tile__text">No Added Preservatives</span></li>
+      <li class="omj-icon-tile"><span class="omj-icon-tile__emoji">⚡</span><span class="omj-icon-tile__text">Ready in Under 60 Seconds</span></li>
+    </ul>
+    <p class="omj-body" style="max-width:680px;">The working Elementor Pro form is cloned below from the live contact page so routing, reCAPTCHA, and inquiry options stay intact for review.</p>
+  </div>
+</section>
+
+<section class="omj-section omj-section--cream">
+  <div class="omj-container">
+    <p class="omj-eyebrow">Current Locations</p>
+    <h2 class="omj-h2">Find OMJ Around Metro Manila</h2>
+    <div class="omj-loc-grid">
+      <div class="omj-loc-card"><img class="omj-loc-card__img skip-lazy" data-no-lazy="1" src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/loc-greenhills-staging.jpg" alt="Greenhills OMJ location" loading="eager" decoding="async"><div class="omj-loc-card__body"><div class="omj-loc-card__name">Greenhills</div></div></div>
+      <div class="omj-loc-card"><img class="omj-loc-card__img skip-lazy" data-no-lazy="1" src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/loc-eastwood-staging.jpg" alt="Eastwood OMJ location" loading="eager" decoding="async"><div class="omj-loc-card__body"><div class="omj-loc-card__name">Eastwood</div></div></div>
+      <div class="omj-loc-card"><img class="omj-loc-card__img skip-lazy" data-no-lazy="1" src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/loc-uptown-staging.jpg" alt="Uptown BGC OMJ location" loading="eager" decoding="async"><div class="omj-loc-card__body"><div class="omj-loc-card__name">Uptown BGC</div></div></div>
+      <div class="omj-loc-card"><img class="omj-loc-card__img skip-lazy" data-no-lazy="1" src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/loc-parqal-staging.jpg" alt="Parqal OMJ location" loading="eager" decoding="async"><div class="omj-loc-card__body"><div class="omj-loc-card__name">Parqal</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="omj-section omj-section--white">
+  <div class="omj-container omj-text-center">
+    <p class="omj-eyebrow">Instagram</p>
+    <h2 class="omj-h2">@ohmyjuiceness</h2>
+    <a href="https://www.instagram.com/ohmyjuiceness/" target="_blank" rel="noopener">
+      <img class="skip-lazy" data-no-lazy="1" src="https://ohmyjuiceness.com/wp-content/uploads/2026/07/ig-qr-staging.jpg" alt="Instagram QR for @ohmyjuiceness" loading="eager" decoding="async" style="width:160px;height:160px;object-fit:cover;border-radius:var(--omj-radius-md);">
+    </a>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var p = new URLSearchParams(location.search).get('inquiry');
+  if (!p) return;
+  var sel = document.querySelector('form.elementor-form select');
+  if (!sel) return;
+  Array.from(sel.options).forEach(function(o){
+    if (o.text.toLowerCase().indexOf(p.toLowerCase()) > -1) {
+      sel.value = o.value;
+      sel.dispatchEvent(new Event('change', {bubbles:true}));
+    }
+  });
+});
+</script>
