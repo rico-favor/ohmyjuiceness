@@ -14,3 +14,11 @@
 
 # Local DB / settings backups (never commit)
 backups/
+
+# Graphify (generated knowledge-graph outputs — rebuild from source)
+graphify-out/
+.graphify_*.json
+.graphify_*.txt
+
+# Symlink created during graphify run (build/ is the real directory)
+src
