@@ -20,7 +20,7 @@
     --omj-font-body: 'Poppins', sans-serif;
 
     --omj-radius-sm: 6px;
-    --omj-radius-md: 12px;
+    --omj-radius-md: 8px;
     --omj-radius-pill: 999px;
 
     --omj-gap-xs: 8px;
@@ -48,6 +48,12 @@
 /* ============================================================
    2. Reset / Base
    ============================================================ */
+.page-id-526 .page-header,
+.page-id-528 .page-header,
+.page-id-530 .page-header {
+    display: none;
+}
+
 .omj-section {
     position: relative;
     width: 100%;
@@ -59,6 +65,13 @@
     max-width: var(--omj-max-w);
     margin: 0 auto;
     width: 100%;
+}
+
+.omj-page-icon {
+    width: 112px;
+    max-width: 40vw;
+    height: auto;
+    margin-bottom: var(--omj-gap-md);
 }
 
 .omj-section--cream { background: var(--omj-cream); }
@@ -79,13 +92,25 @@
     color: var(--omj-green);
 }
 
-.omj-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-.omj-h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
-.omj-h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
+.omj-h1 { font-size: 2.25rem; }
+.omj-h2 { font-size: 1.75rem; }
+.omj-h3 { font-size: 1.25rem; }
+
+@media (min-width: 768px) {
+    .omj-h1 { font-size: 3rem; }
+    .omj-h2 { font-size: 2.25rem; }
+    .omj-h3 { font-size: 1.5rem; }
+}
+
+@media (min-width: 1025px) {
+    .omj-h1 { font-size: 3.5rem; }
+    .omj-h2 { font-size: 2.5rem; }
+    .omj-h3 { font-size: 1.75rem; }
+}
 
 .omj-body {
     font-family: var(--omj-font-body);
-    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    font-size: 1rem;
     line-height: 1.65;
     color: var(--omj-text);
     margin: 0;
@@ -95,7 +120,7 @@
     font-family: var(--omj-font-body);
     font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: var(--omj-orange);
     margin-bottom: var(--omj-gap-xs);
@@ -189,6 +214,10 @@
     background: #111;
 }
 
+.omj-hero--image {
+    background: #111;
+}
+
 .omj-hero__video,
 .omj-hero__poster {
     position: absolute;
@@ -222,7 +251,7 @@
 .omj-hero__content .omj-h1 { color: var(--omj-white); }
 .omj-hero__subhead {
     font-family: var(--omj-font-body);
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-size: 1.05rem;
     color: rgba(255,255,255,0.9);
     line-height: 1.6;
     margin-bottom: var(--omj-gap-md);
@@ -299,7 +328,7 @@
 
 .omj-stat__number {
     font-family: var(--omj-font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: 2.5rem;
     font-weight: 400;
     color: var(--omj-orange);
     line-height: 1.1;
@@ -309,6 +338,10 @@
 .omj-section--green .omj-stat__number,
 .omj-section--dark .omj-stat__number {
     color: var(--omj-white);
+}
+
+@media (min-width: 1025px) {
+    .omj-stat__number { font-size: 3rem; }
 }
 
 .omj-stat__label {
@@ -406,6 +439,7 @@
 .omj-img-grid {
     display: grid;
     gap: var(--omj-gap-sm);
+    align-items: stretch;
 }
 
 .omj-img-grid--2 { grid-template-columns: 1fr; }
@@ -416,8 +450,12 @@
 @media (min-width: 1025px) { .omj-img-grid--3 { grid-template-columns: repeat(3, 1fr); } }
 
 .omj-img-block {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--omj-cream);
     border-radius: var(--omj-radius-md);
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 .omj-img-block img {
@@ -425,6 +463,31 @@
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.omj-img-grid--2 .omj-img-block { aspect-ratio: 4 / 5; }
+.omj-img-grid--3 .omj-img-block { aspect-ratio: 1 / 1; }
+
+@media (min-width: 768px) {
+    .omj-img-grid--2 .omj-img-block { aspect-ratio: 5 / 6; }
+}
+
+.omj-next-panel {
+    min-height: 100%;
+    background: var(--omj-white);
+    border-radius: var(--omj-radius-md);
+    padding: var(--omj-gap-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--omj-gap-sm);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.omj-next-panel img {
+    width: 112px;
+    height: 112px;
+    object-fit: contain;
 }
 
 /* ============================================================

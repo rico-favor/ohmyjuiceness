@@ -65,3 +65,20 @@ Generated 2026-07-09. All photos processed: auto-oriented, resized to ≤1600px 
 |---|---|---|
 | ig-qr.jpg | 490 | `/wp-content/uploads/2026/07/ig-qr.jpg` |
 | omj-icon.png | 491 | `/wp-content/uploads/2026/07/omj-icon.png` |
+
+## 2026 Staging Revision Assets
+
+Selected/reprocessed 2026-07-09 from `revisions/` and `revisions/other-assets/`. Images are not cropped; they are auto-oriented and resized for web delivery.
+
+| File | Media ID | URL |
+|---|---|---|
+| omj-2026-hero-abaca-machine.jpg | 516 | `/wp-content/uploads/2026/07/omj-2026-hero-abaca-machine.jpg` |
+| omj-2026-hero-parqal-machine.jpg | 517 | `/wp-content/uploads/2026/07/omj-2026-hero-parqal-machine.jpg` |
+| omj-2026-process-parqal-kids.jpg | 518 | `/wp-content/uploads/2026/07/omj-2026-process-parqal-kids.jpg` |
+| omj-2026-loc-greenhills.jpg | 519 | `/wp-content/uploads/2026/07/omj-2026-loc-greenhills.jpg` |
+| omj-2026-loc-eastwood.jpg | 520 | `/wp-content/uploads/2026/07/omj-2026-loc-eastwood.jpg` |
+| omj-2026-loc-uptown.jpg | 521 | `/wp-content/uploads/2026/07/omj-2026-loc-uptown.jpg` |
+| omj-2026-loc-parqal.jpg | 522 | `/wp-content/uploads/2026/07/omj-2026-loc-parqal.jpg` |
+| omj-2026-cup-design.jpg | 523 | `/wp-content/uploads/2026/07/omj-2026-cup-design.jpg` |
+| omj-2026-icon-fruit.png | 524 | `/wp-content/uploads/2026/07/omj-2026-icon-fruit.png` |
+| omj-2026-instagram-qr.jpg | 525 | `/wp-content/uploads/2026/07/omj-2026-instagram-qr.jpg` |

@@ -45,6 +45,16 @@ Updated 2026-07-09 after full revision deployment.
 | 21 | Contact Us | `/contact/` | Elementor Pro form + surgical edits |
 | 3 | Privacy Policy | `/privacy-policy/` | Default WordPress |
 
+## Staging Preview Pages
+
+| ID | Title | Slug | Build Method |
+|---|---|---|---|
+| 526 | OMJ Home Staging — New Design Preview | `/home-staging/` | `omj_set_page_html` via `build/scripts/create-staging.php` |
+| 528 | OMJ About Staging — New Design Preview | `/about-staging/` | `omj_set_page_html` via `build/scripts/create-staging.php` |
+| 530 | OMJ Contact Staging — New Design Preview | `/contact-staging/` | `omj_set_page_html` via `build/scripts/create-staging.php` |
+
+The staging script deploys body HTML only. Header and footer markup are not embedded in the staging page files because Elementor Theme Builder already handles site chrome.
+
 ## Theme Builder Templates
 
 | ID | Title | Type |

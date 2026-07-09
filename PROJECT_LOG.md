@@ -94,3 +94,26 @@ design system**, mounted inside Elementor so pages stay Elementor-native. Must-u
 **Elementor fix:** HTML widget rendering issue resolved by switching to text-editor widget type
 
 **Key finding:** Elementor 4.1.4 HTML widget (`widgetType: html`) renders empty on frontend. Workaround: use `text-editor` widget with `editor` setting key. Updated `omj-build.php` accordingly.
+
+### 2026-07-09 — Staging-only revision rebuild
+
+**Client constraint:** Do not replace the live Home page directly. Recreate the revision work on staging preview slugs.
+
+**Backups created before WordPress writes:**
+- `~/omj-backup-2026-07-09-1159.sql`
+- `~/omj-muplugins-2026-07-09-1159.tgz`
+
+**Created/updated staging pages only:**
+- `/home-staging/` (page ID 526)
+- `/about-staging/` (page ID 528)
+- `/contact-staging/` (page ID 530)
+
+**Implementation notes:**
+- Added `build/pages/home-staging.html`, `build/pages/about-staging.html`, and `build/pages/contact-staging.html`.
+- Added `build/scripts/create-staging.php`, which deploys staging page body HTML only and does not update live page IDs 35, 25, or 21. Header/footer are intentionally not hard-coded because Elementor Theme Builder owns the site chrome.
+- Used supplied client images as-is (auto-oriented/resized for web, not cropped) and uploaded WordPress media IDs 516-525.
+- Added CSS-only image treatment for visual consistency: shared 8px radius, subtle shadow, stable aspect ratios, and object-fit cropping for image grids/location cards.
+- Moved staging image presentation out of inline styles where practical: the hero uses `.omj-hero__poster`, page icons use `.omj-page-icon`, and contact staging links stay inside `/contact-staging/`.
+- Hid the default Hello Elementor page title on staging page IDs 526, 528, and 530 so the preview starts with the intended page content beneath the Elementor header.
+- Processed/minified staging images are in `build/assets/omj-revision/`; selected live-uploaded files range from 60K to 372K after resizing/compression.
+- Updated `docs/2026-07-09-client-report.html` as a staging review report.

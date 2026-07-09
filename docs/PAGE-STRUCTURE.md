@@ -53,6 +53,18 @@ Green footer, OMJ logo, Instagram @ohmyjuiceness link + QR, copyright "© 2026 O
 
 Default WordPress page — no changes.
 
+## Staging Revision Preview (created 2026-07-09)
+
+These pages preview the revision round without replacing live Home/About/Contact:
+
+| ID | Slug | Purpose |
+|---|---|---|
+| 526 | `/home-staging/` | Product-first Home revision preview |
+| 528 | `/about-staging/` | Shorter About story, no bottle imagery |
+| 530 | `/contact-staging/` | Contact copy/location fixes, with live form behavior documented |
+
+The staging pages are deployed by `build/scripts/create-staging.php` and use `build/pages/*-staging.html`. They contain body content only; Elementor Theme Builder supplies the site header/footer.
+
 ## Brand Assets (Media IDs)
 
 | Asset | ID |
