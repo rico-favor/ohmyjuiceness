@@ -17,6 +17,8 @@ Generated 2026-07-09. All photos processed: auto-oriented, resized to ≤1600px 
 | File | Media ID | URL |
 |---|---|---|
 | hero-poster.jpg | 507 | `/wp-content/uploads/2026/07/hero-poster-rotated.jpg` |
+| hero-poster-staging.jpg | 532 | `/wp-content/uploads/2026/07/hero-poster-staging.jpg` |
+| hero-source-staging.jpg | 533 | `/wp-content/uploads/2026/07/hero-source-staging.jpg` |
 
 ## Machine / Product
 
@@ -26,6 +28,20 @@ Generated 2026-07-09. All photos processed: auto-oriented, resized to ≤1600px 
 | machine-parqal.jpg | 497 | `/wp-content/uploads/2026/07/machine-parqal-rotated.jpg` |
 | machine-parqal-2.jpg | 499 | `/wp-content/uploads/2026/07/machine-parqal-2-rotated.jpg` |
 | cup-design.jpg | 487 | `/wp-content/uploads/2026/07/cup-design.jpg` |
+| machine-greenhills-staging.jpg | 539 | `/wp-content/uploads/2026/07/machine-greenhills-staging.jpg` |
+| machine-uptown-staging.jpg | 540 | `/wp-content/uploads/2026/07/machine-uptown-staging.jpg` |
+| cup-design-staging.jpg (legacy internal reference; no longer displayed on staging) | 534 | `/wp-content/uploads/2026/07/cup-design-staging.jpg` |
+
+## Generated Cup / Fresh Fruit Concepts
+
+Generated 2026-07-09 as deployable product imagery to replace visible cup blueprint/spec-sheet usage on staging. Local optimized copies live in `build/assets/generated-cups/`.
+
+| File | Media ID | URL |
+|---|---|---|
+| omj-generated-catering-cups.jpg | 552 | `/wp-content/uploads/2026/07/omj-generated-catering-cups.jpg` |
+| omj-generated-cup-oranges.jpg | 553 | `/wp-content/uploads/2026/07/omj-generated-cup-oranges.jpg` |
+| omj-generated-cup-studio.jpg | 554 | `/wp-content/uploads/2026/07/omj-generated-cup-studio.jpg` |
+| omj-generated-fresh-fruit-cup.jpg | 555 | `/wp-content/uploads/2026/07/omj-generated-fresh-fruit-cup.jpg` |
 
 ## Locations
 
@@ -40,6 +56,10 @@ Generated 2026-07-09. All photos processed: auto-oriented, resized to ≤1600px 
 | loc-parqal.jpg | 493 | `/wp-content/uploads/2026/07/loc-parqal-rotated.jpg` |
 | loc-parqal-2.jpg | 495 | `/wp-content/uploads/2026/07/loc-parqal-2-rotated.jpg` |
 | loc-parqal-building.jpg | 501 | `/wp-content/uploads/2026/07/loc-parqal-building-rotated.jpg` |
+| loc-greenhills-staging.jpg | 535 | `/wp-content/uploads/2026/07/loc-greenhills-staging.jpg` |
+| loc-eastwood-staging.jpg | 536 | `/wp-content/uploads/2026/07/loc-eastwood-staging.jpg` |
+| loc-uptown-staging.jpg | 537 | `/wp-content/uploads/2026/07/loc-uptown-staging.jpg` |
+| loc-parqal-staging.jpg | 538 | `/wp-content/uploads/2026/07/loc-parqal-staging.jpg` |
 
 ## Eastwood (full set)
 
@@ -65,10 +85,12 @@ Generated 2026-07-09. All photos processed: auto-oriented, resized to ≤1600px 
 |---|---|---|
 | ig-qr.jpg | 490 | `/wp-content/uploads/2026/07/ig-qr.jpg` |
 | omj-icon.png | 491 | `/wp-content/uploads/2026/07/omj-icon.png` |
+| ig-qr-staging.jpg | 541 | `/wp-content/uploads/2026/07/ig-qr-staging.jpg` |
+| omj-icon-staging.png | 542 | `/wp-content/uploads/2026/07/omj-icon-staging.png` |
 
 ## 2026 Staging Revision Assets
 
-Selected/reprocessed 2026-07-09 from `revisions/` and `revisions/other-assets/`. Images are not cropped; they are auto-oriented and resized for web delivery.
+Selected/reprocessed 2026-07-09 from `revisions/` and `revisions/other-assets/`. Images are not cropped; they are auto-oriented and resized for web delivery. These were used in the first staging preview pass and are retained as source/history even where the current `/home-staging/` page now uses generated cup imagery.
 
 | File | Media ID | URL |
 |---|---|---|

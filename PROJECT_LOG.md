@@ -117,3 +117,24 @@ design system**, mounted inside Elementor so pages stay Elementor-native. Must-u
 - Hid the default Hello Elementor page title on staging page IDs 526, 528, and 530 so the preview starts with the intended page content beneath the Elementor header.
 - Processed/minified staging images are in `build/assets/omj-revision/`; selected live-uploaded files range from 60K to 372K after resizing/compression.
 - Updated `docs/2026-07-09-client-report.html` as a staging review report.
+
+### 2026-07-09 — Staging cup imagery refinement
+
+**Staging only:**
+- Generated 4 premium cup/fresh-fruit concept assets to replace visible technical cup/spec-sheet imagery on `/home-staging/`.
+- Imported generated assets to WordPress Media:
+  - `omj-generated-catering-cups.jpg` → ID 552
+  - `omj-generated-cup-oranges.jpg` → ID 553
+  - `omj-generated-cup-studio.jpg` → ID 554
+  - `omj-generated-fresh-fruit-cup.jpg` → ID 555
+- Updated `build/pages/home-staging.html`:
+  - Machine grid now ends with generated cup photography instead of `cup-design-staging.jpg`.
+  - Product section retitled to "The Cup" and uses generated cup imagery.
+  - "What's Next" uses generated fresh fruit/catering product imagery instead of a technical preview card.
+- Updated `build/pages/about-staging.html` to remove the staging cup-design image.
+- Removed inherited page-level header/footer markup from staging page HTML so Elementor theme parts own header/footer rendering.
+- Refined `omj-brand.css` for stable image aspect ratios, lighter hover states, focus-visible outlines, mobile overflow protection, and `prefers-reduced-motion`.
+
+**Operational notes:**
+- OpenAI Image API CLI attempt was blocked by account billing hard limit; fallback session image generation produced filesystem assets under `~/.codex/generated_images/019f46de-1b30-71d0-9201-500652fce7c0/`, then optimized JPG/WebP copies were saved in `build/assets/generated-cups/`.
+- Backup taken before media import: `~/omj-backup-2026-07-09-1245.sql` and `~/omj-muplugins-2026-07-09-1245.tgz`.

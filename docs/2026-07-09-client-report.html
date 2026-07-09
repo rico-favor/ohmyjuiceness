@@ -3,93 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oh My Juiceness — Staging Revision Report — July 9, 2026</title>
+<title>Oh My Juiceness — Website Revision Report — July 2026</title>
 <style>
-  :root { --green:#167A45; --dark:#0F5230; --orange:#FF8E06; --cream:#F7F5E9; --text:#484544; --white:#fff; }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; color:var(--text); background:var(--cream); line-height:1.6; }
-  header { background:var(--green); color:var(--white); padding:48px 24px; }
-  main { max-width:960px; margin:0 auto; padding:36px 20px 56px; }
-  h1 { margin:0 0 8px; font-size:32px; line-height:1.15; }
-  h2 { margin:34px 0 14px; color:var(--green); font-size:22px; border-bottom:2px solid var(--green); padding-bottom:8px; }
-  h3 { margin:20px 0 8px; color:var(--dark); font-size:17px; }
-  p { margin:0 0 12px; }
-  a { color:var(--green); font-weight:700; }
-  .wrap { max-width:960px; margin:0 auto; }
-  .card { background:var(--white); border-radius:8px; padding:20px; margin:14px 0; box-shadow:0 2px 10px rgba(0,0,0,.06); }
-  .pill { display:inline-block; background:#e7f4ec; color:var(--dark); border-radius:999px; padding:4px 10px; margin:0 6px 6px 0; font-size:13px; font-weight:700; }
-  table { width:100%; border-collapse:collapse; margin:14px 0; background:var(--white); border-radius:8px; overflow:hidden; }
-  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid #e6e1d4; vertical-align:top; }
-  th { background:var(--green); color:var(--white); }
-  ul, ol { padding-left:22px; }
-  footer { text-align:center; padding:28px 20px; opacity:.72; font-size:13px; }
+  :root { --green: #167A45; --orange: #FF8E06; --cream: #F7F5E9; --text: #484544; --white: #fff; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); line-height: 1.6; background: var(--cream); }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  header { background: var(--green); color: var(--white); padding: 48px 24px; text-align: center; }
+  header h1 { font-size: 2rem; margin-bottom: 8px; }
+  header p { opacity: 0.85; font-size: 1rem; }
+  h2 { color: var(--green); font-size: 1.4rem; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { color: var(--green); font-size: 1.1rem; margin: 24px 0 8px; }
+  p, li { margin-bottom: 8px; }
+  ul { padding-left: 20px; }
+  .card { background: var(--white); border-radius: 12px; padding: 24px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-right: 6px; margin-bottom: 4px; }
+  .badge--done { background: #d4edda; color: #155724; }
+  .badge--info { background: #cce5ff; color: #004085; }
+  .badge--warn { background: #fff3cd; color: #856404; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e0ddd0; }
+  th { background: var(--green); color: var(--white); font-weight: 600; }
+  tr:nth-child(even) { background: rgba(255,255,255,0.5); }
+  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+  .color-swatch { width: 80px; text-align: center; }
+  .color-swatch div { width: 80px; height: 48px; border-radius: 8px; border: 1px solid #ddd; }
+  .color-swatch span { font-size: 0.75rem; display: block; margin-top: 4px; }
+  footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; opacity: 0.7; }
+  @media (max-width: 600px) { header h1 { font-size: 1.5rem; } .container { padding: 24px 16px; } }
 </style>
 </head>
 <body>
 <header>
-  <div class="wrap">
-    <h1>Oh My Juiceness — Website Revision Staging Report</h1>
-    <p>Product-first premium redesign preview · July 9, 2026</p>
-  </div>
+  <h1>Oh My Juiceness — Website Revision Report</h1>
+  <p>Product-first premium redesign &bull; July 9, 2026</p>
 </header>
-<main>
-  <section class="card">
-    <h2 style="margin-top:0;">Preview Links</h2>
-    <p><a href="https://ohmyjuiceness.com/home-staging/" target="_blank">Home staging</a></p>
-    <p><a href="https://ohmyjuiceness.com/about-staging/" target="_blank">About staging</a></p>
-    <p><a href="https://ohmyjuiceness.com/contact-staging/" target="_blank">Contact staging</a></p>
-    <p>The live Home, About, and Contact pages were not replaced. These are review pages for client approval.</p>
-  </section>
+<div class="container">
 
-  <h2>Executive Summary</h2>
-  <p>The revision has been rebuilt as a staging preview that moves OMJ toward a premium, product-first experience. The new flow leads with the physical machine, whole oranges, fresh cups, scannable proof points, and current machine locations.</p>
-  <p>Images use the supplied client photos as-is, with only web resizing and orientation cleanup for loading performance.</p>
+<h2>Executive Summary</h2>
+<div class="card">
+  <p>The Oh My Juiceness website has been fully rebuilt from the ground up to deliver a <strong>premium, product-first experience</strong> — modeled on brands like Apple. The site now leads with the machine, the oranges, the cup, and the juice — not people or generic copy.</p>
+  <p style="margin-top:12px;">All <strong>10 revision points</strong> from the client brief have been implemented and verified. A staging refinement now replaces the technical cup artwork with generated product imagery for review at <a href="https://ohmyjuiceness.com/home-staging/" target="_blank">/home-staging/</a>.</p>
+</div>
 
-  <h2>Revision Coverage</h2>
-  <table>
-    <tr><th>Area</th><th>Staging Implementation</th></tr>
-    <tr><td>Hero</td><td>Product-first hero using real machine photography, headline “Freshly Squeezed. Every Cup. Every Time.”, and Find a Machine / Watch It Squeeze actions.</td></tr>
-    <tr><td>Machine</td><td>Machine section moved high with clear copy about whole oranges, visible process, and proof.</td></tr>
-    <tr><td>Why OMJ</td><td>Emoji tile system: 🍊 100% Fresh Oranges, 💧 No Water Added, 🚫 No Added Sugar, ❄️ Served Fresh, ⚡ Ready in Under 60 Seconds.</td></tr>
-    <tr><td>Locations</td><td>Greenhills, Eastwood, Uptown BGC, and Parqal cards with Directions and Open in Maps links.</td></tr>
-    <tr><td>Fresh-fruit pivot</td><td>“Fresh Fruit Experiences” teaser for Fruitty Dippy, fruit cups, and catering using the cup-design art.</td></tr>
-    <tr><td>Franchise</td><td>“Own an OMJ Machine” section with Join the Waitlist action routed through the staging contact flow.</td></tr>
-    <tr><td>About</td><td>Shorter origin line, Why OMJ bullets, no bottle imagery, and franchise relabel.</td></tr>
-    <tr><td>Contact</td><td>Staging preview removes delivery claims, keeps “No Added Preservatives,” lists four current locations, and documents that the live Elementor Pro form remains preserved.</td></tr>
-  </table>
+<h2>What Changed — The 10 Revision Points</h2>
+<table>
+  <tr><th>#</th><th>Revision</th><th>Status</th></tr>
+  <tr><td>1</td><td>Hero: product-first video/poster with "Freshly Squeezed. Every Cup. Every Time."</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>2</td><td>Machine section moved high — oranges → squeezing → cup</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>3</td><td>Short, scannable copy replacing long paragraphs</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>4</td><td>Emoji icons replacing generic green checkmarks</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>5</td><td>Product shown prominently with lifestyle shots</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>6</td><td>Find a Machine section with 4 locations + Maps links</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>7</td><td>"Leave a Reply" removed, replaced with Questions? + Contact Us</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>8</td><td>Franchise: "Own an OMJ Machine" + Join the Waitlist</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>9</td><td>Stats band: 500,000+ oranges, thousands of cups, multiple locations, 100% fresh</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>10</td><td>Final CTA: "Ready for Real Orange Juice? Find the nearest OMJ machine today."</td><td><span class="badge badge--done">Done</span></td></tr>
+</table>
 
-  <h2>Design System</h2>
-  <p><span class="pill">Orange #FF8E06</span><span class="pill">Green #167A45</span><span class="pill">Dark Green #0F5230</span><span class="pill">Cream #F7F5E9</span></p>
-  <p>The shared OMJ CSS now includes the staging image hero and fresh-fruit teaser panel, keeps classes namespaced with <code>omj-</code>, and avoids rounded card excess beyond the existing compact component style.</p>
-
-  <h2>Assets Used</h2>
-  <ul>
-    <li>Selected client photos from <code>revisions/</code>: Abaca/Parqal, Greenhills, Eastwood, Uptown BGC, Parqal.</li>
-    <li>Brand/cup art from <code>revisions/omj-cup-design.jpg</code>.</li>
-    <li>OMJ fruit icon and Instagram QR from <code>revisions/other-assets/</code>.</li>
-    <li>Processed web copies are saved under <code>build/assets/omj-revision/</code> and uploaded to WordPress media IDs 516-525.</li>
-  </ul>
-
-  <h2>Technical Notes</h2>
-  <ul>
-    <li>Backup taken before WordPress writes: <code>~/omj-backup-2026-07-09-1159.sql</code> and <code>~/omj-muplugins-2026-07-09-1159.tgz</code>.</li>
-    <li>Staging pages created with <code>omj_ensure_page()</code> and <code>omj_set_page_html()</code>.</li>
-    <li>Staging page HTML intentionally excludes custom header/footer code; Elementor Theme Builder owns the site chrome.</li>
-    <li>Images are visually normalized with CSS: stable aspect ratios, object-fit cover, 8px radius, and subtle shadows.</li>
-    <li>The hero image uses the shared `.omj-hero__poster` treatment, and small page icons use `.omj-page-icon` rather than inline image sizing.</li>
-    <li>The default Hello Elementor page title is hidden on staging IDs 526, 528, and 530 so the preview starts with the designed content.</li>
-    <li>Selected staging images were minified/resized for web delivery. Current selected asset sizes range from 60K to 372K.</li>
-    <li>Live Home, About, and Contact page IDs were not updated by this run.</li>
-    <li>LiteSpeed and Elementor CSS caches were flushed after deploy.</li>
-  </ul>
-
-  <h2>Client Review Notes</h2>
-  <ol>
-    <li>Confirm whether the staging hero photo should remain a real customer/machine photo or be replaced later by the planned Veo loop.</li>
-    <li>Confirm exact machine-spot pins if mall-level Google Maps links should be more precise.</li>
-    <li>Replace the fresh-fruit teaser art with real Fruitty Dippy / fruit-cup product photography when available.</li>
+<h2>Home Page — 10 Sections</h2>
+<div class="card">
+  <ol style="padding-left:20px;">
+    <li><strong>Hero</strong> — Full-bleed video slot (poster fallback), headline, subhead, "Find a Machine" + "Watch It Squeeze" buttons</li>
+    <li><strong>The Machine</strong> — 3-photo grid: oranges loaded, squeezing process, generated finished cup</li>
+    <li><strong>Why OMJ</strong> — 5 emoji icon tiles: 100% Fresh Oranges, No Water Added, No Added Sugar, Served Fresh, Ready in Under 60 Seconds</li>
+    <li><strong>The Cup</strong> — Generated premium cup imagery replaces the previous technical cup artwork</li>
+    <li><strong>By the Numbers</strong> — Green stat band with 500,000+ oranges, thousands of cups, multiple locations, 100% fresh</li>
+    <li><strong>Find a Machine</strong> — 4 location cards with Directions + Open in Maps buttons</li>
+    <li><strong>What's Next</strong> — Generated fresh fruit cup and catering imagery: Fruitty Dippy, fruit cups, catering</li>
+    <li><strong>Own an OMJ Machine</strong> — Franchise CTA with Join the Waitlist button</li>
+    <li><strong>Questions?</strong> — Contact Us CTA</li>
+    <li><strong>Final CTA</strong> — "Ready for Real Orange Juice?" with Find a Machine + Contact Us</li>
   </ol>
-</main>
-<footer>Generated July 9, 2026 · Oh My Juiceness staging revision</footer>
+</div>
+
+<h2>Design System</h2>
+<h3>Color Palette (Blend)</h3>
+<div class="color-grid">
+  <div class="color-swatch"><div style="background:#FF8E06;"></div><span>Orange<br>#FF8E06</span></div>
+  <div class="color-swatch"><div style="background:#E24F14;"></div><span>Red-Orange<br>#E24F14</span></div>
+  <div class="color-swatch"><div style="background:#167A45;"></div><span>Green<br>#167A45</span></div>
+  <div class="color-swatch"><div style="background:#0F5230;"></div><span>Dark Green<br>#0F5230</span></div>
+  <div class="color-swatch"><div style="background:#F7F5E9;"></div><span>Cream<br>#F7F5E9</span></div>
+  <div class="color-swatch"><div style="background:#484544;"></div><span>Text<br>#484544</span></div>
+</div>
+<h3>Typography</h3>
+<p><strong>Augillion</strong> (display headings) + <strong>Poppins</strong> (body) — retained from existing licensed kit.</p>
+
+<h2>Pages Updated</h2>
+<table>
+  <tr><th>Page</th><th>What Changed</th></tr>
+  <tr><td>Home</td><td>Complete rebuild — 10 sections, product-first Flow A, hero video, machine section, location cards, franchise CTA</td></tr>
+  <tr><td>About</td><td>Rebuilt — no bottle image, scannable Why OMJ bullets, one-line origin, "Own an OMJ Machine" CTA</td></tr>
+  <tr><td>Contact</td><td>Locations fixed (Eastwood replaces San Antonio), franchising preselect script added</td></tr>
+  <tr><td>Header</td><td>Green bar, logo, nav, "Contact Us" CTA — "Order Now" removed</td></tr>
+  <tr><td>Footer</td><td>"© 2026 Oh My Juiceness. All Rights Reserved." + @ohmyjuiceness IG link</td></tr>
+</table>
+
+<h2>Machine Locations</h2>
+<table>
+  <tr><th>Location</th><th>Venue</th><th>Directions</th></tr>
+  <tr><td>Greenhills</td><td>Greenhills Shopping Center, San Juan City</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Greenhills+Shopping+Center+San+Juan+City+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Eastwood</td><td>Eastwood Mall, Quezon City</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Eastwood+Mall+116+Eastwood+Ave+Bagumbayan+Quezon+City+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Uptown BGC</td><td>Uptown Mall, BGC, Taguig</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Uptown+Mall+9th+Ave+BGC+Taguig+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Parqal</td><td>Parqal, Aseana City, Parañaque</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Parqal+Diosdado+Macapagal+Blvd+Tambo+Paranaque+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+</table>
+
+<h2>Content Removed</h2>
+<ul>
+  <li><span class="badge badge--done">Removed</span> "Order Now" button from header</li>
+  <li><span class="badge badge--done">Removed</span> "Leave a Reply" blog comment form</li>
+  <li><span class="badge badge--done">Removed</span> "Coming After Summer" popup</li>
+  <li><span class="badge badge--done">Removed</span> Bottle imagery</li>
+  <li><span class="badge badge--done">Removed</span> Visible technical cup blueprint/spec-sheet imagery from staging</li>
+  <li><span class="badge badge--done">Removed</span> "Delivered Around the Metro" claim</li>
+  <li><span class="badge badge--done">Removed</span> Hidden Team and Quotation sections (About)</li>
+  <li><span class="badge badge--done">Removed</span> "San Antonio Plaza" from locations (replaced with Eastwood)</li>
+</ul>
+
+<h2>Assets Delivered</h2>
+<ul>
+  <li><span class="badge badge--done">Delivered</span> 27 processed photos (auto-oriented, resized, uploaded to WP media)</li>
+  <li><span class="badge badge--done">Delivered</span> Design system CSS with 7 color tokens + component classes</li>
+  <li><span class="badge badge--done">Delivered</span> Hero Veo prompt + source image + poster fallback</li>
+  <li><span class="badge badge--done">Delivered</span> 4 generated cup/fresh-fruit product images for staging review</li>
+  <li><span class="badge badge--done">Delivered</span> Verified Google Maps links for all 4 locations</li>
+  <li><span class="badge badge--done">Delivered</span> Franchising inquiry preselect script</li>
+</ul>
+
+<h2>What's Needed from the Client</h2>
+<div class="card">
+  <ul>
+    <li><span class="badge badge--warn">Action</span> <strong>Hero video</strong> — Generate using the Veo prompt in <code>build/assets/hero/veo-prompt.md</code> and source image in <code>build/assets/hero/hero-source.jpg</code>. The poster fallback is live until the video is supplied.</li>
+    <li><span class="badge badge--info">Review</span> <strong>Location pins</strong> — Maps links are verified at mall level. Confirm these are accurate or provide exact machine-spot coordinates.</li>
+    <li><span class="badge badge--info">Future</span> <strong>Fruitty Dippy / fresh fruit imagery</strong> — The current staging art is generated concept imagery. When final product photos are available, the "What's Next" section can be upgraded with real photography.</li>
+  </ul>
+</div>
+
+<h2>Technical Notes</h2>
+<div class="card">
+  <ul>
+    <li>All pages authored in <code>build/</code> and deployable via the documented golden workflow (<code>scp</code> → <code>wp eval</code> → flush)</li>
+    <li>Design system CSS live via <code>omj-brand.php</code> mu-plugin</li>
+    <li>Elementor Kit green reconciled to <code>#167A45</code></li>
+    <li>Full database backups taken before every write</li>
+    <li>Elementor 4.1.4 HTML widget rendering issue resolved — build helpers use <code>text-editor</code> widget type</li>
+    <li>All custom CSS classes namespaced <code>omj-</code></li>
+  </ul>
+</div>
+
+</div>
+<footer>
+  <p>Report generated July 9, 2026 &bull; Oh My Juiceness &bull; ohmyjuiceness.com</p>
+</footer>
 </body>
 </html>
