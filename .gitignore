@@ -1,0 +1,16 @@
+# Secrets — never commit
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+
+# QA artifacts (browser automation screenshots)
+.playwright-mcp/
+*.jpeg
+*.jpg
+*.png
+!logo/*.png
+
+# Local DB / settings backups (never commit)
+backups/

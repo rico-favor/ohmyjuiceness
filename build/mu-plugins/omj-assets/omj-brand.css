@@ -1,0 +1,23 @@
+/* Oh My Juiceness — Design System
+ *
+ * Namespaced: omj-
+ * Deploy: scp to wp-content/mu-plugins/omj-assets/omj-brand.css + purge LiteSpeed
+ *
+ * TODO: Define brand colors, typography, and components as the site takes shape.
+ */
+
+:root {
+    /* Brand colors — update these once the brand palette is confirmed */
+    --omj-primary: #E85D26;
+    --omj-primary-dark: #C44B1C;
+    --omj-secondary: #2B6B4F;
+    --omj-accent: #F5A623;
+    --omj-charcoal: #1C1C1E;
+    --omj-steel: #6B6F76;
+    --omj-light: #F7F7F8;
+    --omj-white: #FFFFFF;
+
+    /* Typography */
+    --omj-font-display: 'Poppins', sans-serif;
+    --omj-font-body: 'Inter', sans-serif;
+}
