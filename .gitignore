@@ -22,3 +22,6 @@ graphify-out/
 
 # Symlink created during graphify run (build/ is the real directory)
 src
+
+# Superpowers brainstorm companion
+.superpowers/
