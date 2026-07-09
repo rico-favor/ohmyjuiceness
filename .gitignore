@@ -25,3 +25,13 @@ src
 
 # Superpowers brainstorm companion
 .superpowers/
+
+# Preview assets are committed (processed deliverables)
+!build/preview/assets/img/**/*.jpg
+!build/preview/assets/img/**/*.jpeg
+!build/preview/assets/img/**/*.png
+!build/preview/assets/img/**/*.webp
+# ...except QA/intermediate artifacts, which stay untracked
+build/preview/assets/img/contact-sheet.jpg
+build/preview/assets/img/**/tmp/**
+build/preview/assets/img/**/candidates/**
