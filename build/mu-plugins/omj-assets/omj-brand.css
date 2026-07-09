@@ -1,23 +1,581 @@
 /* Oh My Juiceness — Design System
  *
- * Namespaced: omj-
+ * Blend palette · Augillion + Poppins · namespaced omj-
  * Deploy: scp to wp-content/mu-plugins/omj-assets/omj-brand.css + purge LiteSpeed
- *
- * TODO: Define brand colors, typography, and components as the site takes shape.
  */
 
+/* ============================================================
+   1. Custom Properties (Tokens)
+   ============================================================ */
 :root {
-    /* Brand colors — update these once the brand palette is confirmed */
-    --omj-primary: #E85D26;
-    --omj-primary-dark: #C44B1C;
-    --omj-secondary: #2B6B4F;
-    --omj-accent: #F5A623;
-    --omj-charcoal: #1C1C1E;
-    --omj-steel: #6B6F76;
-    --omj-light: #F7F7F8;
+    --omj-orange: #FF8E06;
+    --omj-red-orange: #E24F14;
+    --omj-green: #167A45;
+    --omj-dark-green: #0F5230;
+    --omj-cream: #F7F5E9;
+    --omj-text: #484544;
     --omj-white: #FFFFFF;
 
-    /* Typography */
-    --omj-font-display: 'Poppins', sans-serif;
-    --omj-font-body: 'Inter', sans-serif;
+    --omj-font-display: 'Augillion', 'Poppins', sans-serif;
+    --omj-font-body: 'Poppins', sans-serif;
+
+    --omj-radius-sm: 6px;
+    --omj-radius-md: 12px;
+    --omj-radius-pill: 999px;
+
+    --omj-gap-xs: 8px;
+    --omj-gap-sm: 16px;
+    --omj-gap-md: 24px;
+    --omj-gap-lg: 40px;
+    --omj-gap-xl: 64px;
+    --omj-gap-2xl: 96px;
+
+    --omj-max-w: 1200px;
+    --omj-section-py: 80px;
 }
+
+@media (min-width: 768px) {
+    :root {
+        --omj-section-py: 100px;
+    }
+}
+@media (min-width: 1025px) {
+    :root {
+        --omj-section-py: 120px;
+    }
+}
+
+/* ============================================================
+   2. Reset / Base
+   ============================================================ */
+.omj-section {
+    position: relative;
+    width: 100%;
+    padding: var(--omj-section-py) var(--omj-gap-md);
+    box-sizing: border-box;
+}
+
+.omj-container {
+    max-width: var(--omj-max-w);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.omj-section--cream { background: var(--omj-cream); }
+.omj-section--green { background: var(--omj-green); color: var(--omj-white); }
+.omj-section--dark   { background: var(--omj-dark-green); color: var(--omj-white); }
+.omj-section--white  { background: var(--omj-white); }
+
+/* ============================================================
+   3. Typography
+   ============================================================ */
+.omj-h1,
+.omj-h2,
+.omj-h3 {
+    font-family: var(--omj-font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 var(--omj-gap-sm);
+    color: var(--omj-green);
+}
+
+.omj-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+.omj-h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
+.omj-h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
+
+.omj-body {
+    font-family: var(--omj-font-body);
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    line-height: 1.65;
+    color: var(--omj-text);
+    margin: 0;
+}
+
+.omj-eyebrow {
+    font-family: var(--omj-font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--omj-orange);
+    margin-bottom: var(--omj-gap-xs);
+}
+
+.omj-text-center { text-align: center; }
+.omj-text-white  { color: var(--omj-white); }
+.omj-text-green  { color: var(--omj-green); }
+
+/* ============================================================
+   4. Buttons
+   ============================================================ */
+.omj-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--omj-font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: var(--omj-radius-pill);
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.15s;
+    white-space: nowrap;
+}
+.omj-btn:hover { transform: translateY(-1px); }
+
+.omj-btn--primary {
+    background: var(--omj-orange);
+    color: var(--omj-white);
+    border-color: var(--omj-orange);
+}
+.omj-btn--primary:hover {
+    background: var(--omj-red-orange);
+    border-color: var(--omj-red-orange);
+    color: var(--omj-white);
+}
+
+.omj-btn--green {
+    background: var(--omj-green);
+    color: var(--omj-white);
+    border-color: var(--omj-green);
+}
+.omj-btn--green:hover {
+    background: var(--omj-dark-green);
+    border-color: var(--omj-dark-green);
+    color: var(--omj-white);
+}
+
+.omj-btn--ghost {
+    background: transparent;
+    color: var(--omj-white);
+    border-color: var(--omj-white);
+}
+.omj-btn--ghost:hover {
+    background: var(--omj-white);
+    color: var(--omj-green);
+}
+
+.omj-btn--ghost-green {
+    background: transparent;
+    color: var(--omj-green);
+    border-color: var(--omj-green);
+}
+.omj-btn--ghost-green:hover {
+    background: var(--omj-green);
+    color: var(--omj-white);
+}
+
+.omj-btn + .omj-btn { margin-left: var(--omj-gap-sm); }
+
+@media (max-width: 576px) {
+    .omj-btn { width: 100%; text-align: center; }
+    .omj-btn + .omj-btn { margin-left: 0; margin-top: var(--omj-gap-xs); }
+}
+
+/* ============================================================
+   5. Hero
+   ============================================================ */
+.omj-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    background: #111;
+}
+
+.omj-hero__video,
+.omj-hero__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.omj-hero__gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.05) 40%,
+        rgba(0,0,0,0.55) 100%
+    );
+}
+
+.omj-hero__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 720px;
+    padding: var(--omj-gap-md);
+}
+
+.omj-hero__content .omj-h1 { color: var(--omj-white); }
+.omj-hero__subhead {
+    font-family: var(--omj-font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    margin-bottom: var(--omj-gap-md);
+}
+
+/* ============================================================
+   6. Icon Tiles (value props)
+   ============================================================ */
+.omj-icon-tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--omj-gap-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 576px) {
+    .omj-icon-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1025px) {
+    .omj-icon-tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+.omj-icon-tile {
+    display: flex;
+    align-items: center;
+    gap: var(--omj-gap-sm);
+    background: var(--omj-white);
+    border-radius: var(--omj-radius-md);
+    padding: var(--omj-gap-sm) var(--omj-gap-md);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.omj-icon-tile__emoji {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--omj-cream);
+    border-radius: var(--omj-radius-sm);
+}
+
+.omj-icon-tile__text {
+    font-family: var(--omj-font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--omj-text);
+}
+
+/* ============================================================
+   7. Stat Band
+   ============================================================ */
+.omj-stat-band {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--omj-gap-md);
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+    .omj-stat-band { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1025px) {
+    .omj-stat-band { grid-template-columns: repeat(4, 1fr); }
+}
+
+.omj-stat {
+    padding: var(--omj-gap-sm);
+}
+
+.omj-stat__number {
+    font-family: var(--omj-font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--omj-orange);
+    line-height: 1.1;
+    margin-bottom: var(--omj-gap-xs);
+}
+
+.omj-section--green .omj-stat__number,
+.omj-section--dark .omj-stat__number {
+    color: var(--omj-white);
+}
+
+.omj-stat__label {
+    font-family: var(--omj-font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* ============================================================
+   8. Location Grid
+   ============================================================ */
+.omj-loc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--omj-gap-md);
+}
+
+@media (min-width: 576px) {
+    .omj-loc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1025px) {
+    .omj-loc-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.omj-loc-card {
+    background: var(--omj-white);
+    border-radius: var(--omj-radius-md);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.omj-loc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.omj-loc-card__img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+}
+
+.omj-loc-card__body {
+    padding: var(--omj-gap-sm);
+}
+
+.omj-loc-card__name {
+    font-family: var(--omj-font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--omj-green);
+    margin-bottom: var(--omj-gap-xs);
+}
+
+.omj-loc-card__btns {
+    display: flex;
+    gap: var(--omj-gap-xs);
+    flex-wrap: wrap;
+}
+
+.omj-loc-card__btn {
+    font-family: var(--omj-font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--omj-radius-pill);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.omj-loc-card__btn--directions {
+    background: var(--omj-green);
+    color: var(--omj-white);
+}
+.omj-loc-card__btn--directions:hover {
+    background: var(--omj-dark-green);
+    color: var(--omj-white);
+}
+
+.omj-loc-card__btn--maps {
+    background: transparent;
+    color: var(--omj-green);
+    border: 1.5px solid var(--omj-green);
+}
+.omj-loc-card__btn--maps:hover {
+    background: var(--omj-green);
+    color: var(--omj-white);
+}
+
+/* ============================================================
+   9. Image Blocks
+   ============================================================ */
+.omj-img-grid {
+    display: grid;
+    gap: var(--omj-gap-sm);
+}
+
+.omj-img-grid--2 { grid-template-columns: 1fr; }
+@media (min-width: 576px) { .omj-img-grid--2 { grid-template-columns: repeat(2, 1fr); } }
+
+.omj-img-grid--3 { grid-template-columns: 1fr; }
+@media (min-width: 576px) { .omj-img-grid--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1025px) { .omj-img-grid--3 { grid-template-columns: repeat(3, 1fr); } }
+
+.omj-img-block {
+    border-radius: var(--omj-radius-md);
+    overflow: hidden;
+}
+
+.omj-img-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ============================================================
+   10. CTA Block
+   ============================================================ */
+.omj-cta-block {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.omj-cta-block .omj-h2 { margin-bottom: var(--omj-gap-xs); }
+
+.omj-cta-block .omj-body {
+    margin-bottom: var(--omj-gap-md);
+    opacity: 0.9;
+}
+
+.omj-cta-block .omj-btn {
+    margin-top: var(--omj-gap-xs);
+}
+
+/* ============================================================
+   11. Header / Footer Components
+   ============================================================ */
+.omj-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--omj-green);
+    padding: 0 var(--omj-gap-md);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.omj-header__logo img {
+    height: 36px;
+    width: auto;
+}
+
+.omj-header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--omj-gap-md);
+}
+
+.omj-header__nav a {
+    color: var(--omj-white);
+    text-decoration: none;
+    font-family: var(--omj-font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+.omj-header__nav a:hover { opacity: 0.8; }
+
+.omj-header__cta {
+    background: var(--omj-orange);
+    color: var(--omj-white);
+    padding: 8px 20px;
+    border-radius: var(--omj-radius-pill);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.omj-header__cta:hover {
+    background: var(--omj-red-orange);
+    color: var(--omj-white);
+}
+
+/* Mobile nav toggle */
+.omj-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--omj-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px;
+}
+
+@media (max-width: 768px) {
+    .omj-header__toggle { display: block; }
+    .omj-header__nav {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--omj-green);
+        flex-direction: column;
+        padding: var(--omj-gap-sm) var(--omj-gap-md) var(--omj-gap-md);
+        gap: var(--omj-gap-sm);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .omj-header__nav.is-open { display: flex; }
+}
+
+.omj-footer {
+    background: var(--omj-dark-green);
+    color: var(--omj-white);
+    padding: var(--omj-gap-lg) var(--omj-gap-md);
+}
+
+.omj-footer__inner {
+    max-width: var(--omj-max-w);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--omj-gap-md);
+}
+
+.omj-footer__logo img { height: 32px; width: auto; }
+
+.omj-footer__social {
+    display: flex;
+    align-items: center;
+    gap: var(--omj-gap-sm);
+}
+
+.omj-footer__social a {
+    color: var(--omj-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+.omj-footer__social a:hover { opacity: 0.8; }
+
+.omj-footer__copy {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: var(--omj-gap-sm);
+    padding-top: var(--omj-gap-sm);
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ============================================================
+   12. Spacer Utility
+   ============================================================ */
+.omj-spacer-sm { height: var(--omj-gap-sm); }
+.omj-spacer-md { height: var(--omj-gap-md); }
+.omj-spacer-lg { height: var(--omj-gap-lg); }
+.omj-spacer-xl { height: var(--omj-gap-xl); }

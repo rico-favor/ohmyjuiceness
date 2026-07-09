@@ -22,8 +22,8 @@ function omj_set_page_html(int $page_id, string $html): string {
             'elements' => [[
                 'id'       => substr(md5(uniqid('', true)), 0, 7),
                 'elType'   => 'widget',
-                'widgetType' => 'html',
-                'settings' => ['code' => $html],
+                'widgetType' => 'text-editor',
+                'settings' => ['editor' => $html],
                 'elements' => [],
             ]],
         ]],
@@ -48,8 +48,8 @@ function omj_set_page_html(int $page_id, string $html): string {
 function omj_set_page_blocks(int $page_id, array $blocks): string {
     $elements = [];
     foreach ($blocks as $block) {
-        $widget_type = $block['type'] === 'shortcode' ? 'shortcode' : 'html';
-        $setting_key = $block['type'] === 'shortcode' ? 'shortcode' : 'code';
+        $widget_type = $block['type'] === 'shortcode' ? 'shortcode' : 'text-editor';
+        $setting_key = $block['type'] === 'shortcode' ? 'shortcode' : 'editor';
         $settings = [$setting_key => $block['content']];
         if (!empty($block['css'])) {
             $settings['custom_css'] = $block['css'];

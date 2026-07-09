@@ -1,6 +1,6 @@
 # Oh My Juiceness — Live WordPress/Elementor Configuration
 
-Pulled from `ohmyjuiceness.com` via SSH on 2026-07-09.
+Updated 2026-07-09 after full revision deployment.
 
 ## Site Identity
 
@@ -12,12 +12,11 @@ Pulled from `ohmyjuiceness.com` via SSH on 2026-07-09.
 | Permalink Structure | `/%postname%/` |
 | WordPress Version | 7.0 |
 | PHP Version | 8.2 |
-| Elementor Kit ID | 9 |
+| Elementor Kit ID | 9 (accent green: `#167A45`) |
 
 ## Active Theme
 
 - **Hello Elementor 3.4.4** (active) — the standard blank canvas theme for Elementor-built sites.
-- Inactive: TwentyTwentyFive 1.2, TwentyTwentyFour 1.3, TwentyTwentyThree 1.6.
 
 ## Active Plugins (13)
 
@@ -39,33 +38,37 @@ Pulled from `ohmyjuiceness.com` via SSH on 2026-07-09.
 
 ## Pages (4)
 
-| ID | Title | Slug | Status |
+| ID | Title | Slug | Build Method |
 |---|---|---|---|
-| 35 | Home | `/` | publish |
-| 25 | About | `/about/` | publish |
-| 21 | Contact Us | `/contact/` | publish |
-| 3 | Privacy Policy | `/privacy-policy/` | publish |
+| 35 | Home | `/` | `omj_set_page_html` (text-editor widget) |
+| 25 | About | `/about/` | `omj_set_page_html` (text-editor widget) |
+| 21 | Contact Us | `/contact/` | Elementor Pro form + surgical edits |
+| 3 | Privacy Policy | `/privacy-policy/` | Default WordPress |
 
-## Posts (1)
+## Theme Builder Templates
 
-| ID | Title | Slug | Status |
-|---|---|---|---|
-| 1 | Hello world! | `/hello-world/` | publish (default starter post) |
+| ID | Title | Type |
+|---|---|---|
+| 79 | OMJ \| Default Header GREEN | header |
+| 241 | OMJ Default Footer | footer |
 
-## Elementor Configuration
+## Custom mu-plugins
 
-- **CPT support:** `post`, `page` (Elementor editor enabled on both)
-- **Active Kit:** post ID 9
-- **Global Colors / Fonts:** not yet customized (using Elementor defaults)
-- **Theme Builder Templates:** none yet (no header/footer overrides)
-- **Custom mu-plugins:** only `hostinger-preview-domain.php` (Hostinger default)
+| Plugin | Purpose |
+|---|---|
+| `omj-brand.php` | Enqueues `omj-brand.css` design system site-wide |
+| `omj-build.php` | Build helpers: `omj_set_page_html`, `omj_set_page_blocks`, `omj_set_theme_part`, `omj_ensure_page` |
+| `hostinger-preview-domain.php` | Hostinger default (pre-existing) |
+
+## Design System
+
+- **CSS:** `wp-content/mu-plugins/omj-assets/omj-brand.css`
+- **Palette:** Orange `#FF8E06`, Red-Orange `#E24F14`, Green `#167A45`, Dark Green `#0F5230`, Cream `#F7F5E9`, Text `#484544`
+- **Fonts:** Augillion (display), Poppins (body)
+- **Component classes:** `.omj-hero`, `.omj-section`, `.omj-btn`, `.omj-icon-tiles`, `.omj-stat-band`, `.omj-loc-grid`, `.omj-loc-card`, `.omj-header`, `.omj-footer`
 
 ## Current State
 
-This is a **vanilla WordPress + Elementor setup** with minimal content. The front end has not yet
-been customized with the Oh My Juiceness brand. The site uses the default Elementor starter content
-plus a few manually created pages (Home, About, Contact Us, Privacy Policy).
+The site is fully built with a **product-first premium design**. All pages are authored in `build/` and deployable via the golden workflow. The design system CSS is live site-wide. Elementor Kit green has been reconciled to `#167A45`.
 
-No custom CSS design system, no custom mu-plugins for page building, and no Elementor Theme Builder
-templates exist yet. The `build/` directory in the local repo contains the scaffolding for the
-custom build system that will be deployed.
+**Known limitation:** Elementor 4.1.4 HTML widget (`widgetType: html`) renders empty on frontend. Build helpers use `text-editor` widget type as a workaround.

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oh My Juiceness — Website Revision Report — July 2026</title>
+<style>
+  :root { --green: #167A45; --orange: #FF8E06; --cream: #F7F5E9; --text: #484544; --white: #fff; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); line-height: 1.6; background: var(--cream); }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  header { background: var(--green); color: var(--white); padding: 48px 24px; text-align: center; }
+  header h1 { font-size: 2rem; margin-bottom: 8px; }
+  header p { opacity: 0.85; font-size: 1rem; }
+  h2 { color: var(--green); font-size: 1.4rem; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+  h3 { color: var(--green); font-size: 1.1rem; margin: 24px 0 8px; }
+  p, li { margin-bottom: 8px; }
+  ul { padding-left: 20px; }
+  .card { background: var(--white); border-radius: 12px; padding: 24px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-right: 6px; margin-bottom: 4px; }
+  .badge--done { background: #d4edda; color: #155724; }
+  .badge--info { background: #cce5ff; color: #004085; }
+  .badge--warn { background: #fff3cd; color: #856404; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e0ddd0; }
+  th { background: var(--green); color: var(--white); font-weight: 600; }
+  tr:nth-child(even) { background: rgba(255,255,255,0.5); }
+  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+  .color-swatch { width: 80px; text-align: center; }
+  .color-swatch div { width: 80px; height: 48px; border-radius: 8px; border: 1px solid #ddd; }
+  .color-swatch span { font-size: 0.75rem; display: block; margin-top: 4px; }
+  footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; opacity: 0.7; }
+  @media (max-width: 600px) { header h1 { font-size: 1.5rem; } .container { padding: 24px 16px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Oh My Juiceness — Website Revision Report</h1>
+  <p>Product-first premium redesign &bull; July 9, 2026</p>
+</header>
+<div class="container">
+
+<h2>Executive Summary</h2>
+<div class="card">
+  <p>The Oh My Juiceness website has been fully rebuilt from the ground up to deliver a <strong>premium, product-first experience</strong> — modeled on brands like Apple. The site now leads with the machine, the oranges, and the juice — not people or generic copy.</p>
+  <p style="margin-top:12px;">All <strong>10 revision points</strong> from the client brief have been implemented and verified. The site is live at <a href="https://ohmyjuiceness.com" target="_blank">ohmyjuiceness.com</a>.</p>
+</div>
+
+<h2>What Changed — The 10 Revision Points</h2>
+<table>
+  <tr><th>#</th><th>Revision</th><th>Status</th></tr>
+  <tr><td>1</td><td>Hero: product-first video/poster with "Freshly Squeezed. Every Cup. Every Time."</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>2</td><td>Machine section moved high — oranges → squeezing → cup</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>3</td><td>Short, scannable copy replacing long paragraphs</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>4</td><td>Emoji icons replacing generic green checkmarks</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>5</td><td>Product shown prominently with lifestyle shots</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>6</td><td>Find a Machine section with 4 locations + Maps links</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>7</td><td>"Leave a Reply" removed, replaced with Questions? + Contact Us</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>8</td><td>Franchise: "Own an OMJ Machine" + Join the Waitlist</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>9</td><td>Stats band: 500,000+ oranges, thousands of cups, multiple locations, 100% fresh</td><td><span class="badge badge--done">Done</span></td></tr>
+  <tr><td>10</td><td>Final CTA: "Ready for Real Orange Juice? Find the nearest OMJ machine today."</td><td><span class="badge badge--done">Done</span></td></tr>
+</table>
+
+<h2>Home Page — 10 Sections</h2>
+<div class="card">
+  <ol style="padding-left:20px;">
+    <li><strong>Hero</strong> — Full-bleed video slot (poster fallback), headline, subhead, "Find a Machine" + "Watch It Squeeze" buttons</li>
+    <li><strong>The Machine</strong> — 3-photo grid: oranges loaded, squeezing process, finished cup</li>
+    <li><strong>Why OMJ</strong> — 5 emoji icon tiles: 100% Fresh Oranges, No Water Added, No Added Sugar, Served Fresh, Ready in Under 60 Seconds</li>
+    <li><strong>Product Showcase</strong> — Machine-only and lifestyle shots</li>
+    <li><strong>By the Numbers</strong> — Green stat band with 500,000+ oranges, thousands of cups, multiple locations, 100% fresh</li>
+    <li><strong>Find a Machine</strong> — 4 location cards with Directions + Open in Maps buttons</li>
+    <li><strong>What's Next</strong> — Fresh fruit teaser: Fruitty Dippy, fruit cups, catering</li>
+    <li><strong>Own an OMJ Machine</strong> — Franchise CTA with Join the Waitlist button</li>
+    <li><strong>Questions?</strong> — Contact Us CTA</li>
+    <li><strong>Final CTA</strong> — "Ready for Real Orange Juice?" with Find a Machine + Contact Us</li>
+  </ol>
+</div>
+
+<h2>Design System</h2>
+<h3>Color Palette (Blend)</h3>
+<div class="color-grid">
+  <div class="color-swatch"><div style="background:#FF8E06;"></div><span>Orange<br>#FF8E06</span></div>
+  <div class="color-swatch"><div style="background:#E24F14;"></div><span>Red-Orange<br>#E24F14</span></div>
+  <div class="color-swatch"><div style="background:#167A45;"></div><span>Green<br>#167A45</span></div>
+  <div class="color-swatch"><div style="background:#0F5230;"></div><span>Dark Green<br>#0F5230</span></div>
+  <div class="color-swatch"><div style="background:#F7F5E9;"></div><span>Cream<br>#F7F5E9</span></div>
+  <div class="color-swatch"><div style="background:#484544;"></div><span>Text<br>#484544</span></div>
+</div>
+<h3>Typography</h3>
+<p><strong>Augillion</strong> (display headings) + <strong>Poppins</strong> (body) — retained from existing licensed kit.</p>
+
+<h2>Pages Updated</h2>
+<table>
+  <tr><th>Page</th><th>What Changed</th></tr>
+  <tr><td>Home</td><td>Complete rebuild — 10 sections, product-first Flow A, hero video, machine section, location cards, franchise CTA</td></tr>
+  <tr><td>About</td><td>Rebuilt — no bottle image, scannable Why OMJ bullets, one-line origin, "Own an OMJ Machine" CTA</td></tr>
+  <tr><td>Contact</td><td>Locations fixed (Eastwood replaces San Antonio), franchising preselect script added</td></tr>
+  <tr><td>Header</td><td>Green bar, logo, nav, "Contact Us" CTA — "Order Now" removed</td></tr>
+  <tr><td>Footer</td><td>"© 2026 Oh My Juiceness. All Rights Reserved." + @ohmyjuiceness IG link</td></tr>
+</table>
+
+<h2>Machine Locations</h2>
+<table>
+  <tr><th>Location</th><th>Venue</th><th>Directions</th></tr>
+  <tr><td>Greenhills</td><td>Greenhills Shopping Center, San Juan City</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Greenhills+Shopping+Center+San+Juan+City+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Eastwood</td><td>Eastwood Mall, Quezon City</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Eastwood+Mall+116+Eastwood+Ave+Bagumbayan+Quezon+City+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Uptown BGC</td><td>Uptown Mall, BGC, Taguig</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Uptown+Mall+9th+Ave+BGC+Taguig+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+  <tr><td>Parqal</td><td>Parqal, Aseana City, Parañaque</td><td><a href="https://www.google.com/maps/dir/?api=1&destination=Parqal+Diosdado+Macapagal+Blvd+Tambo+Paranaque+Metro+Manila" target="_blank">Google Maps</a></td></tr>
+</table>
+
+<h2>Content Removed</h2>
+<ul>
+  <li><span class="badge badge--done">Removed</span> "Order Now" button from header</li>
+  <li><span class="badge badge--done">Removed</span> "Leave a Reply" blog comment form</li>
+  <li><span class="badge badge--done">Removed</span> "Coming After Summer" popup</li>
+  <li><span class="badge badge--done">Removed</span> Bottle imagery</li>
+  <li><span class="badge badge--done">Removed</span> "Delivered Around the Metro" claim</li>
+  <li><span class="badge badge--done">Removed</span> Hidden Team and Quotation sections (About)</li>
+  <li><span class="badge badge--done">Removed</span> "San Antonio Plaza" from locations (replaced with Eastwood)</li>
+</ul>
+
+<h2>Assets Delivered</h2>
+<ul>
+  <li><span class="badge badge--done">Delivered</span> 27 processed photos (auto-oriented, resized, uploaded to WP media)</li>
+  <li><span class="badge badge--done">Delivered</span> Design system CSS with 7 color tokens + component classes</li>
+  <li><span class="badge badge--done">Delivered</span> Hero Veo prompt + source image + poster fallback</li>
+  <li><span class="badge badge--done">Delivered</span> Verified Google Maps links for all 4 locations</li>
+  <li><span class="badge badge--done">Delivered</span> Franchising inquiry preselect script</li>
+</ul>
+
+<h2>What's Needed from the Client</h2>
+<div class="card">
+  <ul>
+    <li><span class="badge badge--warn">Action</span> <strong>Hero video</strong> — Generate using the Veo prompt in <code>build/assets/hero/veo-prompt.md</code> and source image in <code>build/assets/hero/hero-source.jpg</code>. The poster fallback is live until the video is supplied.</li>
+    <li><span class="badge badge--info">Review</span> <strong>Location pins</strong> — Maps links are verified at mall level. Confirm these are accurate or provide exact machine-spot coordinates.</li>
+    <li><span class="badge badge--info">Future</span> <strong>Fruitty Dippy / fresh fruit imagery</strong> — When product photos are available, the "What's Next" section can be upgraded from the current placeholder.</li>
+  </ul>
+</div>
+
+<h2>Technical Notes</h2>
+<div class="card">
+  <ul>
+    <li>All pages authored in <code>build/</code> and deployable via the documented golden workflow (<code>scp</code> → <code>wp eval</code> → flush)</li>
+    <li>Design system CSS live via <code>omj-brand.php</code> mu-plugin</li>
+    <li>Elementor Kit green reconciled to <code>#167A45</code></li>
+    <li>Full database backups taken before every write</li>
+    <li>Elementor 4.1.4 HTML widget rendering issue resolved — build helpers use <code>text-editor</code> widget type</li>
+    <li>All custom CSS classes namespaced <code>omj-</code></li>
+  </ul>
+</div>
+
+</div>
+<footer>
+  <p>Report generated July 9, 2026 &bull; Oh My Juiceness &bull; ohmyjuiceness.com</p>
+</footer>
+</body>
+</html>

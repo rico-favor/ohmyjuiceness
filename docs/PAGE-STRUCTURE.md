@@ -1,47 +1,57 @@
 # Oh My Juiceness — Page Structure Summary
 
-Extracted from Elementor `_elementor_data` on 2026-07-09.
+Updated 2026-07-09 after full revision deployment.
 
 ## Home (ID 35, slug `/`)
 
-**Not an Elementor builder page** — uses raw HTML in `post_content`.
+**Built via `omj_set_page_html(35, …)` — single text-editor Elementor widget containing all 10 sections.**
 
 Sections:
-1. **Hero:** Orange horizontal logo, "ORDER NOW" button, "SEE MORE" anchor, headline "Manila's Best Freshly-Squeezed Orange Juice", "ABOUT US" link, brand tagline
-2. **Product Image:** Full-width lifestyle image (ae14fe38...jpg)
-3. **Value Props:** "Fresh. Pure. Refreshing." + 6 checkmarks (Zero Sugar, No Preservatives, 100% OJ, Affordable, Hassle-free, Delivered Around Metro)
-4. **Testimonials:** 5-star review quote from Mark T.
-5. **CTA:** Footer with action links
+1. **Hero:** Full-bleed video (poster fallback), headline "Freshly Squeezed. Every Cup. Every Time.", subhead, "Find a Machine" + "Watch It Squeeze" buttons
+2. **The Machine:** 3-photo grid (oranges → squeezing → cup)
+3. **Why OMJ:** 5 emoji icon tiles (100% Fresh Oranges · No Water Added · No Added Sugar · Served Fresh · Ready in Under 60 Seconds)
+4. **Product Showcase:** Machine-only + lifestyle shots
+5. **By the Numbers:** Green stat band (500,000+ oranges · thousands of cups · multiple locations · 100% fresh)
+6. **Find a Machine:** 4 location cards with Directions + Open in Maps (Greenhills, Eastwood, Uptown BGC, Parqal)
+7. **What's Next:** Fresh-fruit teaser (Fruitty Dippy / fruit cups / catering)
+8. **Own an OMJ Machine:** Franchise CTA → /contact/?inquiry=franchising
+9. **Questions?:** Contact Us CTA
+10. **Final CTA:** "Ready for Real Orange Juice?" + Find a Machine + Contact Us
 
 ## About (ID 25, slug `/about/`)
 
-Elementor container layout. Sections:
-1. **Hero:** "about" heading (Augillion font, accent color) + Orange horizontal logo
-2. **Our Story** (beige BG #F5F4E7): 2-column split — circular image with orange shadow (HomePage-Footer.jpg) + "our story" heading + founder narrative text
-3. **Our Brand** (beige BG): 2-column split — "our brand" heading + "oh my juiceness started with a simple mission: To make fresh, healthy juice accessible in Manila — without added sugar, the fuss, or the preservatives." + OMJ Icon image with orange shadow
-4. **Team** (hidden on all devices): 4-column grid of image-boxes — Tiana Shelton (Founding Partner), Eryk Buallock (Founder and Manager), Caloe Austin (Juice Expert), Ayden Neale (Juice Expert)
-5. **Quotation** (hidden on all devices): Pink BG quote card — "if you're in the area, you must visit juiceito and try their juice!" — Liana Rooney, food journalist
-6. **CTA** (beige BG): Vendo image + "interested to franchise?" heading + "Inquire now" button (links to popup 313)
+**Built via `omj_set_page_html(25, …)`.**
+
+Sections:
+1. **Hero:** Orange horizontal logo + "About Us" heading
+2. **Our Story:** Short origin line + scannable Why OMJ bullets (Real oranges · Nothing artificial · Freshly squeezed in under a minute)
+3. **The Machine:** 2-photo grid (machine with oranges, vending machine)
+4. **Franchise CTA:** Green band, "Own an OMJ Machine" → /contact/?inquiry=franchising
 
 ## Contact Us (ID 21, slug `/contact/`)
 
-Elementor container layout. Sections:
-1. **Hero** (beige BG): OMJ Icon (orange BG), "We'd love to hear from you!" heading (Augillion), intro text + email link
-2. **Contact Form + Locations** (boxed 800px):
+Elementor container layout (kept existing Elementor Pro form). Sections:
+1. **Hero:** OMJ Icon, "We'd love to hear from you!" heading, intro text + email
+2. **Contact Form + Locations:**
    - **Contact Us** heading (OMJ-Green)
-   - Intro: "Got a question? Want to partner with us?" + contactus@ohmyjuiceness.com
    - **Form** (Elementor Pro Form, id "contactus"):
-     - Fields: Name (required), Inquiry Type select (I want to order online / Rent a machine / Franchising / Others), Message textarea (required), Email (required), Mobile Number tel (required), reCAPTCHA v3
+     - Fields: Name, Inquiry Type (I want to order online / Rent a machine / Franchising / Others), Message, Email, Mobile, reCAPTCHA v3
      - Sends to: contactus@ohmyjuiceness.com, BCC: ginovictorino@ymail.com
-     - Subject: "New inquiry for Oh My Juiceness! By [name]"
-     - Success message: "We have received your inquiry! We will get back to you shortly."
-   - **Google Maps:** Uptown, BGC
-   - **Locations:** Uptown Mall BGC, Parqal Mall Paranaque, Greenhills San Juan, San Antonio Plaza Makati
-   - **Instagram:** @ohmyjuiceness (social icon)
+   - **Locations:** Uptown Mall BGC, Parqal Mall Paranaque, Greenhills San Juan, Eastwood Quezon City
+   - **Instagram:** @ohmyjuiceness
+   - **Inquiry preselect:** Script reads `?inquiry=franchising` from URL to preselect Inquiry Type
+
+## Header (ID 79)
+
+Green bar, logo (media 83), nav (Home / About / Contact), primary CTA button "Contact Us" → `/contact/`. **No "Order Now."**
+
+## Footer (ID 241)
+
+Green footer, OMJ logo, Instagram @ohmyjuiceness link + QR, copyright "© 2026 Oh My Juiceness. All Rights Reserved."
 
 ## Privacy Policy (ID 3, slug `/privacy-policy/`)
 
-Default WordPress page — no Elementor data.
+Default WordPress page — no changes.
 
 ## Brand Assets (Media IDs)
 
@@ -49,13 +59,15 @@ Default WordPress page — no Elementor data.
 |---|---|
 | Site Logo (green horizontal) | 83 |
 | Favicon (orange slice) | 59 |
-| Orange horizontal logo (hero) | 151 |
-| OMJ Icon | 397 |
+| Orange horizontal logo | 151 |
+| OMJ Icon (white BG) | 397 |
 | OMJ Icon (orange BG) | 94 |
-| Team photo 1 | 29 |
-| Team photo 2 | 30 |
-| Team photo 3 | 31 |
-| Team photo 4 | 32 |
-| About page footer image | 41 |
-| Vendo/franchise image | 423 |
-| Product lifestyle image | (ae14fe38...jpg) |
+| Hero poster | 507 |
+| Machine vendo | 484 |
+| Machine parqal | 497 |
+| Greenhills location | 481 |
+| Eastwood location | 482 |
+| Uptown location | 486 |
+| Parqal location | 493 |
+| IG QR | 490 |
+| OMJ Icon (new upload) | 491 |
