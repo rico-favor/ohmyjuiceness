@@ -7,7 +7,9 @@
 
     var locations = [
         {
+            key: 'greenhills',
             name: 'Greenhills',
+            detail: 'Greenhills Shopping Center, Ortigas Ave., San Juan City',
             coords: [14.6015643, 121.0515546],
             directions: 'https://www.google.com/maps/dir/?api=1&destination=Greenhills+Shopping+Center+San+Juan+City+Metro+Manila',
             images: [
@@ -16,7 +18,9 @@
             ]
         },
         {
+            key: 'eastwood',
             name: 'Eastwood',
+            detail: 'Eastwood Mall, 116 Eastwood Ave., Bagumbayan, Quezon City',
             coords: [14.6105509, 121.0799139],
             directions: 'https://www.google.com/maps/dir/?api=1&destination=Eastwood+Mall+116+Eastwood+Ave+Bagumbayan+Quezon+City+Metro+Manila',
             images: [
@@ -29,7 +33,9 @@
             ]
         },
         {
+            key: 'uptown',
             name: 'Uptown BGC',
+            detail: 'Uptown Mall, 9th Ave. cor. 36th St., Bonifacio Global City, Taguig',
             coords: [14.5564554, 121.0542316],
             directions: 'https://www.google.com/maps/dir/?api=1&destination=Uptown+Mall+9th+Ave+BGC+Taguig+Metro+Manila',
             images: [
@@ -39,7 +45,9 @@
             ]
         },
         {
+            key: 'parqal',
             name: 'Parqal',
+            detail: 'Parqal Mall — Abaca Building, D. Macapagal Blvd., Aseana City, Parañaque',
             coords: [14.5266712, 120.989381],
             directions: 'https://www.google.com/maps/dir/?api=1&destination=Parqal+Diosdado+Macapagal+Blvd+Tambo+Paranaque+Metro+Manila',
             images: [
@@ -91,6 +99,14 @@
         title.className = 'omj-map-popup__title';
         title.textContent = location.name;
 
+        var detail = document.createElement('p');
+        detail.className = 'omj-map-popup__detail';
+        detail.textContent = location.detail;
+
+        var hint = document.createElement('p');
+        hint.className = 'omj-map-popup__hint';
+        hint.textContent = 'Look for the bright orange machine!';
+
         var carousel = document.createElement('div');
         carousel.className = 'omj-carousel omj-carousel--card';
         carousel.setAttribute('data-omj-carousel', location.name + ' map photos');
@@ -107,6 +123,8 @@
         directions.textContent = 'Directions';
 
         popup.appendChild(title);
+        popup.appendChild(detail);
+        popup.appendChild(hint);
         popup.appendChild(carousel);
         popup.appendChild(directions);
         return popup;
@@ -154,6 +172,7 @@
     }
 
     var bounds = [];
+    var markers = {};
     locations.forEach(function (location) {
         var marker = window.L.marker(location.coords, {
             icon: pinIcon,
@@ -169,7 +188,10 @@
         marker.bindPopup(createPopup(location), {
             className: 'omj-map-popup-shell',
             minWidth: 260,
-            maxWidth: 300
+            maxWidth: 300,
+            autoPan: true,
+            autoPanPaddingTopLeft: window.L.point(24, 72),
+            autoPanPaddingBottomRight: window.L.point(24, 24)
         });
 
         marker.on('popupopen', function (event) {
@@ -181,11 +203,33 @@
             if (window.OMJPreview && typeof window.OMJPreview.initCarousel === 'function') {
                 window.OMJPreview.initCarousel(carousel);
             }
+            // Slides are injected after Leaflet measured the popup for
+            // autoPan; re-measure so the taller popup stays in view.
+            event.popup.update();
         });
 
         marker.addTo(map);
+        markers[location.key] = marker;
         bounds.push(location.coords);
     });
+
+    window.OMJMap = {
+        focus: function (key) {
+            var marker = markers[key];
+            var location = locations.find(function (item) {
+                return item.key === key;
+            });
+            if (!marker || !location) return false;
+
+            // Open the popup only after the fly animation settles so
+            // autoPan measures against the final view, not the mid-flight one.
+            map.once('moveend', function () {
+                marker.openPopup();
+            });
+            map.flyTo(location.coords, 16);
+            return true;
+        }
+    };
 
     map.fitBounds(bounds, { padding: [48, 48] });
 })();
