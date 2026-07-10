@@ -1608,3 +1608,51 @@ body {
     font-style: normal;
     font-display: swap;
 }
+
+/* ============================================================
+   24. Elementor / plugin bloat resets (staging pages 526 & 530)
+   Scoped to the two staging pages only; live pages 35/25/21 are
+   never matched, so they render exactly as before.
+   ============================================================ */
+
+/* (a) Full-bleed content. Elementor's default column padding
+   (.elementor-widget-wrap.elementor-element-populated { padding:10px })
+   is the ONLY inset in the wrapper chain — the section & container are
+   already full width. Zeroing it lets the hero and image tiles sit
+   edge-to-edge like build/preview/home.html. Our own .omj-section /
+   .omj-container handle real spacing, so nothing collapses. */
+.page-id-526 .elementor-widget-wrap.elementor-element-populated,
+.page-id-530 .elementor-widget-wrap.elementor-element-populated {
+    /* !important: Elementor's `.elementor-column-gap-default > .elementor-column
+       > .elementor-element-populated { padding:10px }` has an equal specificity
+       (0,0,3,0) and loads later in the LiteSpeed-combined file, so it wins the tie.
+       !important (page-scoped) is the reliable override and also covers the
+       narrow/extended/wide gap variants in one rule. */
+    padding: 0 !important;
+}
+
+/* (b) Kill the pink button border. The Site Reviews plugin base CSS
+   ships `[type="button"],[type="submit"],button { border:1px solid #CC3366 }`
+   which leaks onto every unstyled <button> — carousel arrows/dots, the
+   .omj-zoom wrappers around gallery images, map-focus, and the form
+   submit. We only style fill/colour on those, so the pink border showed
+   through. Counter it (same targets, page-scoped, higher specificity). */
+.page-id-526 button,
+.page-id-526 [type="button"],
+.page-id-526 [type="submit"],
+.page-id-530 button,
+.page-id-530 [type="button"],
+.page-id-530 [type="submit"] {
+    border-color: transparent;
+}
+
+/* (c) Constrain the cloned contact form. On staging it lands in a
+   full-width section with no boxed container, so inputs and the SEND
+   bar stretch edge-to-edge (~1280px) — unpolished on desktop. Cap it
+   to a readable width and centre it (harmonises with the IGQR block's
+   560px inner). Above 600px it centres; on mobile it stays full width. */
+.page-id-530 .elementor-widget-form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
