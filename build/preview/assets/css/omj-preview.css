@@ -993,3 +993,34 @@ html.omj-motion-reduced .omj-zoom:focus-visible img {
 html.omj-motion-reduced .omj-carousel__track {
     scroll-behavior: auto;
 }
+
+/* ============================================================
+   23. Branded Photo Filters (Home & Contact pages)
+   ============================================================ */
+
+/* Scoped to home and contact pages (WP body classes + local preview). */
+.home .omj-hero__poster,
+.page-id-35 .omj-hero__poster,
+.page-id-526 .omj-hero__poster,
+.home .omj-img-block img,
+.page-id-35 .omj-img-block img,
+.page-id-526 .omj-img-block img,
+.home .omj-loc-card__img,
+.page-id-35 .omj-loc-card__img,
+.page-id-526 .omj-loc-card__img,
+.page-id-21 .omj-loc-card__img,
+.page-id-530 .omj-loc-card__img,
+.home .omj-carousel img,
+.page-id-35 .omj-carousel img,
+.page-id-526 .omj-carousel img,
+.home .omj-zoom img,
+.page-id-35 .omj-zoom img,
+.page-id-526 .omj-zoom img,
+.home .omj-map-popup img,
+.page-id-35 .omj-map-popup img,
+.page-id-526 .omj-map-popup img,
+.page-id-21 .omj-map-popup img,
+.page-id-530 .omj-map-popup img {
+    filter: brightness(136%) contrast(92%) saturate(137%);
+}
+

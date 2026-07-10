@@ -57,6 +57,14 @@ design system**, mounted inside Elementor so pages stay Elementor-native. Must-u
 
 ## 4. Changelog
 
+### 2026-07-10 — Branded Photo Filters (Home & Contact pages)
+
+- Applied CSS-based photo filters to all real-life photos (hero banner, grid/process images, location cards, popup carousels) scoped strictly to the Home and Contact pages (both live and staging WordPress page IDs and local preview).
+- Filter specifications: `brightness(136%) contrast(92%) saturate(137%)`.
+- Modified `build/mu-plugins/omj-assets/omj-brand.css`, `build/preview/assets/css/omj-brand.css`, and `build/preview/assets/css/omj-preview.css`.
+- Updated `build/preview/home.html` body element with `class="home page-id-35"` to enable local preview page scoping.
+- Deployed branding styles to production server and flushed Elementor and LiteSpeed Cache.
+
 ### 2026-07-10 — Staging v2 preview: revision batches 2–3, About rebuild
 
 **Preview pages (`build/preview/`, not yet deployed):**
