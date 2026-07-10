@@ -1,4 +1,6 @@
 # Secrets — never commit
+tmp
+.claude
 .env
 .env.*
 
