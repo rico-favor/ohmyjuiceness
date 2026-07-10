@@ -1379,7 +1379,9 @@ body {
 .omj-carousel--machine-gallery picture {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    /* Portrait 4:3 (i.e. 3:4) per client — the machine photos are shot
+       portrait (~1600x2133), so a landscape 4/3 crop chopped them. */
+    aspect-ratio: 3 / 4;
 }
 
 .omj-carousel--machine-gallery img {
