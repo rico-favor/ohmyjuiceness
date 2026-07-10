@@ -384,6 +384,20 @@ body {
     .omj-loc-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
+/* Modifier: single horizontally-scrolling row (home Find Us — 5 cards). */
+.omj-loc-grid--scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 12px;
+}
+.omj-loc-grid--scroll > .omj-loc-card {
+    flex: 0 0 clamp(250px, 78vw, 300px);
+    scroll-snap-align: start;
+}
+
 .omj-loc-card {
     background: var(--omj-white);
     border-radius: var(--omj-radius-md);
