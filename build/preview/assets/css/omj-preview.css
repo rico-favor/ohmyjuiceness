@@ -687,6 +687,56 @@
     color: #FFFFFF !important;
 }
 
+/* 21. Fix batch 3 */
+
+/* Keep the FPR content inset equally from both container edges. */
+.omj-fpr {
+    box-sizing: border-box;
+    padding-inline: var(--omj-gap-md);
+}
+
+/* Multi-column carousels snap and navigate as complete pages. */
+.omj-carousel[data-omj-per-view] .omj-carousel__slide {
+    scroll-snap-align: none;
+}
+
+.omj-carousel[data-omj-per-view] .omj-carousel__slide.is-page-start {
+    scroll-snap-align: start;
+}
+
+.omj-carousel--machine-gallery .omj-carousel__track {
+    align-items: stretch;
+}
+
+.omj-carousel--machine-gallery .omj-carousel__slide,
+.omj-carousel--machine-gallery .omj-zoom,
+.omj-carousel--machine-gallery picture {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+}
+
+.omj-carousel--machine-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--omj-radius-md);
+}
+
+.omj-carousel--machine-gallery .omj-carousel__dots {
+    flex-wrap: wrap;
+}
+
+/* A slightly taller cream media window gives two-up cup slides headroom. */
+.omj-carousel--gallery .omj-zoom {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+}
+
+.omj-carousel--gallery picture {
+    padding: clamp(20px, 3vw, 32px) clamp(14px, 2vw, 24px);
+}
+
 /* ============================================================
    PREVIEW-ONLY
    (fonts, page chrome, form facsimile — not shipped to WordPress)

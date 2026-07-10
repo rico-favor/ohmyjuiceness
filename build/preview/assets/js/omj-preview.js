@@ -107,17 +107,29 @@
             slide.setAttribute('aria-label', (i + 1) + ' of ' + slides.length);
         });
 
+        function readPerView(attribute, fallback) {
+            var value = parseInt(carousel.getAttribute(attribute), 10);
+            return value > 0 ? value : fallback;
+        }
+
+        var widePerView = readPerView('data-omj-per-view', 1);
+        var narrowPerView = readPerView('data-omj-per-view-narrow', 1);
+        var perView = 1;
+        var pageCount = 1;
+        var activePage = 0;
+        var smooth = !prefersReduced && !root.classList.contains('omj-motion-reduced');
+
         // Build arrows
         var prevBtn = doc.createElement('button');
         prevBtn.type = 'button';
         prevBtn.className = 'omj-carousel__arrow omj-carousel__arrow--prev';
-        prevBtn.setAttribute('aria-label', 'Previous slide');
+        prevBtn.setAttribute('aria-label', 'Previous page');
         prevBtn.innerHTML = CHEVRON_LEFT;
 
         var nextBtn = doc.createElement('button');
         nextBtn.type = 'button';
         nextBtn.className = 'omj-carousel__arrow omj-carousel__arrow--next';
-        nextBtn.setAttribute('aria-label', 'Next slide');
+        nextBtn.setAttribute('aria-label', 'Next page');
         nextBtn.innerHTML = CHEVRON_RIGHT;
 
         carousel.appendChild(prevBtn);
@@ -127,33 +139,28 @@
         var dotsWrap = doc.createElement('div');
         dotsWrap.className = 'omj-carousel__dots';
         dotsWrap.setAttribute('role', 'tablist');
-        var dots = slides.map(function (slide, i) {
-            var dot = doc.createElement('button');
-            dot.type = 'button';
-            dot.className = 'omj-carousel__dot';
-            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            if (i === 0) dot.setAttribute('aria-current', 'true');
-            dotsWrap.appendChild(dot);
-            return dot;
-        });
+        var dots = [];
         carousel.appendChild(dotsWrap);
 
-        var activeIndex = 0;
-        var smooth = !prefersReduced && !root.classList.contains('omj-motion-reduced');
+        function targetLeft(page) {
+            var index = Math.min(page * perView, slides.length - 1);
+            var target = slides[index];
+            var maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+            return Math.min(target.offsetLeft - track.offsetLeft, maxScroll);
+        }
 
-        function scrollToIndex(i) {
-            var target = slides[i];
-            if (!target) return;
+        function scrollToPage(page, animate) {
+            if (page < 0 || page >= pageCount) return;
             track.scrollTo({
-                left: target.offsetLeft - track.offsetLeft,
-                behavior: smooth ? 'smooth' : 'auto'
+                left: targetLeft(page),
+                behavior: animate !== false && smooth ? 'smooth' : 'auto'
             });
         }
 
-        function setActive(i) {
-            activeIndex = i;
+        function setActive(page) {
+            activePage = page;
             dots.forEach(function (dot, di) {
-                if (di === i) {
+                if (di === page) {
                     dot.setAttribute('aria-current', 'true');
                     dot.classList.add('is-active');
                 } else {
@@ -163,22 +170,60 @@
             });
         }
 
+        function rebuildDots() {
+            while (dotsWrap.firstChild) dotsWrap.removeChild(dotsWrap.firstChild);
+            dots = [];
+            for (var page = 0; page < pageCount; page += 1) {
+                (function (pageIndex) {
+                    var dot = doc.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'omj-carousel__dot';
+                    dot.setAttribute('aria-label', 'Go to page ' + (pageIndex + 1) + ' of ' + pageCount);
+                    dot.addEventListener('click', function () {
+                        scrollToPage(pageIndex);
+                    });
+                    dotsWrap.appendChild(dot);
+                    dots.push(dot);
+                })(page);
+            }
+        }
+
+        function updateLayout() {
+            var firstVisibleSlide = activePage * perView;
+            var nextPerView = window.innerWidth >= 768 ? widePerView : narrowPerView;
+            if (nextPerView === perView && dots.length) return;
+
+            perView = Math.min(nextPerView, slides.length);
+            pageCount = Math.ceil(slides.length / perView);
+            activePage = Math.min(Math.floor(firstVisibleSlide / perView), pageCount - 1);
+
+            var gap = perView > 1 ? 16 : 0;
+            var basis = perView > 1
+                ? 'calc((100% - ' + (gap * (perView - 1)) + 'px) / ' + perView + ')'
+                : '100%';
+            track.style.columnGap = gap + 'px';
+            slides.forEach(function (slide, index) {
+                slide.style.flexBasis = basis;
+                slide.classList.toggle('is-page-start', index % perView === 0);
+            });
+
+            rebuildDots();
+            setActive(activePage);
+            window.requestAnimationFrame(function () {
+                scrollToPage(activePage, false);
+            });
+        }
+
         prevBtn.addEventListener('click', function () {
-            var next = activeIndex - 1;
-            if (next < 0) next = slides.length - 1;
-            scrollToIndex(next);
+            var next = activePage - 1;
+            if (next < 0) next = pageCount - 1;
+            scrollToPage(next);
         });
 
         nextBtn.addEventListener('click', function () {
-            var next = activeIndex + 1;
-            if (next >= slides.length) next = 0;
-            scrollToIndex(next);
-        });
-
-        dots.forEach(function (dot, i) {
-            dot.addEventListener('click', function () {
-                scrollToIndex(i);
-            });
+            var next = activePage + 1;
+            if (next >= pageCount) next = 0;
+            scrollToPage(next);
         });
 
         var ticking = false;
@@ -186,25 +231,31 @@
             if (ticking) return;
             ticking = true;
             requestAnimationFrame(function () {
-                var trackRect = track.getBoundingClientRect();
-                var trackCenter = trackRect.left + trackRect.width / 2;
-                var closest = 0;
+                var closestPage = 0;
                 var closestDist = Infinity;
-                slides.forEach(function (slide, i) {
-                    var rect = slide.getBoundingClientRect();
-                    var center = rect.left + rect.width / 2;
-                    var dist = Math.abs(center - trackCenter);
+                for (var page = 0; page < pageCount; page += 1) {
+                    var dist = Math.abs(track.scrollLeft - targetLeft(page));
                     if (dist < closestDist) {
                         closestDist = dist;
-                        closest = i;
+                        closestPage = page;
                     }
-                });
-                if (closest !== activeIndex) setActive(closest);
+                }
+                if (closestPage !== activePage) setActive(closestPage);
                 ticking = false;
             });
         }, { passive: true });
 
-        setActive(0);
+        var resizeTicking = false;
+        window.addEventListener('resize', function () {
+            if (resizeTicking) return;
+            resizeTicking = true;
+            window.requestAnimationFrame(function () {
+                updateLayout();
+                resizeTicking = false;
+            });
+        });
+
+        updateLayout();
     }
 
     window.OMJPreview = window.OMJPreview || {};

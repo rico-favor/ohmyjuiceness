@@ -99,14 +99,6 @@
         title.className = 'omj-map-popup__title';
         title.textContent = location.name;
 
-        var detail = document.createElement('p');
-        detail.className = 'omj-map-popup__detail';
-        detail.textContent = location.detail;
-
-        var hint = document.createElement('p');
-        hint.className = 'omj-map-popup__hint';
-        hint.textContent = 'Look for the bright orange machine!';
-
         var carousel = document.createElement('div');
         carousel.className = 'omj-carousel omj-carousel--card';
         carousel.setAttribute('data-omj-carousel', location.name + ' map photos');
@@ -123,8 +115,6 @@
         directions.textContent = 'Directions';
 
         popup.appendChild(title);
-        popup.appendChild(detail);
-        popup.appendChild(hint);
         popup.appendChild(carousel);
         popup.appendChild(directions);
         return popup;
