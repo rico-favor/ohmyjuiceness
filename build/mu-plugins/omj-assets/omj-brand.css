@@ -1546,30 +1546,16 @@ body {
 .omj-text-orange { color: var(--omj-orange); }
 
 /* ============================================================
-   23. Branded Photo Filters (Home & Contact pages)
+   23. Branded Photo Filters
    ============================================================ */
 
-/* Scoped to home and contact pages (WP body classes + local preview). */
-.home .omj-hero__poster,
-.page-id-35 .omj-hero__poster,
-.page-id-526 .omj-hero__poster,
-.home .omj-img-block img,
-.page-id-35 .omj-img-block img,
-.page-id-526 .omj-img-block img,
-.home .omj-loc-card__img,
-.page-id-35 .omj-loc-card__img,
-.page-id-526 .omj-loc-card__img,
+/* Disabled on the HOME page per client (2026-07-10): the brightness/
+   saturate grade read as "too much" over the real product photography, so
+   home photos now render ungraded. Retained only for the contact page's
+   location/map images (currently none after the contact strip, so inert)
+   and kept here so it can be re-enabled later. */
 .page-id-21 .omj-loc-card__img,
 .page-id-530 .omj-loc-card__img,
-.home .omj-carousel img,
-.page-id-35 .omj-carousel img,
-.page-id-526 .omj-carousel img,
-.home .omj-zoom img,
-.page-id-35 .omj-zoom img,
-.page-id-526 .omj-zoom img,
-.home .omj-map-popup img,
-.page-id-35 .omj-map-popup img,
-.page-id-526 .omj-map-popup img,
 .page-id-21 .omj-map-popup img,
 .page-id-530 .omj-map-popup img {
     filter: brightness(136%) contrast(92%) saturate(137%);
@@ -1655,4 +1641,24 @@ body {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* (d) Kill the pink button HOVER/FOCUS remnant. Beyond the resting border,
+   Site Reviews also ships `button:hover, button:focus { background:#CC3366 }`.
+   The arrows (line ~757) and map-focus (~1304) set their own orange hover so
+   they win, but the dots (background:none, drawn via ::before) and the
+   .omj-zoom image wrappers (background:none) set no hover bg, so the pink
+   filled them on hover. Neutralize the plugin's hover/focus bg on all HOME
+   buttons, then re-assert the two that intentionally turn orange. (Home has
+   no form, so a blanket reset here is safe; the plugin uses :focus while our
+   styles use :focus-visible, so we cover plain mouse-:focus too.) */
+.page-id-526 button:hover,
+.page-id-526 button:focus {
+    background-color: transparent;
+}
+.page-id-526 .omj-carousel__arrow:hover,
+.page-id-526 .omj-carousel__arrow:focus,
+.page-id-526 .omj-loc-card__map-focus:hover,
+.page-id-526 .omj-loc-card__map-focus:focus {
+    background-color: var(--omj-orange);
 }
