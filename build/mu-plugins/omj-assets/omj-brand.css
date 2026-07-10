@@ -498,6 +498,25 @@ body {
     display: block;
 }
 
+.omj-masonry {
+    columns: 1;
+    column-gap: var(--omj-gap-sm);
+}
+@media (min-width: 576px)  { .omj-masonry { columns: 2; } }
+@media (min-width: 1025px) { .omj-masonry { columns: 3; } }
+
+.omj-masonry__item {
+    break-inside: avoid;
+    margin: 0 0 var(--omj-gap-sm);
+    border-radius: var(--omj-radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(15,82,48,0.12);
+}
+
+.omj-masonry__item figure {
+    margin: 0;
+}
+
 .omj-next-panel {
     min-height: 100%;
     background: var(--omj-white);
@@ -1152,8 +1171,12 @@ body {
 }
 
 .omj-carousel--gallery img {
+    /* !important: Elementor ships `.elementor img { height:auto }` which loads
+       later in the LiteSpeed-combined file and ties on specificity — without
+       it, portrait slides render at intrinsic height and overflow the
+       aspect-ratio media window. */
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     object-fit: contain;
     border-radius: calc(var(--omj-radius-md) - 4px);
 }
@@ -1417,10 +1440,12 @@ body {
     flex-wrap: wrap;
 }
 
-/* A slightly taller cream media window gives two-up cup slides headroom. */
+/* A slightly taller cream media window gives cup slides headroom. With the
+   1-up gallery on a full-width container the 4/3 window would exceed the
+   viewport, so clamp the height; object-fit:contain letterboxes the image. */
 .omj-carousel--gallery .omj-zoom {
     aspect-ratio: 4 / 3;
-    max-height: none;
+    max-height: min(78vh, 720px);
 }
 
 .omj-carousel--gallery picture {
@@ -1575,14 +1600,14 @@ body {
 
 /* Disabled on the HOME page per client (2026-07-10): the brightness/
    saturate grade read as "too much" over the real product photography, so
-   home photos now render ungraded. Retained only for the contact page's
-   location/map images (currently none after the contact strip, so inert)
-   and kept here so it can be re-enabled later. */
+   home photos now render ungraded. Still active on the contact page's
+   location/map images; toned down 2026-07-11 (was 136%/137%) after the
+   grade read as oversaturated there too. */
 .page-id-21 .omj-loc-card__img,
 .page-id-530 .omj-loc-card__img,
 .page-id-21 .omj-map-popup img,
 .page-id-530 .omj-map-popup img {
-    filter: brightness(136%) contrast(92%) saturate(137%);
+    filter: brightness(102%) contrast(92%) saturate(120%);
 }
 
 /* ============================================================
@@ -1639,6 +1664,17 @@ body {
        !important (page-scoped) is the reliable override and also covers the
        narrow/extended/wide gap variants in one rule. */
     padding: 0 !important;
+}
+
+/* (a2) Full-width container. Elementor's boxed layout puts a max-width on
+   `.elementor-section-boxed > .elementor-container` (incl. the
+   .elementor-column-gap-default variant), which letterboxes the home
+   fragment. Scoped to staging home (526) and live home (35) so the
+   fragment always spans the full viewport; !important for the same
+   tie-break reason as (a). */
+.page-id-526 .elementor-container,
+.page-id-35 .elementor-container {
+    max-width: none !important;
 }
 
 /* (b) Kill the pink button border. The Site Reviews plugin base CSS

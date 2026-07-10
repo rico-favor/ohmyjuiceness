@@ -4,6 +4,11 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-11] deploy | Contact photo grade toned down + home cup masonry gallery
+- **Contact "Find a Machine Near You" images:** branded photo filter in `build/mu-plugins/omj-assets/omj-brand.css` (§23) toned down from `brightness(136%) saturate(137%)` to `brightness(102%) saturate(120%)` (contrast 92% unchanged) — client flagged oversaturation. Applies to `.omj-loc-card__img` / `.omj-map-popup img` on pages 21/530.
+- **Home "The Cup" section (`#omj-cup`):** replaced the single-slide cup carousel with a new masonry gallery — new `.omj-masonry` / `.omj-masonry__item` component in `omj-brand.css` (§9, CSS columns: 1/2/3 at 576/1025px breakpoints), markup swapped in `build/pages/home-staging.html`. Lightbox (`data-lightbox="cups"`) retained; same three v3 cup images.
+- **Deploy:** CSS `scp`'d to mu-plugins path; home HTML applied via `omj_set_page_html(526, …)` (pre-deploy `_elementor_data` backup: `backups/2026-07-11-page-526-elementor-data.json`); `wp elementor flush-css` + `wp cache flush`; Cloudflare purge of CSS + `/` + `/contact/` via API (LiteSpeed purge still 400s as expected — page cache off at origin). Live-verified: new filter values and masonry class in served CSS, 3 masonry items and no cup carousel in served home HTML.
+
 ## [2026-07-10] feat | Add Paseo Center Makati location
 - Added Paseo Center, Makati machine location.
 - Updated interactive map marker (`build/mu-plugins/omj-assets/omj-map.js`) with Paseo coordinates, details, and placeholder generated cup image.
