@@ -27,6 +27,22 @@ The site is hosted on Hostinger Premium (shared), under the same account as gvba
 | Page Builder | Elementor 4.1.4 + Elementor Pro 3.29.2 |
 | Elementor Kit ID | 9 (accent green: `#167A45`) |
 
+## CDN Caching (Cloudflare) — deploy gotcha
+
+Static assets under `wp-content/mu-plugins/omj-assets/` are edge-cached by Cloudflare for 7 days, and LiteSpeed's "remove query strings" (`optm-qs_rm=1`) strips the `?ver=filemtime` cache-buster from enqueued URLs — so uploading a new `omj-map.js`/`omj-brand.css` does NOT reach visitors until the file is purged from Cloudflare.
+
+- The WP Cloudflare plugin and LiteSpeed CDN settings hold **no** API credentials; `wp litespeed-purge all` fails with `Got 400`.
+- Working purge: Cloudflare API token in `~/Git/gvbasketball/.env` (`CLOUDFLARE_API_TOKEN`, same account). Zone ID for ohmyjuiceness.com: `d4c80986aa4c981ad2f8db9802e698e8`.
+
+```bash
+source ~/Git/gvbasketball/.env
+curl -s -X POST "https://api.cloudflare.com/client/v4/zones/d4c80986aa4c981ad2f8db9802e698e8/purge_cache" \
+  -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" \
+  --data '{"files":["https://ohmyjuiceness.com/wp-content/mu-plugins/omj-assets/omj-map.js"]}'
+```
+
+After any asset upload: purge the touched asset URLs (and `/`, `/contact/` if page HTML changed), then verify with `curl -sI <url> | grep cf-cache-status`.
+
 ## Active Plugins
 
 | Plugin | Slug | Version | Status |
