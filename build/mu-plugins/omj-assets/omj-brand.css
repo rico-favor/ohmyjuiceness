@@ -1574,3 +1574,37 @@ body {
 .page-id-530 .omj-map-popup img {
     filter: brightness(136%) contrast(92%) saturate(137%);
 }
+
+/* ============================================================
+   Self-hosted brand fonts (Augillion display, Poppins body).
+   Heals: Poppins @font-face pointing at the dead dev domain, and
+   the http:// Augillion URL (mixed content on https).
+   ============================================================ */
+@font-face {
+    font-family: 'Augillion';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/Augillion-DEMO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
