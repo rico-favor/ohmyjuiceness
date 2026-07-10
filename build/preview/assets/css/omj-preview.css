@@ -1,0 +1,434 @@
+/* Oh My Juiceness — Preview Interaction Layer
+ *
+ * Extends build/preview/assets/css/omj-brand.css (verbatim copy — never edit).
+ * Continues the numbered-section convention from omj-brand.css (which ends at 12).
+ */
+
+/* ============================================================
+   13. Entrance Animations
+   ============================================================ */
+.omj-anim {
+    opacity: 0;
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1),
+                transform .55s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--omj-anim-delay, 0s);
+}
+.omj-anim--fade-in { /* opacity only, no transform */ }
+.omj-anim--fade-in-down  { transform: translateY(-28px); }
+.omj-anim--fade-in-up    { transform: translateY(28px); }
+.omj-anim--slide-in-left { transform: translateX(-56px); }
+.omj-anim--slide-in-right{ transform: translateX(56px); }
+
+.omj-anim.is-inview {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes omj-pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+.omj-anim--pulse.is-inview {
+    animation: omj-pulse .9s cubic-bezier(.22,.61,.36,1) 1;
+}
+
+/* ============================================================
+   14. Carousel (scroll-snap, no libraries)
+   ============================================================ */
+.omj-carousel {
+    position: relative;
+}
+
+.omj-carousel__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.omj-carousel__track::-webkit-scrollbar { display: none; }
+
+.omj-carousel__slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    min-width: 0;
+}
+
+.omj-carousel__slide figure {
+    margin: 0;
+}
+
+.omj-carousel__slide figcaption {
+    font-family: var(--omj-font-body);
+    font-size: 0.9rem;
+    color: var(--omj-text);
+    margin-top: var(--omj-gap-xs);
+}
+
+.omj-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--omj-cream);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    color: var(--omj-green);
+    transition: background .2s, color .2s;
+}
+.omj-carousel__arrow svg { width: 20px; height: 20px; }
+.omj-carousel__arrow:hover,
+.omj-carousel__arrow:focus-visible {
+    background: var(--omj-orange);
+    color: var(--omj-white);
+}
+.omj-carousel__arrow--prev { left: var(--omj-gap-xs); }
+.omj-carousel__arrow--next { right: var(--omj-gap-xs); }
+
+.omj-carousel__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: var(--omj-gap-sm);
+}
+
+.omj-carousel__dot {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+.omj-carousel__dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(22,122,69,.35);
+    transform: translate(-50%, -50%);
+    transition: background .2s;
+}
+.omj-carousel__dot[aria-current="true"]::before,
+.omj-carousel__dot.is-active::before {
+    background: var(--omj-orange);
+}
+
+/* Variant: carousel embedded inside a location card */
+.omj-carousel--card .omj-carousel__arrow {
+    width: 32px;
+    height: 32px;
+}
+.omj-carousel--card .omj-carousel__arrow svg { width: 16px; height: 16px; }
+.omj-carousel--card .omj-carousel__dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--omj-gap-xs);
+    margin-top: 0;
+    z-index: 2;
+}
+.omj-carousel--card .omj-carousel__dot::before {
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,.55);
+}
+.omj-carousel--card .omj-carousel__dot[aria-current="true"]::before,
+.omj-carousel--card .omj-carousel__dot.is-active::before {
+    background: var(--omj-orange);
+}
+
+/* ============================================================
+   15. Lightbox
+   ============================================================ */
+.omj-lightbox[hidden] { display: none; }
+
+.omj-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,82,48,.92);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: var(--omj-gap-md);
+    box-sizing: border-box;
+}
+
+.omj-lightbox__figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+}
+
+.omj-lightbox__img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: var(--omj-radius-md);
+    display: block;
+    object-fit: contain;
+}
+
+.omj-lightbox__caption {
+    color: var(--omj-white);
+    font-family: var(--omj-font-body);
+    font-size: 0.95rem;
+    margin-top: var(--omj-gap-sm);
+    text-align: center;
+}
+
+.omj-lightbox__close,
+.omj-lightbox__prev,
+.omj-lightbox__next {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: transparent;
+    border: 0;
+    color: var(--omj-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+}
+.omj-lightbox__close svg,
+.omj-lightbox__prev svg,
+.omj-lightbox__next svg { width: 24px; height: 24px; }
+
+.omj-lightbox__close:hover,
+.omj-lightbox__close:focus-visible,
+.omj-lightbox__prev:hover,
+.omj-lightbox__prev:focus-visible,
+.omj-lightbox__next:hover,
+.omj-lightbox__next:focus-visible {
+    background: rgba(255,255,255,.12);
+    color: var(--omj-orange);
+}
+
+.omj-lightbox__close { top: var(--omj-gap-sm); right: var(--omj-gap-sm); }
+.omj-lightbox__prev { left: var(--omj-gap-sm); top: 50%; transform: translateY(-50%); }
+.omj-lightbox__next { right: var(--omj-gap-sm); top: 50%; transform: translateY(-50%); }
+
+.omj-no-scroll { overflow: hidden; }
+
+/* ============================================================
+   16. F.P.R. (Fresh. Pure. Refreshing.) Component
+   ============================================================ */
+.omj-fpr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--omj-gap-lg);
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    .omj-fpr {
+        grid-template-columns: 1fr;
+    }
+}
+
+.omj-fpr__words {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.omj-fpr__word {
+    display: block;
+    font-family: var(--omj-font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    margin: 0;
+}
+.omj-fpr__word--1 { color: var(--omj-orange); }
+.omj-fpr__word--2 { color: var(--omj-green); }
+.omj-fpr__word--3 { color: var(--omj-red-orange); }
+
+.omj-fpr__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--omj-gap-sm);
+}
+
+.omj-fpr__list li {
+    display: flex;
+    align-items: center;
+    gap: var(--omj-gap-xs);
+}
+
+.omj-fpr__list svg {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    color: var(--omj-green);
+}
+
+.omj-fpr__list span {
+    font-family: var(--omj-font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--omj-text);
+}
+
+/* Variant: on a green section background */
+.omj-fpr--on-green .omj-fpr__word--1 { color: var(--omj-cream); }
+.omj-fpr--on-green .omj-fpr__word--2 { color: var(--omj-white); }
+.omj-fpr--on-green .omj-fpr__word--3 { color: var(--omj-orange); }
+.omj-fpr--on-green .omj-fpr__list svg { color: var(--omj-white); }
+.omj-fpr--on-green .omj-fpr__list span { color: var(--omj-white); }
+
+/* ============================================================
+   17. Locations map: shipped inline in map partial
+   ============================================================ */
+
+/* ============================================================
+   18. Media Zoom
+   ============================================================ */
+.omj-zoom {
+    overflow: hidden;
+    border-radius: var(--omj-radius-md);
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    width: 100%;
+}
+.omj-zoom img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+.omj-zoom:hover img,
+.omj-zoom:focus-visible img {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   PREVIEW-ONLY
+   (fonts, page chrome, form facsimile — not shipped to WordPress)
+   ============================================================ */
+
+@font-face {
+    font-family: 'Augillion';
+    src: url('../fonts/Augillion-DEMO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/poppins-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/poppins-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/poppins-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    font-family: var(--omj-font-body);
+    color: var(--omj-text);
+}
+
+/* Header / footer chrome classes (.omj-header, .omj-footer, .omj-header__*)
+   ship in omj-brand.css §11 — reused as-is; the overrides below only add
+   behavior omj-brand.css doesn't already cover (nav underline state,
+   44x44 hit target on the mobile toggle) without editing that file. */
+
+.omj-header__logo img { height: 44px; width: auto; }
+
+.omj-header__nav a {
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+.omj-header__nav a:hover,
+.omj-header__nav a[aria-current] {
+    text-decoration: underline;
+}
+
+.omj-header__toggle {
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+.omj-header__toggle svg {
+    width: 24px;
+    height: 24px;
+}
+@media (max-width: 768px) {
+    /* omj-brand.css shows this as display:block; flex centers the icon. */
+    .omj-header__toggle { display: flex; }
+}
+
+:focus-visible {
+    outline: 3px solid rgba(255,142,6,.55);
+    outline-offset: 2px;
+}
+
+/* Reduced motion: media query AND JS-set root class both disable all motion */
+@media (prefers-reduced-motion: reduce) {
+    .omj-anim {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    .omj-zoom:hover img,
+    .omj-zoom:focus-visible img {
+        transform: none !important;
+    }
+    .omj-carousel__track { scroll-behavior: auto; }
+}
+
+html.omj-motion-reduced .omj-anim {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+html.omj-motion-reduced .omj-zoom:hover img,
+html.omj-motion-reduced .omj-zoom:focus-visible img {
+    transform: none !important;
+}
+html.omj-motion-reduced .omj-carousel__track {
+    scroll-behavior: auto;
+}
