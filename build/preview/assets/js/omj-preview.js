@@ -86,127 +86,135 @@
     var CHEVRON_LEFT = svgIcon('<path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>');
     var CHEVRON_RIGHT = svgIcon('<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>');
 
+    function initCarousel(carousel) {
+        if (!carousel || carousel.getAttribute('data-omj-carousel-ready') === 'true') return;
+
+        var track = carousel.querySelector('.omj-carousel__track');
+        if (!track) return;
+
+        var slides = Array.prototype.slice.call(track.querySelectorAll('.omj-carousel__slide'));
+        if (!slides.length) return;
+        carousel.setAttribute('data-omj-carousel-ready', 'true');
+
+        var label = carousel.getAttribute('data-omj-carousel') || 'Carousel';
+        carousel.setAttribute('role', 'region');
+        carousel.setAttribute('aria-roledescription', 'carousel');
+        carousel.setAttribute('aria-label', label);
+
+        slides.forEach(function (slide, i) {
+            slide.setAttribute('role', 'group');
+            slide.setAttribute('aria-roledescription', 'slide');
+            slide.setAttribute('aria-label', (i + 1) + ' of ' + slides.length);
+        });
+
+        // Build arrows
+        var prevBtn = doc.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'omj-carousel__arrow omj-carousel__arrow--prev';
+        prevBtn.setAttribute('aria-label', 'Previous slide');
+        prevBtn.innerHTML = CHEVRON_LEFT;
+
+        var nextBtn = doc.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'omj-carousel__arrow omj-carousel__arrow--next';
+        nextBtn.setAttribute('aria-label', 'Next slide');
+        nextBtn.innerHTML = CHEVRON_RIGHT;
+
+        carousel.appendChild(prevBtn);
+        carousel.appendChild(nextBtn);
+
+        // Build dots
+        var dotsWrap = doc.createElement('div');
+        dotsWrap.className = 'omj-carousel__dots';
+        dotsWrap.setAttribute('role', 'tablist');
+        var dots = slides.map(function (slide, i) {
+            var dot = doc.createElement('button');
+            dot.type = 'button';
+            dot.className = 'omj-carousel__dot';
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            if (i === 0) dot.setAttribute('aria-current', 'true');
+            dotsWrap.appendChild(dot);
+            return dot;
+        });
+        carousel.appendChild(dotsWrap);
+
+        var activeIndex = 0;
+        var smooth = !prefersReduced && !root.classList.contains('omj-motion-reduced');
+
+        function scrollToIndex(i) {
+            var target = slides[i];
+            if (!target) return;
+            track.scrollTo({
+                left: target.offsetLeft - track.offsetLeft,
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+        }
+
+        function setActive(i) {
+            activeIndex = i;
+            dots.forEach(function (dot, di) {
+                if (di === i) {
+                    dot.setAttribute('aria-current', 'true');
+                    dot.classList.add('is-active');
+                } else {
+                    dot.removeAttribute('aria-current');
+                    dot.classList.remove('is-active');
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', function () {
+            var next = activeIndex - 1;
+            if (next < 0) next = slides.length - 1;
+            scrollToIndex(next);
+        });
+
+        nextBtn.addEventListener('click', function () {
+            var next = activeIndex + 1;
+            if (next >= slides.length) next = 0;
+            scrollToIndex(next);
+        });
+
+        dots.forEach(function (dot, i) {
+            dot.addEventListener('click', function () {
+                scrollToIndex(i);
+            });
+        });
+
+        var ticking = false;
+        track.addEventListener('scroll', function () {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function () {
+                var trackRect = track.getBoundingClientRect();
+                var trackCenter = trackRect.left + trackRect.width / 2;
+                var closest = 0;
+                var closestDist = Infinity;
+                slides.forEach(function (slide, i) {
+                    var rect = slide.getBoundingClientRect();
+                    var center = rect.left + rect.width / 2;
+                    var dist = Math.abs(center - trackCenter);
+                    if (dist < closestDist) {
+                        closestDist = dist;
+                        closest = i;
+                    }
+                });
+                if (closest !== activeIndex) setActive(closest);
+                ticking = false;
+            });
+        }, { passive: true });
+
+        setActive(0);
+    }
+
+    window.OMJPreview = window.OMJPreview || {};
+    window.OMJPreview.initCarousel = initCarousel;
+
     function initCarousels() {
         var carousels = doc.querySelectorAll('[data-omj-carousel]');
         if (!carousels.length) return;
 
-        Array.prototype.forEach.call(carousels, function (carousel) {
-            var track = carousel.querySelector('.omj-carousel__track');
-            if (!track) return;
-
-            var slides = Array.prototype.slice.call(track.querySelectorAll('.omj-carousel__slide'));
-            if (!slides.length) return;
-
-            var label = carousel.getAttribute('data-omj-carousel') || 'Carousel';
-            carousel.setAttribute('role', 'region');
-            carousel.setAttribute('aria-roledescription', 'carousel');
-            carousel.setAttribute('aria-label', label);
-
-            slides.forEach(function (slide, i) {
-                slide.setAttribute('role', 'group');
-                slide.setAttribute('aria-roledescription', 'slide');
-                slide.setAttribute('aria-label', (i + 1) + ' of ' + slides.length);
-            });
-
-            // Build arrows
-            var prevBtn = doc.createElement('button');
-            prevBtn.type = 'button';
-            prevBtn.className = 'omj-carousel__arrow omj-carousel__arrow--prev';
-            prevBtn.setAttribute('aria-label', 'Previous slide');
-            prevBtn.innerHTML = CHEVRON_LEFT;
-
-            var nextBtn = doc.createElement('button');
-            nextBtn.type = 'button';
-            nextBtn.className = 'omj-carousel__arrow omj-carousel__arrow--next';
-            nextBtn.setAttribute('aria-label', 'Next slide');
-            nextBtn.innerHTML = CHEVRON_RIGHT;
-
-            carousel.appendChild(prevBtn);
-            carousel.appendChild(nextBtn);
-
-            // Build dots
-            var dotsWrap = doc.createElement('div');
-            dotsWrap.className = 'omj-carousel__dots';
-            dotsWrap.setAttribute('role', 'tablist');
-            var dots = slides.map(function (slide, i) {
-                var dot = doc.createElement('button');
-                dot.type = 'button';
-                dot.className = 'omj-carousel__dot';
-                dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                if (i === 0) dot.setAttribute('aria-current', 'true');
-                dotsWrap.appendChild(dot);
-                return dot;
-            });
-            carousel.appendChild(dotsWrap);
-
-            var activeIndex = 0;
-            var smooth = !prefersReduced && !root.classList.contains('omj-motion-reduced');
-
-            function scrollToIndex(i) {
-                var target = slides[i];
-                if (!target) return;
-                track.scrollTo({
-                    left: target.offsetLeft - track.offsetLeft,
-                    behavior: smooth ? 'smooth' : 'auto'
-                });
-            }
-
-            function setActive(i) {
-                activeIndex = i;
-                dots.forEach(function (dot, di) {
-                    if (di === i) {
-                        dot.setAttribute('aria-current', 'true');
-                        dot.classList.add('is-active');
-                    } else {
-                        dot.removeAttribute('aria-current');
-                        dot.classList.remove('is-active');
-                    }
-                });
-            }
-
-            prevBtn.addEventListener('click', function () {
-                var next = activeIndex - 1;
-                if (next < 0) next = slides.length - 1;
-                scrollToIndex(next);
-            });
-
-            nextBtn.addEventListener('click', function () {
-                var next = activeIndex + 1;
-                if (next >= slides.length) next = 0;
-                scrollToIndex(next);
-            });
-
-            dots.forEach(function (dot, i) {
-                dot.addEventListener('click', function () {
-                    scrollToIndex(i);
-                });
-            });
-
-            var ticking = false;
-            track.addEventListener('scroll', function () {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(function () {
-                    var trackRect = track.getBoundingClientRect();
-                    var trackCenter = trackRect.left + trackRect.width / 2;
-                    var closest = 0;
-                    var closestDist = Infinity;
-                    slides.forEach(function (slide, i) {
-                        var rect = slide.getBoundingClientRect();
-                        var center = rect.left + rect.width / 2;
-                        var dist = Math.abs(center - trackCenter);
-                        if (dist < closestDist) {
-                            closestDist = dist;
-                            closest = i;
-                        }
-                    });
-                    if (closest !== activeIndex) setActive(closest);
-                    ticking = false;
-                });
-            }, { passive: true });
-
-            setActive(0);
-        });
+        Array.prototype.forEach.call(carousels, initCarousel);
     }
 
     /* ------------------------------------------------------------

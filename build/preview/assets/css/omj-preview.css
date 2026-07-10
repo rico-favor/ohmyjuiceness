@@ -299,7 +299,7 @@
 .omj-fpr--on-green .omj-fpr__list span { color: var(--omj-white); }
 
 /* ============================================================
-   17. Locations map: shipped inline in map partial
+   17. Locations map: legacy inline partial (unused on home)
    ============================================================ */
 
 /* ============================================================
@@ -325,6 +325,266 @@
 .omj-zoom:hover img,
 .omj-zoom:focus-visible img {
     transform: scale(1.05);
+}
+
+/* 19. Home fix batch */
+
+/* Original-site chunky button treatment. */
+.omj-btn,
+.omj-header__cta {
+    box-sizing: border-box;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease,
+                border-color .2s ease, box-shadow .2s ease,
+                transform .2s ease;
+}
+
+.omj-btn {
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+}
+
+.omj-header__cta {
+    font-size: 1.1rem;
+    background: #FF8E06;
+    color: #FFFFFF;
+    box-shadow: 2px 5px 0 0 #0F5230;
+}
+
+.omj-header__cta:hover,
+.omj-header__cta:focus-visible {
+    background: #E24F14;
+    color: #FFFFFF;
+    box-shadow: 2px 6px 0 0 #0F5230;
+    transform: translateY(-1px);
+}
+
+.omj-btn--primary {
+    background: #FF8E06;
+    border-color: #FF8E06;
+    color: #FFFFFF;
+    box-shadow: 2px 5px 0 0 #0F5230;
+}
+
+.omj-btn--primary:hover,
+.omj-btn--primary:focus-visible {
+    background: #E24F14;
+    border-color: #E24F14;
+    color: #FFFFFF;
+    box-shadow: 2px 6px 0 0 #0F5230;
+    transform: translateY(-1px);
+}
+
+.omj-btn--green {
+    background: #167A45;
+    border-color: #167A45;
+    color: #FFFFFF;
+    box-shadow: 2px 5px 0 0 rgba(15,82,48,.55);
+}
+
+.omj-btn--green:hover,
+.omj-btn--green:focus-visible {
+    background: #0F5230;
+    border-color: #0F5230;
+    color: #FFFFFF;
+    box-shadow: 2px 6px 0 0 rgba(15,82,48,.55);
+    transform: translateY(-1px);
+}
+
+.omj-btn--ghost {
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    box-shadow: 2px 5px 0 0 rgba(255,255,255,.38);
+}
+
+.omj-btn--ghost:hover,
+.omj-btn--ghost:focus-visible {
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #167A45;
+    box-shadow: 2px 6px 0 0 rgba(255,255,255,.38);
+    transform: translateY(-1px);
+}
+
+/* Hero contrast over the light upper half of the photograph. */
+.omj-hero__gradient {
+    background: linear-gradient(180deg, rgba(15,82,48,.30) 0%, rgba(15,82,48,.12) 35%, rgba(15,82,48,.55) 100%);
+}
+
+.omj-hero .omj-h1,
+.omj-hero__subhead {
+    text-shadow: 0 2px 18px rgba(15,40,25,.45);
+}
+
+/* Uniform portrait tiles for The Machine only. */
+.omj-machine-grid .omj-img-block {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--omj-radius-md);
+}
+
+.omj-machine-grid .omj-zoom,
+.omj-machine-grid picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.omj-machine-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--omj-radius-md);
+}
+
+/* Fixed media window for the large cup gallery; captions remain below. */
+.omj-carousel--gallery .omj-zoom {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    max-height: 560px;
+}
+
+.omj-carousel--gallery picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.omj-carousel--gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Leaflet map, citrus markers, and compact popup galleries. */
+.omj-map-live {
+    position: relative;
+    z-index: 0;
+    height: 440px;
+    max-width: 960px;
+    margin: 0 auto var(--omj-gap-lg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15,82,48,.12);
+    font-family: var(--omj-font-body);
+}
+
+.omj-pin {
+    border: 0;
+    background: transparent;
+    filter: drop-shadow(0 3px 4px rgba(15,82,48,.28));
+}
+
+.omj-pin svg {
+    display: block;
+    width: 36px;
+    height: 44px;
+    overflow: visible;
+}
+
+.omj-pin:focus-visible {
+    outline: 3px solid rgba(226,79,20,.75);
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+
+.omj-map-live .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15,82,48,.2);
+}
+
+.omj-map-live .leaflet-popup-content {
+    width: 300px !important;
+    max-width: calc(100vw - 72px);
+    margin: 0;
+    overflow: hidden;
+}
+
+.omj-map-popup {
+    width: 100%;
+    font-family: var(--omj-font-body);
+    color: #484544;
+}
+
+.omj-map-popup__title {
+    margin: 0;
+    padding: 12px 14px 10px;
+    color: #0F5230;
+    font-family: var(--omj-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.omj-map-popup .omj-carousel {
+    width: 100%;
+}
+
+.omj-map-popup .omj-carousel__track,
+.omj-map-popup .omj-carousel__slide,
+.omj-map-popup picture {
+    width: 100%;
+}
+
+.omj-map-popup .omj-carousel__slide,
+.omj-map-popup picture {
+    display: block;
+    aspect-ratio: 4 / 3;
+}
+
+.omj-map-popup .omj-carousel__slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.omj-map-popup .omj-carousel--card .omj-carousel__dots {
+    gap: 0;
+}
+
+.omj-map-popup .omj-carousel__dot {
+    width: 36px;
+    height: 36px;
+}
+
+.omj-map-popup__directions {
+    display: block;
+    margin: 12px 14px 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: #167A45;
+    color: #FFFFFF;
+    font-family: var(--omj-font-body);
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s ease;
+}
+
+.omj-map-popup__directions:hover,
+.omj-map-popup__directions:focus-visible {
+    background: #0F5230;
+    color: #FFFFFF;
+}
+
+@media (max-width: 767px) {
+    .omj-map-live {
+        height: 320px;
+    }
 }
 
 /* ============================================================

@@ -7,14 +7,17 @@
   <meta name="description" content="Oh My Juiceness: 100% fresh-squeezed orange juice from whole oranges — no water, no added sugar. Find a machine near you across Metro Manila.">
   <link rel="icon" href="assets/img/brand/omj-icon.png" type="image/png">
   <link rel="stylesheet" href="assets/css/omj-brand.css">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="assets/css/omj-preview.css">
+  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
   <script src="assets/js/omj-preview.js" defer></script>
+  <script src="assets/js/omj-map.js" defer></script>
 </head>
 <body>
 
 <header class="omj-header">
   <a href="home.html" class="omj-header__logo">
-    <img src="assets/img/brand/logo-green.png" alt="Oh My Juiceness" width="107" height="44">
+    <img src="assets/img/brand/logo-orange.png" alt="Oh My Juiceness" width="107" height="44">
   </a>
   <button class="omj-header__toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="omj-primary-nav">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -80,20 +83,20 @@
     <p class="omj-eyebrow omj-anim omj-anim--fade-in-up">The Machine</p>
     <h2 class="omj-h2 omj-anim omj-anim--fade-in-up">Fresh Juice, Squeezed on the Spot</h2>
     <p class="omj-body omj-section__intro omj-anim omj-anim--fade-in-up">Whole oranges are visible, squeezed on demand, and served cold in a cup that finally feels as fresh as the product.</p>
-    <div class="omj-img-grid omj-img-grid--3" data-omj-stagger>
+    <div class="omj-img-grid omj-img-grid--3 omj-machine-grid" data-omj-stagger>
       <div class="omj-img-block omj-anim omj-anim--fade-in-up">
-        <button class="omj-zoom" data-lightbox="machine" type="button" aria-label="View larger image: OMJ machine branding panel">
+        <button class="omj-zoom" data-lightbox="machine" type="button" aria-label="View larger image: OMJ vending machine at Parqal Abaca building, stocked with fresh oranges">
           <picture>
-            <source type="image/webp" srcset="assets/img/machine/machine-vendo-1-800.webp 800w, assets/img/machine/machine-vendo-1.webp 1600w" sizes="(min-width:1025px) 33vw, (min-width:576px) 50vw, 100vw">
-            <img src="assets/img/machine/machine-vendo-1.jpg" srcset="assets/img/machine/machine-vendo-1-800.jpg 800w, assets/img/machine/machine-vendo-1.jpg 1600w" sizes="(min-width:1025px) 33vw, (min-width:576px) 50vw, 100vw" alt="OMJ machine branding panel: &quot;Your Daily Dose of Vitamin C — just one sip away&quot; with QR codes to the website and Instagram" loading="lazy" decoding="async" width="1600" height="937" style="aspect-ratio:4/3;object-fit:cover;width:100%;height:100%;display:block;">
+            <source type="image/webp" srcset="assets/img/machine/abaca-machine.webp">
+            <img src="assets/img/machine/abaca-machine.jpg" alt="OMJ vending machine at Parqal Abaca building, stocked with fresh oranges" loading="lazy" decoding="async" width="1600" height="2133">
           </picture>
         </button>
       </div>
       <div class="omj-img-block omj-anim omj-anim--fade-in-up">
-        <button class="omj-zoom" data-lightbox="machine" type="button" aria-label="View larger image: kids with an OMJ cup at Parqal">
+        <button class="omj-zoom" data-lightbox="machine" type="button" aria-label="View larger image: OMJ fresh juice vending machine at Parqal">
           <picture>
-            <source type="image/webp" srcset="assets/img/machine/machine-parqal.webp">
-            <img src="assets/img/machine/machine-parqal.jpg" alt="Kids holding freshly-squeezed OMJ cups in front of the vending machine at Parqal mall" loading="lazy" decoding="async" width="1600" height="2133" style="aspect-ratio:4/3;object-fit:cover;width:100%;height:100%;display:block;">
+            <source type="image/webp" srcset="assets/img/machine/parqal-machine.webp">
+            <img src="assets/img/machine/parqal-machine.jpg" alt="OMJ fresh juice vending machine at Parqal" loading="lazy" decoding="async" width="1600" height="2133">
           </picture>
         </button>
       </div>
@@ -101,7 +104,7 @@
         <button class="omj-zoom" data-lightbox="machine" type="button" aria-label="View larger image: OMJ cup studio shot">
           <picture>
             <source type="image/webp" srcset="assets/img/cups/omj-generated-cup-studio.webp">
-            <img src="assets/img/cups/omj-generated-cup-studio.jpg" alt="Premium OMJ-inspired orange juice cup with whole oranges, studio shot" loading="lazy" decoding="async" width="1122" height="1402" style="aspect-ratio:4/3;object-fit:cover;width:100%;height:100%;display:block;">
+            <img src="assets/img/cups/omj-generated-cup-studio.jpg" alt="Premium OMJ-inspired orange juice cup with whole oranges, studio shot" loading="lazy" decoding="async" width="1122" height="1402">
           </picture>
         </button>
       </div>
@@ -114,14 +117,14 @@
     <p class="omj-eyebrow omj-anim omj-anim--fade-in-up">The Cup</p>
     <h2 class="omj-h2 omj-anim omj-anim--fade-in-up">Premium Enough for Fresh-Squeezed Juice</h2>
     <p class="omj-body omj-section__intro omj-anim omj-anim--fade-in-up">New product photography brings finished, appetite-forward cup imagery to life in OMJ's orange and green palette.</p>
-    <div class="omj-carousel omj-anim omj-anim--fade-in-up" data-omj-carousel="OMJ cup gallery">
+    <div class="omj-carousel omj-carousel--gallery omj-anim omj-anim--fade-in-up" data-omj-carousel="OMJ cup gallery">
       <div class="omj-carousel__track">
         <div class="omj-carousel__slide">
           <figure>
             <button class="omj-zoom" data-lightbox="cups" type="button" aria-label="View larger image: The OMJ cup, fresh-squeezed to order">
               <picture>
                 <source type="image/webp" srcset="assets/img/cups/omj-generated-cup-studio.webp">
-                <img src="assets/img/cups/omj-generated-cup-studio.jpg" alt="The OMJ cup, fresh-squeezed to order" loading="lazy" decoding="async" width="1122" height="1402" style="width:100%;height:auto;display:block;">
+                <img src="assets/img/cups/omj-generated-cup-studio.jpg" alt="The OMJ cup, fresh-squeezed to order" loading="lazy" decoding="async" width="1122" height="1402">
               </picture>
             </button>
             <figcaption>The OMJ cup, fresh-squeezed to order</figcaption>
@@ -132,7 +135,7 @@
             <button class="omj-zoom" data-lightbox="cups" type="button" aria-label="View larger image: Made from whole oranges — nothing else">
               <picture>
                 <source type="image/webp" srcset="assets/img/cups/omj-generated-cup-oranges.webp">
-                <img src="assets/img/cups/omj-generated-cup-oranges.jpg" alt="Made from whole oranges — nothing else" loading="lazy" decoding="async" width="1254" height="1254" style="width:100%;height:auto;display:block;">
+                <img src="assets/img/cups/omj-generated-cup-oranges.jpg" alt="Made from whole oranges — nothing else" loading="lazy" decoding="async" width="1254" height="1254">
               </picture>
             </button>
             <figcaption>Made from whole oranges — nothing else</figcaption>
@@ -143,7 +146,7 @@
             <button class="omj-zoom" data-lightbox="cups" type="button" aria-label="View larger image: What's next: fresh fruit cups and seasonal trays">
               <picture>
                 <source type="image/webp" srcset="assets/img/cups/omj-generated-fresh-fruit-cup.webp">
-                <img src="assets/img/cups/omj-generated-fresh-fruit-cup.jpg" alt="What's next: fresh fruit cups &amp; seasonal trays" loading="lazy" decoding="async" width="1254" height="1254" style="width:100%;height:auto;display:block;">
+                <img src="assets/img/cups/omj-generated-fresh-fruit-cup.jpg" alt="What's next: fresh fruit cups &amp; seasonal trays" loading="lazy" decoding="async" width="1254" height="1254">
               </picture>
             </button>
             <figcaption>What's next: fresh fruit cups &amp; seasonal trays</figcaption>
@@ -154,7 +157,7 @@
             <button class="omj-zoom" data-lightbox="cups" type="button" aria-label="View larger image: Party with us — catering-ready servings for events">
               <picture>
                 <source type="image/webp" srcset="assets/img/cups/omj-generated-catering-cups.webp">
-                <img src="assets/img/cups/omj-generated-catering-cups.jpg" alt="Party with us — catering-ready servings for events" loading="lazy" decoding="async" width="1536" height="1024" style="width:100%;height:auto;display:block;">
+                <img src="assets/img/cups/omj-generated-catering-cups.jpg" alt="Party with us — catering-ready servings for events" loading="lazy" decoding="async" width="1536" height="1024">
               </picture>
             </button>
             <figcaption>Party with us — catering-ready servings for events</figcaption>
@@ -182,181 +185,7 @@
     <h2 class="omj-h2 omj-anim omj-anim--fade-in-up">Find a Machine Near You</h2>
     <p class="omj-body omj-section__intro omj-anim omj-anim--fade-in-up">Four Metro Manila locations — squeeze by squeeze, block by block.</p>
 
-    <!-- OMJ:FRAGMENT-START -->
-    <div class="omj-map omj-anim omj-anim--fade-in-up">
-      <p class="omj-visually-hidden">Oh My Juiceness cold-press machines are located across Metro Manila: Greenhills in San Juan, Eastwood in Quezon City, Uptown BGC in Taguig, and Parqal in Para&ntilde;aque.</p>
-
-      <svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <g id="omj-map-citrus">
-            <path d="M -7,8 C -7,20 -2,28 0,34 C 2,28 7,20 7,8 Z" fill="#FF8E06" stroke="#fff" stroke-width="2.5"/>
-            <circle r="16" fill="#FF8E06" stroke="#fff" stroke-width="2.5"/>
-            <circle r="12.5" fill="none" stroke="#fff" stroke-width="1.4" opacity=".9"/>
-            <g stroke="#fff" stroke-width="1.4" opacity=".9" stroke-linecap="round">
-              <line x1="2.5" y1="0" x2="12" y2="0"/><line x1="1.77" y1="1.77" x2="8.49" y2="8.49"/>
-              <line x1="0" y1="2.5" x2="0" y2="12"/><line x1="-1.77" y1="1.77" x2="-8.49" y2="8.49"/>
-              <line x1="-2.5" y1="0" x2="-12" y2="0"/><line x1="-1.77" y1="-1.77" x2="-8.49" y2="-8.49"/>
-              <line x1="0" y1="-2.5" x2="0" y2="-12"/><line x1="1.77" y1="-1.77" x2="8.49" y2="-8.49"/>
-            </g>
-            <circle r="1.7" fill="#fff"/>
-          </g>
-        </defs>
-
-        <!-- decorative geography -->
-        <g aria-hidden="true">
-          <rect x="8" y="8" width="744" height="544" rx="30" fill="#E7EFE7"/>
-          <path d="M 650,448 C 702,430 750,455 751,516 C 752,548 726,552 690,550 C 644,548 604,532 596,490 C 590,460 612,458 650,448 Z" fill="#DCE8DC" stroke="rgba(22,122,69,.16)" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M 430,72 C 540,62 618,92 662,150 C 702,205 712,255 705,308 C 697,368 660,428 592,458 C 512,494 428,496 372,487 C 322,479 282,470 255,446 C 220,416 214,368 232,320 C 250,275 214,238 236,192 C 252,158 300,112 360,88 C 384,78 406,73 430,72 Z" fill="#FDFCF6" stroke="rgba(22,122,69,.2)" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M 226,300 C 300,288 340,328 402,318 C 470,307 502,360 560,372 C 585,377 600,402 612,424" fill="none" stroke="#E7EFE7" stroke-width="9" stroke-linecap="round"/>
-          <text class="omj-map__wm" x="470" y="145" text-anchor="middle">Metro Manila</text>
-          <text class="omj-map__bay" x="120" y="300" text-anchor="middle" transform="rotate(-90 120 300)">Manila Bay</text>
-        </g>
-
-        <!-- interactive location pins -->
-        <a class="omj-map__loc" href="#loc-eastwood" aria-label="Jump to Eastwood location card">
-          <g class="omj-map__pin" transform="translate(600,168)">
-            <circle class="omj-map__ripple" r="16" style="animation-delay:0s"/>
-            <circle class="omj-map__hit" r="24" fill="transparent"/>
-            <use class="omj-map__marker" href="#omj-map-citrus" style="--i:0"/>
-            <text class="omj-map__label" x="-24" y="4" text-anchor="end">Eastwood</text>
-          </g>
-        </a>
-
-        <a class="omj-map__loc" href="#loc-greenhills" aria-label="Jump to Greenhills location card">
-          <g class="omj-map__pin" transform="translate(410,205)">
-            <circle class="omj-map__ripple" r="16" style="animation-delay:.6s"/>
-            <circle class="omj-map__hit" r="24" fill="transparent"/>
-            <use class="omj-map__marker" href="#omj-map-citrus" style="--i:1"/>
-            <text class="omj-map__label" x="-24" y="4" text-anchor="end">Greenhills</text>
-          </g>
-        </a>
-
-        <a class="omj-map__loc" href="#loc-uptown" aria-label="Jump to Uptown BGC location card">
-          <g class="omj-map__pin" transform="translate(525,360)">
-            <circle class="omj-map__ripple" r="16" style="animation-delay:1.2s"/>
-            <circle class="omj-map__hit" r="24" fill="transparent"/>
-            <use class="omj-map__marker" href="#omj-map-citrus" style="--i:2"/>
-            <text class="omj-map__label" x="24" y="4" text-anchor="start">Uptown BGC</text>
-          </g>
-        </a>
-
-        <a class="omj-map__loc" href="#loc-parqal" aria-label="Jump to Parqal location card">
-          <g class="omj-map__pin" transform="translate(268,412)">
-            <circle class="omj-map__ripple" r="16" style="animation-delay:1.8s"/>
-            <circle class="omj-map__hit" r="24" fill="transparent"/>
-            <use class="omj-map__marker" href="#omj-map-citrus" style="--i:3"/>
-            <text class="omj-map__label" x="24" y="4" text-anchor="start">Parqal</text>
-          </g>
-        </a>
-      </svg>
-    </div>
-
-    <style>
-      .omj-map { width: 100%; }
-      .omj-map svg {
-        display: block;
-        width: 100%;
-        height: auto;
-        max-width: 720px;
-        margin-inline: auto;
-        overflow: visible;
-      }
-
-      .omj-map .omj-visually-hidden {
-        position: absolute;
-        width: 1px; height: 1px;
-        padding: 0; margin: -1px;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      .omj-map text { font-family: var(--omj-font-body, 'Poppins', sans-serif); }
-      .omj-map__label {
-        font-size: 16px;
-        fill: #484544;
-        font-weight: 600;
-        paint-order: stroke;
-        stroke: #fff;
-        stroke-width: 4px;
-        stroke-linejoin: round;
-        pointer-events: none;
-      }
-      .omj-map__wm {
-        font-size: 22px;
-        fill: var(--omj-green, #167A45);
-        opacity: .15;
-        font-style: italic;
-        font-weight: 500;
-        letter-spacing: 1.5px;
-      }
-      .omj-map__bay {
-        font-size: 15px;
-        fill: var(--omj-green, #167A45);
-        opacity: .32;
-        font-style: italic;
-        font-weight: 500;
-        letter-spacing: 1px;
-      }
-
-      .omj-map__loc { cursor: pointer; }
-      .omj-map__loc:focus { outline: none; }
-      .omj-map__loc:focus-visible {
-        outline: 3px solid var(--omj-red-orange, #E24F14);
-        outline-offset: 3px;
-        border-radius: 6px;
-      }
-
-      /* citrus marker: hover / focus lift + label emphasis */
-      .omj-map__marker {
-        transform-box: fill-box;
-        transform-origin: center;
-        transition: transform .25s cubic-bezier(.22,.61,.36,1);
-      }
-      .omj-map__loc:hover .omj-map__marker,
-      .omj-map__loc:focus-visible .omj-map__marker { transform: scale(1.15); }
-      .omj-map__loc:hover .omj-map__label,
-      .omj-map__loc:focus-visible .omj-map__label { font-weight: 700; }
-
-      /* idle ripple radiating from each pin */
-      .omj-map__ripple {
-        fill: none;
-        stroke: var(--omj-orange, #FF8E06);
-        stroke-width: 2;
-        opacity: 0;
-        transform-box: fill-box;
-        transform-origin: center;
-        animation: omj-map-ripple 3s ease-out infinite;
-      }
-      @keyframes omj-map-ripple {
-        0%   { transform: scale(.45); opacity: .35; }
-        70%  { opacity: .05; }
-        100% { transform: scale(2.5); opacity: 0; }
-      }
-
-      /* pins pop in once the wrapper is revealed by site JS */
-      .omj-map.is-inview .omj-map__marker {
-        animation: omj-map-pop .35s cubic-bezier(.22,.61,.36,1) backwards;
-        animation-delay: calc(var(--i, 0) * .1s);
-      }
-      @keyframes omj-map-pop {
-        from { transform: scale(0); }
-        to   { transform: scale(1); }
-      }
-
-      /* honour reduced-motion (media query + site root class) */
-      @media (prefers-reduced-motion: reduce) {
-        .omj-map__ripple { animation: none; opacity: 0; }
-        .omj-map .omj-map__marker,
-        .omj-map.is-inview .omj-map__marker { animation: none; transition: none; transform: none; }
-      }
-      .omj-motion-reduced .omj-map .omj-map__ripple { animation: none; opacity: 0; }
-      .omj-motion-reduced .omj-map .omj-map__marker,
-      .omj-motion-reduced .omj-map.is-inview .omj-map__marker { animation: none; transition: none; transform: none; }
-    </style>
-    <!-- OMJ:FRAGMENT-END -->
+    <div id="omj-map-live" class="omj-map-live omj-anim omj-anim--fade-in-up" aria-label="Map of OMJ machine locations in Metro Manila"></div>
 
     <div class="omj-loc-grid" style="margin-top:var(--omj-gap-lg);" data-omj-stagger>
 
@@ -562,7 +391,7 @@
 <footer class="omj-footer">
   <div class="omj-footer__inner">
     <div class="omj-footer__logo">
-      <img src="assets/img/brand/logo-green.png" alt="Oh My Juiceness" width="78" height="32" loading="lazy">
+      <img src="assets/img/brand/logo-orange.png" alt="Oh My Juiceness" width="78" height="32" loading="lazy">
     </div>
     <div class="omj-footer__social">
       <a href="https://www.instagram.com/ohmyjuiceness" target="_blank" rel="noopener" aria-label="Oh My Juiceness on Instagram" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;">
