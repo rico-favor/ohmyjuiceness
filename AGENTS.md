@@ -1,39 +1,48 @@
-# AGENTS.md — Oh My Juiceness site
+# AGENTS.md — Oh My Juiceness Schema
 
-Operational guide for updating **https://ohmyjuiceness.com** (WordPress on Hostinger). **Edit source in
-`build/`, then deploy over SSH.**
+Operational guide for updating **https://ohmyjuiceness.com** (WordPress on Hostinger).
+This file acts as the LLM Wiki Schema. It defines conventions, workflows, and the documentation map.
 
-**Docs map:**
-- [`PROJECT_LOG.md`](PROJECT_LOG.md) — technical build log + changelog (source of truth for how it's built).
+## 1. Documentation Map (LLM Wiki)
+
+Detailed configurations, history, and specifications are stored in the [Wiki Index](wiki/index.md):
+- [wiki/index.md](wiki/index.md) — Main directory map.
+- [wiki/log.md](wiki/log.md) — Chronological, append-only change history.
+- [wiki/hosting.md](wiki/hosting.md) — Server environment, access info, and active plugins.
+- [wiki/architecture.md](wiki/architecture.md) — Build structure, helpers, and page maps.
+- [wiki/design-system.md](wiki/design-system.md) — Color palette, typography, and CSS specs.
 
 ---
 
-## 1. Connect (SSH + WP-CLI)
+## 2. Connect (SSH & WP-CLI)
 
 ```bash
-ssh omj                          # Hostinger account u907133977 (shared with gvbasketball)
+ssh omj                          # Hostinger account u907133977
 # WordPress root (run all wp-cli from here):
 cd /home/u907133977/domains/ohmyjuiceness.com/public_html
 ```
 
 - **SSH alias:** `omj` → `u907133977@37.44.245.74:65002` (key: `~/.ssh/id_gvweb`)
-- WP-CLI is installed (`wp ...`). PHP 8.2.
-- SSH prints a harmless "post-quantum" warning to stderr; ignore it (filter with
-  `2>&1 | grep -v "post-quantum\|store now\|upgraded. See\|vulnerable"`).
-- **Always back up before risky DB/file ops.** Use `wp db export` for full backups, or
-  snapshot specific tables/options as needed.
+- SSH prints a post-quantum warning to stderr; filter with: `2>&1 | grep -v "post-quantum\|store now\|upgraded. See\|vulnerable"`.
+- Always run `wp db export` or backup specific tables before performing database/file modifications.
+
+### Local SSH Config Reference (`~/.ssh/config`)
+```
+Host omj
+   HostName 37.44.245.74
+   Port 65002
+   User u907133977
+   IdentityFile ~/.ssh/id_gvweb
+```
 
 ---
 
-## 2. The golden workflow (how updates work)
+## 3. The Golden Workflow
 
-The front end follows the same pattern as gvbasketball: **hand-written HTML + CSS design system**,
-mounted into Elementor by must-use plugins. You almost never touch the Elementor editor.
-To change the site:
+The frontend is built using **hand-written HTML/CSS** mounted into Elementor using custom mu-plugins.
+To update the site: **edit a file in `build/` → `scp` it to the server → apply with a helper → flush caches.**
 
-> **edit a file in `build/` → `scp` it to the server → apply with a helper → flush caches.**
-
-After any change:
+Always flush caches after any changes:
 ```bash
 wp elementor flush-css && wp litespeed-purge all
 ```
@@ -58,54 +67,26 @@ Edit `build/templates/*.html` or `build/scripts/*.php`, `scp` to `~`, then `wp e
 
 ---
 
-## 3. Build helpers (in `mu-plugins/omj-build.php`)
+## 4. Wiki Operations
 
-| Helper | Use |
-|---|---|
-| `omj_set_page_html($id, $html)` | Page = one full-width HTML widget |
-| `omj_set_page_blocks($id, $blocks)` | Page = ordered `['type'=>'html'\|'shortcode','content'=>..,'css'=>..]` widgets |
-| `omj_set_theme_part($title,$type,$html)` | Theme Builder header/footer from HTML (`$type`=`header`\|`footer`) |
-| `omj_set_theme_part_blocks($title,$type,$blocks)` | …from html/shortcode blocks |
-| `omj_ensure_page($slug,$title)` | Idempotent page create |
+### Ingest
+When completing a task or introducing a new asset:
+1. Document the changes in local files (`build/`, `wiki/`).
+2. Add a structured entry to [wiki/log.md](wiki/log.md) starting with `## [YYYY-MM-DD] type | title`.
+3. Update [wiki/index.md](wiki/index.md) if a new wiki page is added.
 
----
+### Query
+To search for information/history:
+- Use specific target file reads on `wiki/*.md` instead of parsing all documentation at once.
+- Check the log timeline (`grep "^## \[" wiki/log.md | tail -n 10`) for recent deployment context.
 
-## 4. Current site state
-
-| Thing | Value |
-|---|---|
-| Platform | Hostinger Premium (shared) — same account as gvbasketball |
-| WordPress | 7.0 · PHP 8.2 |
-| Theme | Hello Elementor 3.4.4 (active) |
-| Page builder | **Elementor 4.1.4 + Elementor Pro 3.29.2** |
-| SSH alias | `omj` (user `u907133977`) |
-| WP root | `/home/u907133977/domains/ohmyjuiceness.com/public_html` |
-| Origin IP | `37.44.245.74` |
-
-### Active plugins
-Akismet, Cloudflare, Duplicate Page, Elementor + Pro, Hostinger (easy-onboarding), LiteSpeed Cache,
-Post SMTP, Google Site Kit, Site Reviews, UpdraftPlus, Wordfence, Conditional Fields for Elementor Form.
+### Lint
+Ensure there are no orphan pages in `wiki/`, broken internal links, or mismatches between local staging templates and the wiki descriptions.
 
 ---
 
 ## 5. Conventions
 
 - All custom CSS classes are namespaced `omj-`.
-- After meaningful changes, update `PROJECT_LOG.md` and commit (keep `.env` out of git).
-- Never print secret values. Use `wp config set --quiet` and verify with `wp eval "echo strlen(CONST);"`.
-
----
-
-## 6. SSH config reference
-
-The `omj` alias is defined in `~/.ssh/config`:
-
-```
-Host omj
-   HostName 37.44.245.74
-   Port 65002
-   User u907133977
-   IdentityFile ~/.ssh/id_gvweb
-```
-
-This shares the same Hostinger account and SSH key as `gvweb` (gvbasketball.com).
+- Keep `.env` out of git.
+- Never output or print secret values to screens or logs.
