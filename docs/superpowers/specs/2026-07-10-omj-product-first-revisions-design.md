@@ -1,7 +1,7 @@
 # OMJ Staging Revisions — Product-First Premium
 
 **Date:** 2026-07-10
-**Scope:** Staging pages only (`/home-staging/` ID 526, `/about-staging/` ID 528). Live pages untouched until client approval.
+**Scope:** Staging pages (`/home-staging/` ID 526, `/about-staging/` ID 528) **and the live home page (ID 35)**. The revised design deploys to the actual `/home/` this pass. **A backup of the current live home is mandatory before deploy** (DB export + current Elementor page data / HTML fragment saved under `backups/`).
 **Client brief:** Remove machine wrap artwork, enlarge product photography, standardize on the official white cup design, remove fruit-cup imagery, replace "The Cup" copy (Option 1), overall shift toward premium consumer-brand presentation.
 
 ---
@@ -23,7 +23,7 @@ All generated assets land in `build/assets/generated-cups/`, are exported as JPG
 | 2 | Cup with whole oranges | `v2-omj-generated-cup-oranges.{jpg,webp}` — home-staging cup carousel + about-staging | White-design cup surrounded by whole/cut oranges and leaves, square ~1250. |
 | 3 | Catering / party cups | `v2-omj-generated-catering-cups.{jpg,webp}` — home-staging cup carousel | Multiple white-design cups, event/catering feel, **orange juice only** (no fruit products), landscape ~1536×1024. |
 | 4 | Landscape hero | `v2-omj-hero-cup.{jpg,webp}` ×3 responsive sizes (768/1280/1920) — home-staging hero | First try reusing existing `omj-generated-cup-hero-landscape-v3.{png,jpg,webp}` (already generated with real design). Regenerate only if it fails review. Must keep a darker lower third for white hero text overlay. |
-| 5 | Hand-held cup lifestyle shot — **⚠ PENDING CLIENT/RICO DECISION** | `ae14fe38…0007.jpg` (2025 real photo, old cup, orange heart) in "Fresh. Pure. Refreshing." section | Default: regenerate as hand holding the white-design cup, consistent premium look. Alternative: leave the real photo as-is (lifestyle, not product). |
+| 5 | Hand-held cup lifestyle shot — **KEEP AS-IS (decided)** | `ae14fe38…0007.jpg` (2025 real photo, old cup, orange heart) in "Fresh. Pure. Refreshing." section | No change this pass. **Must be flagged in JULY-CHANGES-v2.html**: updated lifestyle photography with the new cup is for the client to work out himself — this is the final revision round. |
 
 **Generation acceptance criteria (each image):**
 - Logo lockup legible and correctly spelled ("oh my juiceness", green/orange, orange-slice mark).
@@ -54,31 +54,41 @@ All generated assets land in `build/assets/generated-cups/`, are exported as JPG
 - `build/pages/about-staging.html` — cup-oranges image URL swap.
 - `build/mu-plugins/omj-assets/omj-brand.css` — only if carousel sizing needs support.
 - `build/assets/generated-cups/` — new generated assets.
+- `backups/` — pre-deploy backup of the current live home page.
+- `docs/` — new `JULY-CHANGES-v2.html` change report.
 - `wiki/log.md` — append change entry.
 
-## 7. Deploy workflow (staging)
+## 7. Deploy workflow
 
 1. Generate + review assets locally (Rico eyeballs before upload).
 2. Export JPG + WebP (and hero responsive sizes); `scp` to server; `wp media import`.
-3. Update staging HTML files; `scp`; apply with the staging helper.
-4. `wp elementor flush-css && wp litespeed-purge all`.
-5. **Cloudflare purge** — required; LiteSpeed strips `?ver` so new assets won't propagate otherwise (token in `~/Git/gvbasketball/.env`).
-6. Verify `/home-staging/` and `/about-staging/` in browser (Claude in Chrome), screenshot for the change report.
+3. Update staging HTML files; `scp`; apply with the staging helper; verify staging in browser.
+4. **Backup live home**: `wp db export` (or targeted post/postmeta export for page ID 35) on the server + save the current live home fragment/Elementor data into `backups/` locally.
+5. Promote the revised design to the live home page (ID 35).
+6. `wp elementor flush-css && wp litespeed-purge all`.
+7. **Cloudflare purge** — required; LiteSpeed strips `?ver` so new assets won't propagate otherwise (token in `~/Git/gvbasketball/.env`).
+8. Verify live `/` and `/home-staging/` in browser (Claude in Chrome), screenshot for the change report.
+
+## 7b. Change report — JULY-CHANGES-v2.html
+
+Produce `JULY-CHANGES-v2.html` (same format as `OHMYJUICENESS-JULY-CHANGES.html`) documenting this revision round with inline before/after screenshots. It MUST include a client-action note: **the "Fresh. Pure. Refreshing." lifestyle photo still shows the old cup — updated lifestyle photography with the new cup design is the client's own follow-up, as this is the final revision round.**
 
 ## 8. Error handling / risks
 
 - **QR/logo fidelity is the #1 generation risk.** gpt-image-2 may mangle the wordmark or QR. Mitigation: generate multiple candidates per slot, pick the best; if text is consistently broken, composite the real logo/QR flat art over the generated cup as a fallback (last resort).
 - Image regeneration is iterative — human review gate (Rico) before anything is uploaded.
-- All changes staged on `/home-staging/` — live site carries zero risk this pass.
+- Live home deploy risk is mitigated by the mandatory pre-deploy backup (§7 step 4) — rollback path is restoring the exported page data.
 
 ## 9. Out of scope
 
-- Live `/home/` and `/about/` pages (deploy later on approval).
+- Live `/about/` page (only the live home is promoted this pass).
+- New lifestyle photography for the "Fresh. Pure. Refreshing." section (client's own follow-up — noted in JULY-CHANGES-v2.html).
 - Hero video (still awaiting client Veo clip).
 - Any nav/footer/contact changes.
 
-## 10. Open items needing Rico's attention
+## 10. Decisions log
 
-1. **Item 5 in §2 (hand-held lifestyle photo)** — regenerate with white-design cup (default) or keep the real 2025 photo? Not yet confirmed.
-2. **Hero reuse** — confirm `cup-hero-landscape-v3` is good enough for the staging hero, or regenerate fresh.
-3. **Review gate** — you review generated images locally before they're uploaded to WP Media.
+1. Hand-held lifestyle photo: **keep as-is**; flag as client action in JULY-CHANGES-v2.html (final revision round).
+2. Hero: reuse `cup-hero-landscape-v3` unless it fails Rico's review.
+3. Review gate: Rico reviews all generated images locally before WP Media upload.
+4. Scope: staging + **live home (with backup)**; live about untouched.
