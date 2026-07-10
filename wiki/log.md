@@ -6,8 +6,12 @@ Append-only record of changes, deployments, and key events.
 
 ## [2026-07-10] update | Added screenshots to original requests portion of July report
 - July report (`docs/2026-07-10-july-changes.html`): Embedded screenshots directly inside 13 out of the 15 request cards under the "Your Original Requests" and "Your Follow-Up Refinements" sections to provide visual proof for each item.
-- Base64 embedding: Reused the existing base64-encoded full-page and section screenshots present in the file (and encoded the local `omj-2026-icon-fruit.png` asset) to keep the report fully self-contained and portable.
-- Styling: Added `.req-screenshot` CSS styling with clipping masks (e.g. `req-screenshot--clip`, `req-screenshot--clip-bottom`, `req-screenshot--clip-franchise`) to cleanly format and crop the screenshots inside the cards.
+- Base64 embedding: Reused the existing base64-encoded full-page and section screenshots present in the file to keep the report fully self-contained and portable.
+- Refined clips & mapping:
+  - Fixed Request 1 (Hero Redesign), Request 11 (Logo as Hero), and Request 14 (Machine First, Numbers Second) to show the full Hero section properly (increased clipping height from 180px to 380px).
+  - Corrected Request 4 (Premium Icons Instead of Checkmarks) to display the Fresh Pure Refreshing checklist section (containing the green checkmarks) instead of the local values icon.
+  - Adjusted Request 8 (Own an OMJ Machine) clipping height to 380px (from 200px) and centered it on the franchise section to display the entire block on mobile.
+- Styling: Added `.req-screenshot` CSS styling with clipping masks (e.g. `req-screenshot--clip-hero`, `req-screenshot--clip-checklist`, `req-screenshot--clip-franchise`) to cleanly format and crop the screenshots.
 
 ## [2026-07-10] deploy | Round-two refinements (hero wordmark, section restore/reorder, contact icon)
 - Home (page 526, serves `/`): hero H1 text replaced with the horizontal orange wordmark (uploads `2025/05/OMJ-Assets_Horizontal-Logo-Orange-cropped-*`) on a solid `--omj-dark-green` badge — orange-on-dark-green measures 4.03:1 (WCAG 1.4.11 ≥3:1; verified by pixel sampling; no translucent scrim passes over the white cup). Hero content bottom-anchored.
