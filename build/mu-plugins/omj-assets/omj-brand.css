@@ -1664,3 +1664,122 @@ body {
 .page-id-526 .omj-loc-card__map-focus:focus {
     background-color: var(--omj-orange);
 }
+
+/* ============================================================
+   25. Home v2 — hero wordmark + Manila's Best / FPR media section
+   ============================================================ */
+
+/* Hero: horizontal orange wordmark replaces the H1 text. The content
+   column is anchored to the photo's dark lower third (the poster was
+   generated with a dark band for overlays) so the orange wordmark never
+   sits on the white cup or its printed wordmark. */
+.omj-hero {
+    align-items: flex-end;
+}
+.omj-hero__content {
+    padding-bottom: clamp(48px, 10vh, 110px);
+}
+/* The wordmark rides on a solid dark-green badge: orange #FF8E06 on
+   #0F5230 measures 4.0:1 (WCAG 1.4.11 needs 3:1), and no translucent
+   scrim can hit that over the white cup (orange vs white is ~2:1). */
+.omj-hero__logo {
+    display: inline-block;
+    margin: 0 auto var(--omj-gap-sm);
+    line-height: 0;
+    background: var(--omj-dark-green);
+    border-radius: 28px;
+    padding: clamp(18px, 3vw, 26px) clamp(26px, 4.5vw, 40px);
+    box-shadow: 0 10px 32px rgba(15, 40, 25, .35);
+}
+.omj-hero__logo img {
+    width: min(360px, 66vw);
+    height: auto;
+}
+
+/* Soft radial scrim behind the content column, centered on the lower
+   band, so the wordmark keeps contrast even where leaves/citrus poke
+   into the dark table area. .omj-hero__content is already
+   position:relative (section 5), so only the pseudo-element is needed. */
+.omj-hero__content::before {
+    content: "";
+    position: absolute;
+    inset: -10% -18% -40%;
+    z-index: -1;
+    background: radial-gradient(ellipse 75% 85% at 50% 62%, rgba(15,82,48,.4) 0%, rgba(15,82,48,.22) 55%, rgba(15,82,48,0) 78%);
+    pointer-events: none;
+}
+
+/* Manila's Best band: orange band, cream rounded card, orange display
+   headline, green button, letter-spaced green tagline (matches the
+   client's original site treatment). */
+.omj-mb {
+    background: var(--omj-orange);
+    border-radius: 24px;
+    padding: clamp(14px, 2.5vw, 22px);
+    margin-bottom: var(--omj-gap-lg);
+}
+.omj-mb__card {
+    background: var(--omj-cream);
+    border-radius: 16px;
+    text-align: center;
+    padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 56px);
+}
+.omj-mb__headline {
+    font-family: var(--omj-font-display);
+    font-weight: 400;
+    color: var(--omj-orange);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    max-width: 18ch;
+    margin: 0 auto var(--omj-gap-md);
+}
+.omj-mb__tagline {
+    font-family: var(--omj-font-body);
+    font-weight: 600;
+    color: var(--omj-green);
+    font-size: .95rem;
+    letter-spacing: 5px;
+    text-transform: none;
+    margin: var(--omj-gap-md) 0 0;
+}
+
+/* FPR media variant: photo + Fresh/Pure/Refreshing + checklist share the
+   base .omj-fpr 2-col grid (collapses to 1 col under 768px, see section 16). */
+.omj-fpr--media {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+/* Section 16's mobile override loses the cascade to the rule above
+   (same specificity, earlier in the file), so restate it here. */
+@media (max-width: 767px) {
+    .omj-fpr--media { grid-template-columns: 1fr; }
+}
+.omj-fpr__media .omj-zoom,
+.omj-fpr__media img {
+    display: block;
+    width: 100%;
+}
+/* .omj-zoom (section 18) already sets border-radius/overflow-hidden on the
+   button; the radius and shadow are applied to the button here (not the
+   img) so the rounded square and shadow don't render twice. */
+.omj-fpr__media .omj-zoom {
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    box-shadow: 0 14px 36px rgba(22,122,69,.16);
+}
+.omj-fpr__media img {
+    height: auto;
+    object-fit: cover;
+}
+.omj-fpr__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--omj-gap-md);
+}
+/* Slightly smaller than the base clamp (section 16) since the words now
+   share a column with the checklist instead of spanning the full grid. */
+.omj-fpr--media .omj-fpr__word {
+    font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+}
+/* Under 768px (base .omj-fpr breakpoint): media stacks first, words/list
+   second — already the source order above, no extra rule needed. */
