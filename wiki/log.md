@@ -4,6 +4,11 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-10] update | Added screenshots to original requests portion of July report
+- July report (`docs/2026-07-10-july-changes.html`): Embedded screenshots directly inside 13 out of the 15 request cards under the "Your Original Requests" and "Your Follow-Up Refinements" sections to provide visual proof for each item.
+- Base64 embedding: Reused the existing base64-encoded full-page and section screenshots present in the file (and encoded the local `omj-2026-icon-fruit.png` asset) to keep the report fully self-contained and portable.
+- Styling: Added `.req-screenshot` CSS styling with clipping masks (e.g. `req-screenshot--clip`, `req-screenshot--clip-bottom`, `req-screenshot--clip-franchise`) to cleanly format and crop the screenshots inside the cards.
+
 ## [2026-07-10] deploy | Round-two refinements (hero wordmark, section restore/reorder, contact icon)
 - Home (page 526, serves `/`): hero H1 text replaced with the horizontal orange wordmark (uploads `2025/05/OMJ-Assets_Horizontal-Logo-Orange-cropped-*`) on a solid `--omj-dark-green` badge — orange-on-dark-green measures 4.03:1 (WCAG 1.4.11 ≥3:1; verified by pixel sampling; no translucent scrim passes over the white cup). Hero content bottom-anchored.
 - Section order now: hero → Machine → stat band → NEW `#omj-manila` (Manila's Best orange-band/cream-card + FPR checklist paired with the `2025/05/ae14fe38-…-0007.jpg` cup-in-hand graphic, lightbox-enabled) → Cup → Find → Franchise → CTA.
