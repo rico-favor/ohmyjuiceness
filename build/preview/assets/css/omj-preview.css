@@ -741,15 +741,103 @@
    22. About page (v2) — pegged to the live /about layout
    ============================================================ */
 
-/* Compact green title band; clears the fixed 64px header. */
+/* Cream hero: small green "about" eyebrow over a giant orange wordmark
+   (mirrors the live /about masthead). Clears the fixed 64px header. */
 .omj-about-hero {
     text-align: center;
-    padding-top: calc(var(--omj-section-py) + 64px);
+    padding-top: calc(var(--omj-gap-xl) + 64px);
+    padding-bottom: var(--omj-gap-lg);
 }
-.omj-about-hero .omj-h1 {
-    color: var(--omj-white);
+.omj-about-hero__eyebrow {
+    margin: 0 0 4px;
+    color: var(--omj-green);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
     text-transform: lowercase;
-    margin: 0;
+}
+.omj-about-hero__wordmark {
+    display: block;
+    width: min(640px, 86%);
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Big lowercase orange display headings (brand display font). */
+.omj-about-display {
+    color: var(--omj-orange);
+    font-family: var(--omj-font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6.5vw, 4.5rem);
+    line-height: 0.95;
+    text-transform: lowercase;
+    margin-bottom: var(--omj-gap-md);
+}
+@media (min-width: 768px) {
+    /* "our brand" stacks one word per line like the reference. */
+    .omj-about-display--stack { max-width: 5ch; }
+}
+
+/* Tilted oval photo: white ring + offset red-orange ellipse behind. */
+.omj-about-oval {
+    position: relative;
+    width: min(400px, 86%);
+}
+.omj-about-oval::before {
+    content: '';
+    position: absolute;
+    inset: 4% auto auto -7%;
+    width: 100%;
+    height: 100%;
+    background: var(--omj-red-orange);
+    border-radius: 50%;
+    transform: rotate(-8deg);
+}
+.omj-about-oval .omj-zoom {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 8;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid var(--omj-white);
+    transform: rotate(-6deg);
+    box-sizing: border-box;
+}
+.omj-about-oval .omj-zoom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(6deg) scale(1.18);
+}
+.omj-about-oval .omj-zoom:hover img,
+.omj-about-oval .omj-zoom:focus-visible img {
+    transform: rotate(6deg) scale(1.24);
+}
+
+/* Brand icon on a white circle sticker + offset red-orange circle. */
+.omj-about-sticker {
+    position: relative;
+    width: min(340px, 78%);
+    aspect-ratio: 1;
+}
+.omj-about-sticker::before {
+    content: '';
+    position: absolute;
+    inset: 10% auto auto 4%;
+    width: 100%;
+    height: 100%;
+    background: var(--omj-red-orange);
+    border-radius: 50%;
+}
+.omj-about-sticker .omj-about-brand__icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--omj-white);
+    padding: 11%;
+    box-sizing: border-box;
 }
 
 /* Two-column media + copy rows (mobile: stacked). */
@@ -779,27 +867,6 @@
     .omj-about-2col--reverse .omj-about-2col__media { align-items: flex-end; }
 }
 
-/* Story: orange horizontal logo above a portrait cup shot. */
-.omj-about-story__logo {
-    display: block;
-    width: min(320px, 78%);
-    height: auto;
-    margin: 0 0 var(--omj-gap-md);
-}
-.omj-about-story__cup {
-    width: 100%;
-    max-width: 420px;
-    margin: 0;
-}
-.omj-about-story__cup .omj-zoom { aspect-ratio: 509 / 825; }
-
-/* Brand: round OMJ icon, modest size like the live page. */
-.omj-about-brand__icon {
-    display: block;
-    width: min(240px, 62%);
-    height: auto;
-}
-
 /* Franchise: real machine photo tile on a green band. */
 .omj-about-franchise__media {
     width: 100%;
@@ -821,6 +888,15 @@
     font-family: 'Augillion';
     src: url('../fonts/Augillion-DEMO.ttf') format('truetype');
     font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Live WP already registers 'Carnero W04' via Elementor custom fonts;
+   self-hosted here only for the local preview. */
+@font-face {
+    font-family: 'Carnero W04';
+    src: url('../fonts/Carnero-W04-Bold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
