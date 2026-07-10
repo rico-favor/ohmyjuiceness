@@ -950,6 +950,11 @@ body {
     color: var(--omj-green);
 }
 
+/* Per-icon brand color modifiers */
+.omj-fpr__icon--orange { color: var(--omj-orange); }
+.omj-fpr__icon--green  { color: var(--omj-green); }
+.omj-fpr__icon--red-orange { color: var(--omj-red-orange); }
+
 .omj-fpr__list span {
     font-family: var(--omj-font-body);
     font-size: 1.05rem;
@@ -961,7 +966,10 @@ body {
 .omj-fpr--on-green .omj-fpr__word--1 { color: var(--omj-cream); }
 .omj-fpr--on-green .omj-fpr__word--2 { color: var(--omj-white); }
 .omj-fpr--on-green .omj-fpr__word--3 { color: var(--omj-orange); }
-.omj-fpr--on-green .omj-fpr__list svg { color: var(--omj-white); }
+.omj-fpr--on-green .omj-fpr__list svg,
+.omj-fpr--on-green .omj-fpr__icon--orange,
+.omj-fpr--on-green .omj-fpr__icon--green,
+.omj-fpr--on-green .omj-fpr__icon--red-orange { color: var(--omj-white); }
 .omj-fpr--on-green .omj-fpr__list span { color: var(--omj-white); }
 
 /* ============================================================
@@ -1670,30 +1678,23 @@ body {
    ============================================================ */
 
 /* Hero: horizontal orange wordmark replaces the H1 text. The content
-   column is anchored to the photo's dark lower third (the poster was
-   generated with a dark band for overlays) so the orange wordmark never
-   sits on the white cup or its printed wordmark. */
+   column is centered vertically in the hero and allowed to overlap the
+   photo directly (no badge behind it). */
 .omj-hero {
-    align-items: flex-end;
+    align-items: center;
 }
-.omj-hero__content {
-    padding-bottom: clamp(48px, 10vh, 110px);
-}
-/* The wordmark rides on a solid dark-green badge: orange #FF8E06 on
-   #0F5230 measures 4.0:1 (WCAG 1.4.11 needs 3:1), and no translucent
-   scrim can hit that over the white cup (orange vs white is ~2:1). */
+/* The wordmark used to ride on a solid dark-green badge for contrast;
+   now it sits directly on the photo with a drop-shadow (follows the
+   logo's actual silhouette instead of a bounding box) for legibility. */
 .omj-hero__logo {
     display: inline-block;
     margin: 0 auto var(--omj-gap-sm);
     line-height: 0;
-    background: var(--omj-dark-green);
-    border-radius: 28px;
-    padding: clamp(18px, 3vw, 26px) clamp(26px, 4.5vw, 40px);
-    box-shadow: 0 10px 32px rgba(15, 40, 25, .35);
 }
 .omj-hero__logo img {
     width: min(360px, 66vw);
     height: auto;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .45));
 }
 
 /* Soft radial scrim behind the content column, centered on the lower
@@ -1741,6 +1742,23 @@ body {
     letter-spacing: 5px;
     text-transform: none;
     margin: var(--omj-gap-md) 0 0;
+}
+
+/* Full-viewport section: centers its content vertically (hero-style). */
+.omj-section--fullscreen {
+    min-height: 100vh;
+    min-height: 100svh; /* mobile URL-bar-safe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 var(--omj-gap-sm) 0; /* no top/right, minimal bottom, no left */
+}
+.omj-section--fullscreen .omj-container {
+    width: 100%;
+    max-width: none; /* let the band stretch edge-to-edge */
+}
+.omj-section--fullscreen .omj-mb {
+    margin-bottom: 0; /* no trailing gap when the band is the sole content */
 }
 
 /* FPR media variant: photo + Fresh/Pure/Refreshing + checklist share the

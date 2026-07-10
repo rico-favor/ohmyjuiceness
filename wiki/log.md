@@ -4,7 +4,15 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
-## [2026-07-10] update | Added screenshots to original requests portion of July report
+## [2026-07-10] deploy | July Changes #4 — Premium icons replace generic checkmarks
+- Home (page 526, serves `/`): replaced the single `#omj-icon-check-circle` SVG symbol with 5 distinct 24×24 line-art icons in the inline sprite — `#omj-icon-orange` (orange fruit + leaf), `#omj-icon-droplet` (droplet with strike), `#omj-icon-leaf-shield` (leaf-shield), `#omj-icon-cup` (juice cup + straw), `#omj-icon-timer` (stopwatch).
+- Each `<li>` in `.omj-fpr__list` now uses its own `<use href="…">` and an SVG modifier class (`.omj-fpr__icon--orange` / `--green` / `--red-orange`) cycling brand vars.
+- CSS: added per-icon color modifier rules after `.omj-fpr__list svg`; extended `.omj-fpr--on-green` override to reset all three modifier classes to white.
+- Old `#omj-icon-check-circle` removed (confirmed unused elsewhere via grep).
+- Files changed: `build/pages/home-staging.html`, `build/mu-plugins/omj-assets/omj-brand.css`, `build/preview/home.html`, `build/preview/assets/css/omj-brand.css`.
+- Deployed: CSS → mu-plugins remote path; HTML → `omj_set_page_html(526, …)`; caches flushed (`wp elementor flush-css && wp litespeed-purge all`).
+
+
 - July report (`docs/2026-07-10-july-changes.html`): Embedded screenshots directly inside 13 out of the 15 request cards under the "Your Original Requests" and "Your Follow-Up Refinements" sections to provide visual proof for each item.
 - Base64 embedding: Reused the existing base64-encoded full-page and section screenshots present in the file to keep the report fully self-contained and portable.
 - Refined clips & mapping:

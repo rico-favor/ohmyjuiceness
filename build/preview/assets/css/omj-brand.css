@@ -950,6 +950,11 @@ body {
     color: var(--omj-green);
 }
 
+/* Per-icon brand color modifiers */
+.omj-fpr__icon--orange { color: var(--omj-orange); }
+.omj-fpr__icon--green  { color: var(--omj-green); }
+.omj-fpr__icon--red-orange { color: var(--omj-red-orange); }
+
 .omj-fpr__list span {
     font-family: var(--omj-font-body);
     font-size: 1.05rem;
@@ -961,7 +966,10 @@ body {
 .omj-fpr--on-green .omj-fpr__word--1 { color: var(--omj-cream); }
 .omj-fpr--on-green .omj-fpr__word--2 { color: var(--omj-white); }
 .omj-fpr--on-green .omj-fpr__word--3 { color: var(--omj-orange); }
-.omj-fpr--on-green .omj-fpr__list svg { color: var(--omj-white); }
+.omj-fpr--on-green .omj-fpr__list svg,
+.omj-fpr--on-green .omj-fpr__icon--orange,
+.omj-fpr--on-green .omj-fpr__icon--green,
+.omj-fpr--on-green .omj-fpr__icon--red-orange { color: var(--omj-white); }
 .omj-fpr--on-green .omj-fpr__list span { color: var(--omj-white); }
 
 /* ============================================================
@@ -1379,7 +1387,9 @@ body {
 .omj-carousel--machine-gallery picture {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    /* Portrait 4:3 (i.e. 3:4) per client — the machine photos are shot
+       portrait (~1600x2133), so a landscape 4/3 crop chopped them. */
+    aspect-ratio: 3 / 4;
 }
 
 .omj-carousel--machine-gallery img {
@@ -1546,31 +1556,231 @@ body {
 .omj-text-orange { color: var(--omj-orange); }
 
 /* ============================================================
-   23. Branded Photo Filters (Home & Contact pages)
+   23. Branded Photo Filters
    ============================================================ */
 
-/* Scoped to home and contact pages (WP body classes + local preview). */
-.home .omj-hero__poster,
-.page-id-35 .omj-hero__poster,
-.page-id-526 .omj-hero__poster,
-.home .omj-img-block img,
-.page-id-35 .omj-img-block img,
-.page-id-526 .omj-img-block img,
-.home .omj-loc-card__img,
-.page-id-35 .omj-loc-card__img,
-.page-id-526 .omj-loc-card__img,
+/* Disabled on the HOME page per client (2026-07-10): the brightness/
+   saturate grade read as "too much" over the real product photography, so
+   home photos now render ungraded. Retained only for the contact page's
+   location/map images (currently none after the contact strip, so inert)
+   and kept here so it can be re-enabled later. */
 .page-id-21 .omj-loc-card__img,
 .page-id-530 .omj-loc-card__img,
-.home .omj-carousel img,
-.page-id-35 .omj-carousel img,
-.page-id-526 .omj-carousel img,
-.home .omj-zoom img,
-.page-id-35 .omj-zoom img,
-.page-id-526 .omj-zoom img,
-.home .omj-map-popup img,
-.page-id-35 .omj-map-popup img,
-.page-id-526 .omj-map-popup img,
 .page-id-21 .omj-map-popup img,
 .page-id-530 .omj-map-popup img {
     filter: brightness(136%) contrast(92%) saturate(137%);
 }
+
+/* ============================================================
+   Self-hosted brand fonts (Augillion display, Poppins body).
+   Heals: Poppins @font-face pointing at the dead dev domain, and
+   the http:// Augillion URL (mixed content on https).
+   ============================================================ */
+@font-face {
+    font-family: 'Augillion';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/Augillion-DEMO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/wp-content/mu-plugins/omj-assets/fonts/poppins-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ============================================================
+   24. Elementor / plugin bloat resets (staging pages 526 & 530)
+   Scoped to the two staging pages only; live pages 35/25/21 are
+   never matched, so they render exactly as before.
+   ============================================================ */
+
+/* (a) Full-bleed content. Elementor's default column padding
+   (.elementor-widget-wrap.elementor-element-populated { padding:10px })
+   is the ONLY inset in the wrapper chain — the section & container are
+   already full width. Zeroing it lets the hero and image tiles sit
+   edge-to-edge like build/preview/home.html. Our own .omj-section /
+   .omj-container handle real spacing, so nothing collapses. */
+.page-id-526 .elementor-widget-wrap.elementor-element-populated,
+.page-id-530 .elementor-widget-wrap.elementor-element-populated {
+    /* !important: Elementor's `.elementor-column-gap-default > .elementor-column
+       > .elementor-element-populated { padding:10px }` has an equal specificity
+       (0,0,3,0) and loads later in the LiteSpeed-combined file, so it wins the tie.
+       !important (page-scoped) is the reliable override and also covers the
+       narrow/extended/wide gap variants in one rule. */
+    padding: 0 !important;
+}
+
+/* (b) Kill the pink button border. The Site Reviews plugin base CSS
+   ships `[type="button"],[type="submit"],button { border:1px solid #CC3366 }`
+   which leaks onto every unstyled <button> — carousel arrows/dots, the
+   .omj-zoom wrappers around gallery images, map-focus, and the form
+   submit. We only style fill/colour on those, so the pink border showed
+   through. Counter it (same targets, page-scoped, higher specificity). */
+.page-id-526 button,
+.page-id-526 [type="button"],
+.page-id-526 [type="submit"],
+.page-id-530 button,
+.page-id-530 [type="button"],
+.page-id-530 [type="submit"] {
+    border-color: transparent;
+}
+
+/* (c) Constrain the cloned contact form. On staging it lands in a
+   full-width section with no boxed container, so inputs and the SEND
+   bar stretch edge-to-edge (~1280px) — unpolished on desktop. Cap it
+   to a readable width and centre it (harmonises with the IGQR block's
+   560px inner). Above 600px it centres; on mobile it stays full width. */
+.page-id-530 .elementor-widget-form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* (d) Kill the pink button HOVER/FOCUS remnant. Beyond the resting border,
+   Site Reviews also ships `button:hover, button:focus { background:#CC3366 }`.
+   The arrows (line ~757) and map-focus (~1304) set their own orange hover so
+   they win, but the dots (background:none, drawn via ::before) and the
+   .omj-zoom image wrappers (background:none) set no hover bg, so the pink
+   filled them on hover. Neutralize the plugin's hover/focus bg on all HOME
+   buttons, then re-assert the two that intentionally turn orange. (Home has
+   no form, so a blanket reset here is safe; the plugin uses :focus while our
+   styles use :focus-visible, so we cover plain mouse-:focus too.) */
+.page-id-526 button:hover,
+.page-id-526 button:focus {
+    background-color: transparent;
+}
+.page-id-526 .omj-carousel__arrow:hover,
+.page-id-526 .omj-carousel__arrow:focus,
+.page-id-526 .omj-loc-card__map-focus:hover,
+.page-id-526 .omj-loc-card__map-focus:focus {
+    background-color: var(--omj-orange);
+}
+
+/* ============================================================
+   25. Home v2 — hero wordmark + Manila's Best / FPR media section
+   ============================================================ */
+
+/* Hero: horizontal orange wordmark replaces the H1 text. The content
+   column is centered vertically in the hero and allowed to overlap the
+   photo directly (no badge behind it). */
+.omj-hero {
+    align-items: center;
+}
+/* The wordmark used to ride on a solid dark-green badge for contrast;
+   now it sits directly on the photo with a drop-shadow (follows the
+   logo's actual silhouette instead of a bounding box) for legibility. */
+.omj-hero__logo {
+    display: inline-block;
+    margin: 0 auto var(--omj-gap-sm);
+    line-height: 0;
+}
+.omj-hero__logo img {
+    width: min(360px, 66vw);
+    height: auto;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .45));
+}
+
+/* Soft radial scrim behind the content column, centered on the lower
+   band, so the wordmark keeps contrast even where leaves/citrus poke
+   into the dark table area. .omj-hero__content is already
+   position:relative (section 5), so only the pseudo-element is needed. */
+.omj-hero__content::before {
+    content: "";
+    position: absolute;
+    inset: -10% -18% -40%;
+    z-index: -1;
+    background: radial-gradient(ellipse 75% 85% at 50% 62%, rgba(15,82,48,.4) 0%, rgba(15,82,48,.22) 55%, rgba(15,82,48,0) 78%);
+    pointer-events: none;
+}
+
+/* Manila's Best band: orange band, cream rounded card, orange display
+   headline, green button, letter-spaced green tagline (matches the
+   client's original site treatment). */
+.omj-mb {
+    background: var(--omj-orange);
+    border-radius: 24px;
+    padding: clamp(14px, 2.5vw, 22px);
+    margin-bottom: var(--omj-gap-lg);
+}
+.omj-mb__card {
+    background: var(--omj-cream);
+    border-radius: 16px;
+    text-align: center;
+    padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 56px);
+}
+.omj-mb__headline {
+    font-family: var(--omj-font-display);
+    font-weight: 400;
+    color: var(--omj-orange);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    max-width: 18ch;
+    margin: 0 auto var(--omj-gap-md);
+}
+.omj-mb__tagline {
+    font-family: var(--omj-font-body);
+    font-weight: 600;
+    color: var(--omj-green);
+    font-size: .95rem;
+    letter-spacing: 5px;
+    text-transform: none;
+    margin: var(--omj-gap-md) 0 0;
+}
+
+/* FPR media variant: photo + Fresh/Pure/Refreshing + checklist share the
+   base .omj-fpr 2-col grid (collapses to 1 col under 768px, see section 16). */
+.omj-fpr--media {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+/* Section 16's mobile override loses the cascade to the rule above
+   (same specificity, earlier in the file), so restate it here. */
+@media (max-width: 767px) {
+    .omj-fpr--media { grid-template-columns: 1fr; }
+}
+.omj-fpr__media .omj-zoom,
+.omj-fpr__media img {
+    display: block;
+    width: 100%;
+}
+/* .omj-zoom (section 18) already sets border-radius/overflow-hidden on the
+   button; the radius and shadow are applied to the button here (not the
+   img) so the rounded square and shadow don't render twice. */
+.omj-fpr__media .omj-zoom {
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    box-shadow: 0 14px 36px rgba(22,122,69,.16);
+}
+.omj-fpr__media img {
+    height: auto;
+    object-fit: cover;
+}
+.omj-fpr__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--omj-gap-md);
+}
+/* Slightly smaller than the base clamp (section 16) since the words now
+   share a column with the checklist instead of spanning the full grid. */
+.omj-fpr--media .omj-fpr__word {
+    font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+}
+/* Under 768px (base .omj-fpr breakpoint): media stacks first, words/list
+   second — already the source order above, no extra rule needed. */

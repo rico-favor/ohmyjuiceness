@@ -56,9 +56,38 @@
 <section class="omj-section omj-section--white">
   <div class="omj-container">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <symbol id="omj-icon-check-circle" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
-        <path d="M8 12.5l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- 1. Orange fruit -->
+      <symbol id="omj-icon-orange" viewBox="0 0 24 24">
+        <circle cx="12" cy="13" r="7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 6V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 4 C13 2.5 15 2 15 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M9 13 Q12 10 15 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </symbol>
+      <!-- 2. Droplet with strike (no water added) -->
+      <symbol id="omj-icon-droplet" viewBox="0 0 24 24">
+        <path d="M12 3 C12 3 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 3 12 3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8.5 14.5l7-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- 3. Leaf-shield (no preservatives) -->
+      <symbol id="omj-icon-leaf-shield" viewBox="0 0 24 24">
+        <path d="M12 3 L20 7 L20 13 C20 17.5 16.5 20.5 12 22 C7.5 20.5 4 17.5 4 13 L4 7 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 13 C9 10 11 8 14 8 C14 11 12 14 9 13Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- 4. Juice cup with straw (served fresh) -->
+      <symbol id="omj-icon-cup" viewBox="0 0 24 24">
+        <path d="M6 4 L7.5 19 Q7.5 20 9 20 L15 20 Q16.5 20 16.5 19 L18 4 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 4 L18 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 4 L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8.5 10 Q12 9 15.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </symbol>
+      <!-- 5. Stopwatch / timer -->
+      <symbol id="omj-icon-timer" viewBox="0 0 24 24">
+        <circle cx="12" cy="14" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M12 14 L12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 14 L15 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 3 L15 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 3 L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M19 7 L20.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </symbol>
     </svg>
     <div class="omj-fpr">
@@ -68,11 +97,11 @@
         <span class="omj-fpr__word omj-fpr__word--3 omj-anim omj-anim--slide-in-left">Refreshing.</span>
       </div>
       <ul class="omj-fpr__list" data-omj-stagger>
-        <li class="omj-anim omj-anim--slide-in-right"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-check-circle"></use></svg><span>100% Fresh Oranges</span></li>
-        <li class="omj-anim omj-anim--slide-in-right"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-check-circle"></use></svg><span>No Water Added</span></li>
-        <li class="omj-anim omj-anim--slide-in-right"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-check-circle"></use></svg><span>No Added Preservatives</span></li>
-        <li class="omj-anim omj-anim--slide-in-right"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-check-circle"></use></svg><span>Served Fresh</span></li>
-        <li class="omj-anim omj-anim--slide-in-right"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-check-circle"></use></svg><span>Ready in Under 60 Seconds</span></li>
+        <li class="omj-anim omj-anim--slide-in-right"><svg class="omj-fpr__icon--orange" viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-orange"></use></svg><span>100% Fresh Oranges</span></li>
+        <li class="omj-anim omj-anim--slide-in-right"><svg class="omj-fpr__icon--green" viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-droplet"></use></svg><span>No Water Added</span></li>
+        <li class="omj-anim omj-anim--slide-in-right"><svg class="omj-fpr__icon--red-orange" viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-leaf-shield"></use></svg><span>No Added Preservatives</span></li>
+        <li class="omj-anim omj-anim--slide-in-right"><svg class="omj-fpr__icon--orange" viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-cup"></use></svg><span>Served Fresh</span></li>
+        <li class="omj-anim omj-anim--slide-in-right"><svg class="omj-fpr__icon--green" viewBox="0 0 24 24" aria-hidden="true"><use href="#omj-icon-timer"></use></svg><span>Ready in Under 60 Seconds</span></li>
       </ul>
     </div>
   </div>
