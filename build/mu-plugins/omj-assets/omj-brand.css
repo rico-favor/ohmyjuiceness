@@ -1801,3 +1801,23 @@ body {
 }
 /* Under 768px (base .omj-fpr breakpoint): media stacks first, words/list
    second — already the source order above, no extra rule needed. */
+
+/* ── Home tweaks (client 2026-07-10, round 3) ───────────────────────── */
+
+/* Manila's Best: full-bleed flat band — zero section padding, square corners */
+#omj-manila { padding: 0; min-height: 0; }
+#omj-manila .omj-container { padding-inline: 0; }   /* reach viewport edges */
+#omj-manila .omj-mb,
+#omj-manila .omj-mb__card { border-radius: 0; }
+
+/* Fresh. Pure. Refreshing.: explicit asymmetric padding */
+#omj-fpr { padding: 3rem 0rem 3rem 2.5rem; }
+
+/* Real-life photo grade — re-enabled on home for machine / map / franchise
+   only (NOT the AI cup gallery). Reverses the 2026-07-10 home-off note above. */
+#omj-machine .omj-carousel--machine-gallery img,
+#omj-find .omj-loc-card__img,
+#omj-find .omj-map-popup img,
+#omj-franchise .omj-zoom img {
+    filter: brightness(1.02) contrast(0.92) saturate(1.29) blur(0px) hue-rotate(0deg);
+}
