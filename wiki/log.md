@@ -4,6 +4,17 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-10] chore | Repo cleanup — promote July report to root + archive deprecated material
+- **Promoted the client report:** copied `docs/2026-07-10-july-changes.html` → **`/JULY-CHANGES.html`** (repo root) as the official standalone deliverable. Already fully self-contained (21 base64 data-URI images, 0 external refs). The dated source copy stays in `docs/`.
+- **New `archive/` folder** (frozen; nothing here affects live) with an `archive/README.md` index:
+  - `archive/revisions/` ← whole `revisions/` (client's original brief `OMG Revisions.md/pdf` + raw location/product photos — INPUT material).
+  - `archive/build-preview/` ← `build/preview/` (drifted, non-deploying preview build; 117 tracked files + assets). Live is driven only by `build/mu-plugins/omj-assets/omj-brand.css` + `build/pages/*`, so this move is live-safe. `.jpg/.png` fallbacks were force-added at the archive path to preserve the build faithfully (`.gitignore` ignores images repo-wide; `.webp` primaries moved as normal renames).
+  - `archive/docs/` ← superseded `2026-07-09-client-report.html` (now shows an ARCHIVED banner, superseded by JULY-CHANGES.html) + completed handoffs (`2026-07-09-omj-generated-cup-landing-refinement-handoff-plan.md`, `2026-07-10-omj-staging-v2-handoff.md`, `2026-07-10-staging-polish-handoff.md`) + `superpowers/{plans,specs,handoff/*.md}`. Each archived `.md` got a `> **📦 ARCHIVED — DONE …**` banner.
+  - `archive/root-assets/` ← loose `staging-page-full.png`.
+- **Kept active (NOT archived):** `docs/2026-07-10-july-changes.html` (report source), `docs/2026-07-10-client-flags.md` (open items still awaiting client input), `docs/superpowers/handoff/capture.mjs` (live Playwright capture tool — wiki log references this exact path).
+- Git preserved moves as renames (history intact). `build/` internals (mu-plugins, pages, scripts, templates, assets) untouched.
+- **Reminder — caches still OFF at origin:** LiteSpeed page cache disabled earlier same day (`wp litespeed-option set cache 0`); re-enable with `ssh omj → wp litespeed-option set cache 1 && wp litespeed-purge all` when iteration is done. (Cloudflare dev mode was already turned back off — see entry above.)
+
 ## [2026-07-10] ops | Cloudflare cache re-enabled (dev mode off)
 - Development Mode turned **off** via API (`PATCH .../settings/development_mode {"value":"off"}`) with ~2.6h still remaining on the 3h timer, then `purge_everything` so the edge re-caches today's deployed content. Verified: static asset went MISS → HIT; homepage `cf-cache-status: DYNAMIC` is expected (free plan, no APO — HTML isn't edge-cached).
 - Zone security checked while diagnosing a visitor-facing prompt report: security_level medium, browser_check on, no custom WAF rules, Bot Fight Mode off — nothing at Cloudflare serves a challenge/prompt. Homepage serves clean 200 to anonymous UAs; no auth, push, or geolocation triggers in the HTML.
