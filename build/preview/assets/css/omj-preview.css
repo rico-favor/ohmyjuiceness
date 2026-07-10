@@ -738,6 +738,81 @@
 }
 
 /* ============================================================
+   22. About page (v2) — pegged to the live /about layout
+   ============================================================ */
+
+/* Compact green title band; clears the fixed 64px header. */
+.omj-about-hero {
+    text-align: center;
+    padding-top: calc(var(--omj-section-py) + 64px);
+}
+.omj-about-hero .omj-h1 {
+    color: var(--omj-white);
+    text-transform: lowercase;
+    margin: 0;
+}
+
+/* Two-column media + copy rows (mobile: stacked). */
+.omj-about-2col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+}
+.omj-about-2col__media {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.omj-about-2col__copy .omj-h2 { text-transform: lowercase; }
+.omj-about-2col__copy .omj-body + .omj-body { margin-top: var(--omj-gap-sm); }
+
+@media (min-width: 768px) {
+    .omj-about-2col {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    /* Reverse variant places copy first, media second on desktop. */
+    .omj-about-2col--reverse .omj-about-2col__copy  { order: 1; }
+    .omj-about-2col--reverse .omj-about-2col__media { order: 2; }
+    .omj-about-2col__media { align-items: flex-start; }
+    .omj-about-2col--reverse .omj-about-2col__media { align-items: flex-end; }
+}
+
+/* Story: orange horizontal logo above a portrait cup shot. */
+.omj-about-story__logo {
+    display: block;
+    width: min(320px, 78%);
+    height: auto;
+    margin: 0 0 var(--omj-gap-md);
+}
+.omj-about-story__cup {
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+}
+.omj-about-story__cup .omj-zoom { aspect-ratio: 509 / 825; }
+
+/* Brand: round OMJ icon, modest size like the live page. */
+.omj-about-brand__icon {
+    display: block;
+    width: min(240px, 62%);
+    height: auto;
+}
+
+/* Franchise: real machine photo tile on a green band. */
+.omj-about-franchise__media {
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+}
+.omj-about-franchise__media .omj-zoom { aspect-ratio: 4 / 5; }
+.omj-about-franchise .omj-h2 { color: var(--omj-white); }
+
+/* Orange text emphasis (matches the live .orange run). */
+.omj-text-orange { color: var(--omj-orange); }
+
+/* ============================================================
    PREVIEW-ONLY
    (fonts, page chrome, form facsimile — not shipped to WordPress)
    ============================================================ */
