@@ -4,6 +4,11 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-10] ops | Cloudflare cache re-enabled (dev mode off)
+- Development Mode turned **off** via API (`PATCH .../settings/development_mode {"value":"off"}`) with ~2.6h still remaining on the 3h timer, then `purge_everything` so the edge re-caches today's deployed content. Verified: static asset went MISS → HIT; homepage `cf-cache-status: DYNAMIC` is expected (free plan, no APO — HTML isn't edge-cached).
+- Zone security checked while diagnosing a visitor-facing prompt report: security_level medium, browser_check on, no custom WAF rules, Bot Fight Mode off — nothing at Cloudflare serves a challenge/prompt. Homepage serves clean 200 to anonymous UAs; no auth, push, or geolocation triggers in the HTML.
+- **LiteSpeed page cache is still OFF at the origin** (disabled earlier same day via `wp litespeed-option set cache 0`); re-enable with `ssh omj` → `wp litespeed-option set cache 1 && wp litespeed-purge all` (remote write was permission-blocked this session).
+
 ## [2026-07-10] style | Home round-3 tweaks + July report refresh + cache disable
 - **CSS (`build/mu-plugins/omj-assets/omj-brand.css`, canonical/live-affecting file):** appended a "Home tweaks (client 2026-07-10, round 3)" block using ID selectors:
   - `#omj-manila` — full-bleed flat band: `padding:0; min-height:0` (the `min-height:0` cancels the inherited `.omj-section--fullscreen` `100vh`, which was leaving a tall empty gap above the band — added per client mid-task), `.omj-container` `padding-inline:0`, and `border-radius:0` on `.omj-mb`/`.omj-mb__card`. The orange frame's internal padding is intentionally retained.
