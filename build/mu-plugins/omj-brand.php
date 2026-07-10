@@ -2,13 +2,28 @@
 /**
  * Plugin Name: OMJ Brand
  * Description: Enqueues the Oh My Juiceness design system CSS site-wide, plus the staging interaction layer (carousels/lightbox/map) on the staging preview pages.
- * Version: 0.2.0
+ * Version: 0.3.0
  */
 
 defined('ABSPATH') || exit;
 
 const OMJ_STAGING_HOME_ID = 526;
 const OMJ_STAGING_CONTACT_ID = 530;
+
+// Go-live 2026-07-10: pages 526/530 were promoted in place to serve `/` and
+// `/contact/`. Retire the old review URLs with 301s so nothing dead-ends and
+// there's no duplicate-content copy at /home-staging/.
+add_action('template_redirect', function () {
+    $path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+    $map = [
+        'home-staging'    => '/',
+        'contact-staging' => '/contact/',
+    ];
+    if (isset($map[$path])) {
+        wp_safe_redirect(home_url($map[$path]), 301);
+        exit;
+    }
+});
 
 // LiteSpeed "Delay JS" holds scripts until first user interaction, which
 // leaves the entrance-animation content invisible on first paint. Opt our
