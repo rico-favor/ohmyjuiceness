@@ -57,6 +57,24 @@ design system**, mounted inside Elementor so pages stay Elementor-native. Must-u
 
 ## 4. Changelog
 
+### 2026-07-10 — Staging v2 preview: revision batches 2–3, About rebuild
+
+**Preview pages (`build/preview/`, not yet deployed):**
+- `e27245a` — Revision batch 2 (codex sol + orchestrator QA): cup carousel shows the full cup (contain on cream), map popups gained per-location detail + autoPan fixes, location cards slimmed to name + short address + "Open in Maps" + a 44×44 map-focus button (`OMJMap.focus`). Orchestrator fixed two popup-clipping bugs (open after `flyTo` `moveend`; `popup.update()` after carousel injection).
+- `fb189a6` — about.html v1 (codex terra, 7 sections) — superseded same-day by client feedback.
+- `ba53931` — Revision batch 3 (codex sol, client feedback round 3): franchise section hidden behind `OMJ:FRANCHISE-HIDDEN` markers, "No Added Sugar" → "No Added Preservatives", balanced FPR gutters, machine grid → 3-up/1-up gallery carousel over all real photos (new `data-omj-per-view` carousel support), captionless 2-up cup carousel, stat band moved above cups, popup = title + photos + Directions, "Questions?" section removed, duplicate Parqal kids slide merged out.
+- About v2/v3 (`9456c6b`, `e3204ab`): rebuilt pegged to the live `/about`, then restyled to the client's reference screenshot (oval-masked cup, orange display headings, sticker icon). **Discarded same-day by client decision: the live Elementor about page stays as-is; only its pictures will be swapped (bottle → cup, vendo render → real machine photo). About is excluded from staging deploy.** Preview work remains in git history.
+
+### 2026-07-10 — OMJ clear cup hero asset
+
+**Generated asset:**
+- Created a new premium landscape product image for future OMJ hero/marketing use:
+  - `build/assets/generated-cups/omj-generated-clear-cup-hero.png`
+  - `build/assets/generated-cups/omj-generated-clear-cup-hero.jpg`
+  - `build/assets/generated-cups/omj-generated-clear-cup-hero.webp`
+- Prompt targeted a clear OMJ-inspired branded cup with fresh orange juice, condensation, oranges/leaves around the base, cream-to-warm-orange backdrop, and a darker lower third for white text overlays.
+- Output dimensions: 1536×1024.
+
 ### 2026-07-09 — Repository initialized
 - Created local git repo with SSH config, AGENTS.md, and build scaffolding.
 - SSH alias `omj` added to `~/.ssh/config` (same Hostinger account as `gvweb`).
