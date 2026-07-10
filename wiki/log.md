@@ -5,7 +5,7 @@ Append-only record of changes, deployments, and key events.
 ## Log Entries
 
 ## [2026-07-10] chore | Repo cleanup — promote July report to root + archive deprecated material
-- **Promoted the client report:** copied `docs/2026-07-10-july-changes.html` → **`/JULY-CHANGES.html`** (repo root) as the official standalone deliverable. Already fully self-contained (21 base64 data-URI images, 0 external refs). The dated source copy stays in `docs/`.
+- **Promoted the client report:** copied `docs/2026-07-10-july-changes.html` → **`/OHMYJUICENESS-JULY-CHANGES.html`** (repo root) as the official standalone deliverable. Already fully self-contained (21 base64 data-URI images, 0 external refs). The dated source copy stays in `docs/`. Removed duplicate `JULY-CHANGES.html`.
 - **New `archive/` folder** (frozen; nothing here affects live) with an `archive/README.md` index:
   - `archive/revisions/` ← whole `revisions/` (client's original brief `OMG Revisions.md/pdf` + raw location/product photos — INPUT material).
   - `archive/build-preview/` ← `build/preview/` (drifted, non-deploying preview build; 117 tracked files + assets). Live is driven only by `build/mu-plugins/omj-assets/omj-brand.css` + `build/pages/*`, so this move is live-safe. `.jpg/.png` fallbacks were force-added at the archive path to preserve the build faithfully (`.gitignore` ignores images repo-wide; `.webp` primaries moved as normal renames).
