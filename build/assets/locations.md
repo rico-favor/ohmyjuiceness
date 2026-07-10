@@ -30,3 +30,11 @@
 - **Address:** Diosdado Macapagal Blvd, Tambo, Parañaque, Metro Manila (Aseana City)
 - **Maps URL:** https://www.google.com/maps/place/Parqal/@14.5266712,120.989381,17z/data=!3m1!4b1!4m6!3m5!1s0x3397c9a4e29ceb4f:0xd617dd0f3dfc499e!8m2!3d14.5266712!4d120.989381
 - **Directions URL:** https://www.google.com/maps/dir/?api=1&destination=Parqal+Diosdado+Macapagal+Blvd+Tambo+Paranaque+Metro+Manila
+
+## Paseo Center
+
+- **Venue:** Paseo Center
+- **Address:** 8757 Paseo de Roxas cor. Sedeño St., Salcedo Village, Makati
+- **Maps URL:** https://www.google.com/maps/place/Paseo+Center/@14.5577378,121.0229892,17z
+- **Directions URL:** https://www.google.com/maps/dir/?api=1&destination=Paseo+Center+8757+Paseo+de+Roxas+Makati+Metro+Manila
+

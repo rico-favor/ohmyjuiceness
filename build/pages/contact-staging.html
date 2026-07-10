@@ -1,4 +1,4 @@
-<!-- OMJ Contact Staging — stripped to IGQR + cloned Elementor form (create-staging.php clones the form). Old-round strays removed 2026-07-10: hero, emoji value-prop tiles, duplicate Locations grid, duplicate Instagram-QR section. -->
+<!-- OMJ Contact Staging — stripped to IGQR + cloned Elementor form (create-staging.php clones the form). Old-round strays removed 2026-07-10. Current Locations section reinstated 2026-07-10 (now 5 locations, no longer a stray duplicate). -->
 
 <!-- Inquiry preselect: home "Join the Waitlist" CTA deep-links /contact/?inquiry=franchising; this preselects the form dropdown. Keep. -->
 <script>
@@ -15,6 +15,95 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
+
+<section class="omj-section omj-section--cream" id="omj-contact-locations">
+  <div class="omj-container">
+    <p class="omj-eyebrow">Current Locations</p>
+    <h2 class="omj-h2">Find a Machine Near You</h2>
+    <div class="omj-loc-grid" style="margin-top:var(--omj-gap-lg);">
+
+      <!-- Greenhills -->
+      <div class="omj-loc-card" id="loc-greenhills">
+        <picture>
+          <source type="image/webp" srcset="/wp-content/uploads/2026/07/v2-loc-greenhills-01-800.webp">
+          <img class="omj-loc-card__img" src="/wp-content/uploads/2026/07/v2-loc-greenhills-01-800.jpg" alt="OMJ machine at Greenhills" loading="lazy" decoding="async" width="800" height="600">
+        </picture>
+        <div class="omj-loc-card__body">
+          <div class="omj-loc-card__name">Greenhills</div>
+          <div class="omj-loc-card__detail">Greenhills Shopping Center, San Juan</div>
+          <div class="omj-loc-card__btns">
+            <a class="omj-loc-card__btn omj-loc-card__btn--maps" href="https://www.google.com/maps/place/Greenhills+Shopping+Center/@14.6015643,121.0515546,17z/data=!3m1!4b1!4m6!3m5!1s0x3397b7df380aa137:0xed0e56abd485aad8!8m2!3d14.6015643!4d121.0515546" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eastwood -->
+      <div class="omj-loc-card" id="loc-eastwood">
+        <picture>
+          <source type="image/webp" srcset="/wp-content/uploads/2026/07/v2-loc-eastwood-01.webp">
+          <img class="omj-loc-card__img" src="/wp-content/uploads/2026/07/v2-loc-eastwood-01.jpg" alt="OMJ machine at Eastwood" loading="lazy" decoding="async" width="800" height="600">
+        </picture>
+        <div class="omj-loc-card__body">
+          <div class="omj-loc-card__name">Eastwood</div>
+          <div class="omj-loc-card__detail">Eastwood Mall, Quezon City</div>
+          <div class="omj-loc-card__btns">
+            <a class="omj-loc-card__btn omj-loc-card__btn--maps" href="https://www.google.com/maps/place/Eastwood+Mall/@14.6105509,121.0799139,17z/data=!3m1!4b1!4m6!3m5!1s0x3397b81d8a03f6c5:0x2c718a49bf834007!8m2!3d14.6105509!4d121.0799139" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Uptown BGC -->
+      <div class="omj-loc-card" id="loc-uptown">
+        <picture>
+          <source type="image/webp" srcset="/wp-content/uploads/2026/07/v2-loc-uptown-01-800.webp">
+          <img class="omj-loc-card__img" src="/wp-content/uploads/2026/07/v2-loc-uptown-01-800.jpg" alt="OMJ machine at Uptown BGC" loading="lazy" decoding="async" width="800" height="600">
+        </picture>
+        <div class="omj-loc-card__body">
+          <div class="omj-loc-card__name">Uptown BGC</div>
+          <div class="omj-loc-card__detail">Uptown Mall, BGC, Taguig</div>
+          <div class="omj-loc-card__btns">
+            <a class="omj-loc-card__btn omj-loc-card__btn--maps" href="https://www.google.com/maps/place/Uptown+Mall/@14.5564554,121.0542316,17z/data=!3m1!4b1!4m6!3m5!1s0x3397c8f5a9c39af3:0x8dcb72d04d477b5b!8m2!3d14.5564554!4d121.0542316" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parqal -->
+      <div class="omj-loc-card" id="loc-parqal">
+        <picture>
+          <source type="image/webp" srcset="/wp-content/uploads/2026/07/v2-loc-parqal-01-800.webp">
+          <img class="omj-loc-card__img" src="/wp-content/uploads/2026/07/v2-loc-parqal-01-800.jpg" alt="OMJ machine at Parqal" loading="lazy" decoding="async" width="800" height="600">
+        </picture>
+        <div class="omj-loc-card__body">
+          <div class="omj-loc-card__name">Parqal</div>
+          <div class="omj-loc-card__detail">Parqal Mall (Abaca Bldg.), Parañaque</div>
+          <div class="omj-loc-card__btns">
+            <a class="omj-loc-card__btn omj-loc-card__btn--maps" href="https://www.google.com/maps/place/Parqal/@14.5266712,120.989381,17z/data=!3m1!4b1!4m6!3m5!1s0x3397c9a4e29ceb4f:0xd617dd0f3dfc499e!8m2!3d14.5266712!4d120.989381" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paseo Center -->
+      <div class="omj-loc-card" id="loc-paseo">
+        <picture>
+          <source type="image/webp" srcset="/wp-content/uploads/2026/07/v2-omj-generated-cup-studio.webp">
+          <img class="omj-loc-card__img" src="/wp-content/uploads/2026/07/v2-omj-generated-cup-studio.jpg" alt="The OMJ cup — Paseo Center opening soon" loading="lazy" decoding="async" width="1122" height="1402">
+        </picture>
+        <div class="omj-loc-card__body">
+          <div class="omj-loc-card__name">Paseo Center</div>
+          <div class="omj-loc-card__detail">Paseo Center, Salcedo Village, Makati</div>
+          <div class="omj-loc-card__btns">
+            <a class="omj-loc-card__btn omj-loc-card__btn--maps" href="https://www.google.com/maps/place/Paseo+Center/@14.5577378,121.0229892,17z" target="_blank" rel="noopener">Open in Maps</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:var(--omj-gap-lg);">
+      <a class="omj-btn omj-btn--primary" href="/#omj-find">View on the map</a>
+    </div>
+  </div>
+</section>
 
 <!-- OMJ:IGQR-START -->
 <section class="omj-igqr" aria-labelledby="omj-igqr-heading">

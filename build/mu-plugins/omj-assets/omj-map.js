@@ -57,6 +57,16 @@
                 ['/wp-content/uploads/2026/07/v2-loc-parqal-04-800.jpg', '/wp-content/uploads/2026/07/v2-loc-parqal-04-800.webp'],
                 ['/wp-content/uploads/2026/07/v2-loc-parqal-05-800.jpg', '/wp-content/uploads/2026/07/v2-loc-parqal-05-800.webp']
             ]
+        },
+        {
+            key: 'paseo',
+            name: 'Paseo Center',
+            detail: 'Paseo Center, 8757 Paseo de Roxas cor. Sedeño St., Salcedo Village, Makati',
+            coords: [14.5577378, 121.0229892],
+            directions: 'https://www.google.com/maps/dir/?api=1&destination=Paseo+Center+8757+Paseo+de+Roxas+Makati+Metro+Manila',
+            images: [
+                ['/wp-content/uploads/2026/07/v2-omj-generated-cup-studio.jpg', '/wp-content/uploads/2026/07/v2-omj-generated-cup-studio.webp']
+            ]
         }
     ];
 

@@ -4,6 +4,13 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-10] feat | Add Paseo Center Makati location
+- Added Paseo Center, Makati machine location.
+- Updated interactive map marker (`build/mu-plugins/omj-assets/omj-map.js`) with Paseo coordinates, details, and placeholder generated cup image.
+- Updated Metro Manila locations count to "Five" and added a single-slide Paseo Center location card to the grid on the staging homepage (`build/pages/home-staging.html`).
+- Reinstated the compact "Current Locations" section with five static location cards on the contact staging page (`build/pages/contact-staging.html`).
+- Updated the verified locations reference document (`build/assets/locations.md`).
+
 ## [2026-07-10] chore | Repo cleanup — promote July report to root + archive deprecated material
 - **Promoted the client report:** copied `docs/2026-07-10-july-changes.html` → **`/OHMYJUICENESS-JULY-CHANGES.html`** (repo root) as the official standalone deliverable. Already fully self-contained (21 base64 data-URI images, 0 external refs). The dated source copy stays in `docs/`. Removed duplicate `JULY-CHANGES.html`.
 - **New `archive/` folder** (frozen; nothing here affects live) with an `archive/README.md` index:
