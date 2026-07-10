@@ -28,22 +28,27 @@ Custom WordPress logic resides in `/wp-content/mu-plugins/`:
 
 ### Live Pages
 
+At go-live (2026-07-10, commit `fb5a895`) the v2 staging pages 526/530 were promoted **in place** to serve `/` and `/contact/` (front page = 526; `contact` slug moved to 530). The old Home (35) and Contact (21) are Draft but recoverable (`build/scripts/revert.php`). `/home-staging/` and `/contact-staging/` 301-redirect to the live URLs (see `omj-brand.php`).
+
 | ID | Title | Slug | Build Method / Source |
 |---|---|---|---|
-| 35 | Home | `/` | `omj_set_page_html` -> `build/preview/home.html` (10 sections) |
-| 25 | About | `/about/` | `omj_set_page_html` -> `build/pages/about.html` |
-| 21 | Contact Us | `/contact/` | Elementor Pro form + custom franchising preselect script |
+| 526 | Home (promoted staging) | `/` | `omj_set_page_html(526, …)` <- `build/pages/home-staging.html` |
+| 25 | About | `/about/` | `omj_set_page_html` <- `build/pages/about.html` |
+| 530 | Contact (promoted staging) | `/contact/` | fragment via `build/scripts/update-contact-fragment.php` <- `build/pages/contact-staging.html` + cloned Elementor Pro form widget |
 | 3 | Privacy Policy | `/privacy-policy/` | Default WordPress theme page |
+| 35 | Old Home | — (draft) | retired at go-live |
+| 21 | Old Contact | — (draft) | retired at go-live; still holds the source form widget cloned into 530 |
+
+> [!WARNING]
+> Do **not** rerun `build/scripts/create-staging.php` post-go-live: it looks pages up by the retired `home-staging`/`contact-staging` slugs and would create duplicate pages. Use `omj_set_page_html(526, …)` for home and `update-contact-fragment.php` for contact.
 
 ### Staging Preview Pages
 
-These pages are deployed via `build/scripts/create-staging.php` and contain only body HTML (`build/pages/*-staging.html`). Header/footer chrome are inherited from Elementor Theme Builder.
-
 | ID | Title | Slug | Build Source |
 |---|---|---|---|
-| 526 | OMJ Home Staging — New Design Preview | `/home-staging/` | `build/pages/home-staging.html` |
 | 528 | OMJ About Staging — New Design Preview | `/about-staging/` | `build/pages/about-staging.html` |
-| 530 | OMJ Contact Staging — New Design Preview | `/contact-staging/` | `build/pages/contact-staging.html` |
+
+`build/preview/` (standalone local previews) has drifted from the deployed fragments since go-live and is reference-only; the canonical sources are `build/pages/*-staging.html` + `build/mu-plugins/omj-assets/omj-brand.css`.
 
 ### Theme Builder Templates
 

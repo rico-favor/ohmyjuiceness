@@ -4,6 +4,15 @@ Append-only record of changes, deployments, and key events.
 
 ## Log Entries
 
+## [2026-07-10] deploy | Round-two refinements (hero wordmark, section restore/reorder, contact icon)
+- Home (page 526, serves `/`): hero H1 text replaced with the horizontal orange wordmark (uploads `2025/05/OMJ-Assets_Horizontal-Logo-Orange-cropped-*`) on a solid `--omj-dark-green` badge — orange-on-dark-green measures 4.03:1 (WCAG 1.4.11 ≥3:1; verified by pixel sampling; no translucent scrim passes over the white cup). Hero content bottom-anchored.
+- Section order now: hero → Machine → stat band → NEW `#omj-manila` (Manila's Best orange-band/cream-card + FPR checklist paired with the `2025/05/ae14fe38-…-0007.jpg` cup-in-hand graphic, lightbox-enabled) → Cup → Find → Franchise → CTA.
+- Contact (page 530, serves `/contact/`): orange icon (`2025/04/OMJ-Assets_Icon-Orange-BG-300x300.png`) restored as `.omj-igqr__brandmark` at the top of the IGQR fragment; applied via new `build/scripts/update-contact-fragment.php` (targeted text-editor widget replace — do NOT rerun `create-staging.php`, it looks up retired staging slugs).
+- CSS: `omj-brand.css` section 25 (hero logo badge, `.omj-mb`, `.omj-fpr--media` + its own <768px 1-col rule since section 16's mobile override loses the cascade).
+- Backups on server: `~/omj-526-elementor-bak-2026-07-10.json`, `~/omj-530-elementor-bak-2026-07-10.json`, `~/omj-brand.css.bak-2026-07-10` (`wp db export` fails on this host — exits 255 at bootstrap).
+- July report refreshed: Round Two section (requests 11–15), placeholder-stats flag (client to supply real numbers), re-captured live screenshots (capture note: pass `?motion=reduce` and scroll slowly or IO reveals/lazy images render blank).
+- `build/preview/` NOT updated this round (drifted; canonical sources are `build/pages/*-staging.html` + mu-plugin CSS).
+
 ## [2026-07-10] update | Branded Photo Filters (Home & Contact pages)
 - Applied CSS-based photo filters to all real-life photos (hero banner, grid/process images, location cards, popup carousels) scoped strictly to the Home and Contact pages (both live and staging WordPress page IDs and local preview).
 - Filter specifications: `brightness(136%) contrast(92%) saturate(137%)`.
